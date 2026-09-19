@@ -1,0 +1,44 @@
+# LeanAI trên Fly.io
+# Đổi `app` thành tên duy nhất của bạn trước khi deploy lần đầu.
+app = "leanai-tuan26"
+primary_region = "sin"          # Singapore — gần Việt Nam nhất
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  HOST = "0.0.0.0"
+  PORT = "8080"
+  LEANAI_DATA_DIR = "/data"
+  # KHÔNG đặt LEANAI_READ_ONLY ở đây.
+  # Chưa đặt mật khẩu -> app tự vào chế độ chỉ đọc, đó là lớp bảo vệ.
+  # Đặt mật khẩu bằng: fly secrets set LEANAI_USER=... LEANAI_PASS=...
+
+# Tiến trình học nằm ở đây. Không có mount này thì mỗi lần deploy là mất sạch.
+[[mounts]]
+  source = "leanai_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"     # ngủ khi không ai dùng -> gần như không tốn tiền
+  auto_start_machines = true      # tự dậy khi có request (lần đầu chậm ~2-3 giây)
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 40
+    hard_limit = 60
+
+[checks.health]
+  type = "http"
+  port = 8080
+  path = "/healthz"
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "10s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"                # đủ rộng cho render markdown; hạ 256mb được nếu muốn tiết kiệm
