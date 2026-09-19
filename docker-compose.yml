@@ -11,7 +11,10 @@ services:
       HOST: 0.0.0.0
       PORT: 8080
       LEANAI_DATA_DIR: /data
-      # Bat xac thuc khi mo ra ngoai (bo trong = che do chi doc neu bi lo)
+      # Trong container BUOC phai bind 0.0.0.0, nhung cong o tren chi publish ra
+      # 127.0.0.1 nen khong he lo ra ngoai -> tat che do chi doc.
+      # NEU doi mapping thanh "8080:8080" (mo ra LAN/internet) thi PHAI dat mat khau.
+      LEANAI_READ_ONLY: "0"
       LEANAI_USER: ${LEANAI_USER:-}
       LEANAI_PASS: ${LEANAI_PASS:-}
     volumes:

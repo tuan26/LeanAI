@@ -9,6 +9,7 @@
 |---|---|
 | `HOST=127.0.0.1` (mặc định, chạy local) | không cần mật khẩu, ghi bình thường |
 | `HOST=0.0.0.0` + **không** đặt mật khẩu | tự chuyển **CHẾ ĐỘ CHỈ ĐỌC** — mọi POST bị chặn 403 |
+| Docker publish ra `127.0.0.1` | đặt `LEANAI_READ_ONLY=0` để bật ghi (compose đã làm sẵn) |
 | `HOST=0.0.0.0` + `LEANAI_USER`/`LEANAI_PASS` | HTTP Basic auth, ghi bình thường |
 
 Nghĩa là: lỡ deploy mà quên mật khẩu thì người lạ **không phá được** tiến trình của bạn.
@@ -34,6 +35,10 @@ chạy sau HTTPS — mọi nền tảng dưới đây đều cấp HTTPS sẵn.
 docker compose up -d --build
 # mở http://127.0.0.1:8080
 ```
+
+Trong container luôn phải bind `0.0.0.0`, nhưng compose chỉ publish ra `127.0.0.1:8080`
+nên app không lộ ra ngoài — vì vậy compose đặt sẵn `LEANAI_READ_ONLY=0` để ghi bình thường.
+**Nếu bạn đổi mapping thành `"8080:8080"` thì phải đặt mật khẩu**, xem Cách 2.
 
 Dữ liệu nằm trong volume `leanai-data`, không mất khi container restart.
 `curriculum/` và `quiz/bank/` được mount read-only nên sửa bài học trên máy là thấy ngay.
