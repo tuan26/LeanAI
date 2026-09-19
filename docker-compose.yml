@@ -1,0 +1,24 @@
+services:
+  leanai:
+    build: .
+    image: leanai:latest
+    container_name: leanai
+    restart: unless-stopped
+    ports:
+      # Chi mo tren may nay. Muon truy cap tu dien thoai trong LAN: doi thanh "8080:8080"
+      - "127.0.0.1:8080:8080"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8080
+      LEANAI_DATA_DIR: /data
+      # Bat xac thuc khi mo ra ngoai (bo trong = che do chi doc neu bi lo)
+      LEANAI_USER: ${LEANAI_USER:-}
+      LEANAI_PASS: ${LEANAI_PASS:-}
+    volumes:
+      - leanai-data:/data
+      # Sua bai hoc tren may la thay ngay trong app, khong can build lai
+      - ./curriculum:/app/curriculum:ro
+      - ./quiz/bank:/app/quiz/bank:ro
+
+volumes:
+  leanai-data:

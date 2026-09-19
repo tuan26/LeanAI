@@ -11,11 +11,13 @@ from pathlib import Path
 
 import markdown
 
+from . import config
+
 ROOT = Path(__file__).resolve().parent.parent
 CURRICULUM = ROOT / "curriculum"
 BANK = ROOT / "quiz" / "bank"
-QUIZ_PROGRESS = ROOT / "quiz" / "progress.json"
-STATUS = ROOT / "progress" / "status.json"
+QUIZ_PROGRESS = config.QUIZ_PROGRESS      # đổi được bằng LEANAI_DATA_DIR
+STATUS = config.STATUS_FILE
 
 # Phải khớp tuyệt đối với quiz/quiz.py
 INTERVALS = {1: 0, 2: 1, 3: 2, 4: 4, 5: 8, 6: 16}

@@ -6,16 +6,45 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+import secrets
+
+from fastapi import Depends, FastAPI, HTTPException, Request, status as http
 from fastapi.responses import FileResponse
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import core
+from . import config, core
 
 STATIC = Path(__file__).resolve().parent / "static"
 
 app = FastAPI(title="LeanAI", docs_url="/api/docs")
+
+# ----------------------------------------------------------------- an ninh
+_basic = HTTPBasic(auto_error=False)
+
+
+def require_auth(creds: HTTPBasicCredentials | None = Depends(_basic)) -> str:
+    """Bật khi có LEANAI_USER + LEANAI_PASS. So sánh chống tấn công thời gian."""
+    if not config.AUTH_ENABLED:
+        return ""
+    ok = creds is not None and (
+        secrets.compare_digest(creds.username, config.USER)
+        & secrets.compare_digest(creds.password, config.PASS))
+    if not ok:
+        raise HTTPException(http.HTTP_401_UNAUTHORIZED, "Sai tài khoản hoặc mật khẩu",
+                            headers={"WWW-Authenticate": "Basic"})
+    return creds.username
+
+
+@app.middleware("http")
+async def block_writes_when_readonly(request: Request, call_next):
+    if config.READ_ONLY and request.method in ("POST", "PUT", "PATCH", "DELETE"):
+        from fastapi.responses import JSONResponse
+        return JSONResponse(
+            {"detail": "Chế độ CHỈ ĐỌC — đặt LEANAI_USER/LEANAI_PASS để bật ghi."},
+            status_code=http.HTTP_403_FORBIDDEN)
+    return await call_next(request)
 
 # bản đồ đáp án của phiên quiz đang mở (1 người dùng, chạy local)
 _answer_map: dict[str, int] = {}
@@ -48,12 +77,12 @@ class BudgetIn(BaseModel):
 
 # --------------------------------------------------------------------- API
 @app.get("/api/overview")
-def api_overview():
+def api_overview(_: str = Depends(require_auth)):
     return core.overview()
 
 
 @app.get("/api/day/{day}")
-def api_day(day: int):
+def api_day(day: int, _: str = Depends(require_auth)):
     les = core.lessons().get(day)
     if not les:
         raise HTTPException(404, f"Không có ngày {day}")
@@ -71,7 +100,7 @@ def api_day(day: int):
 
 
 @app.post("/api/day/{day}/status")
-def api_set_status(day: int, body: StatusIn):
+def api_set_status(day: int, body: StatusIn, _: str = Depends(require_auth)):
     if not 1 <= day <= 90:
         raise HTTPException(400, "Ngày phải trong 1..90")
     core.set_day_status(day, body.status, cost=body.cost, minutes=body.minutes,
@@ -80,7 +109,8 @@ def api_set_status(day: int, body: StatusIn):
 
 
 @app.get("/api/quiz")
-def api_quiz(day: int | None = None, mode: str = "day", limit: int = 25):
+def api_quiz(day: int | None = None, mode: str = "day", limit: int = 25,
+              _: str = Depends(require_auth)):
     qs, amap = core.build_quiz(day=day, mode=mode, limit=limit)
     _answer_map.clear()
     _answer_map.update(amap)
@@ -88,7 +118,7 @@ def api_quiz(day: int | None = None, mode: str = "day", limit: int = 25):
 
 
 @app.post("/api/quiz/answer")
-def api_answer(body: AnswerIn):
+def api_answer(body: AnswerIn, _: str = Depends(require_auth)):
     if body.correct is not None:
         correct = body.correct
         right_index = None
@@ -102,18 +132,18 @@ def api_answer(body: AnswerIn):
 
 
 @app.post("/api/quiz/session")
-def api_session(body: SessionIn):
+def api_session(body: SessionIn, _: str = Depends(require_auth)):
     core.record_session(body.label, body.right, body.total)
     return {"ok": True}
 
 
 @app.get("/api/search")
-def api_search(q: str):
+def api_search(q: str, _: str = Depends(require_auth)):
     return {"q": q, "results": core.search(q)}
 
 
 @app.post("/api/budget")
-def api_budget(body: BudgetIn):
+def api_budget(body: BudgetIn, _: str = Depends(require_auth)):
     st = core.load_status()
     st["budget_usd"] = body.budget_usd
     core.save_status(st)
@@ -126,34 +156,34 @@ def api_reload():
     return {"ok": True, "lessons": len(core.lessons())}
 
 
+@app.get("/healthz")
+def healthz():
+    return {"ok": True, "lessons": len(core.lessons()),
+            "questions": len(core.all_questions()),
+            "read_only": config.READ_ONLY, "auth": config.AUTH_ENABLED}
+
+
 # ------------------------------------------------------------------ static
 app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
 
 @app.get("/")
-def index():
+def index(_: str = Depends(require_auth)):
     return FileResponse(STATIC / "index.html")
 
 
 @app.get("/day/{day}")
-def index_day(day: int):
+def index_day(day: int, _: str = Depends(require_auth)):
     return FileResponse(STATIC / "index.html")
 
 
 def main() -> None:
-    import socket
     import uvicorn
 
-    port = 8080
-    with socket.socket() as s:
-        while port < 8100:
-            try:
-                s.bind(("127.0.0.1", port))
-                break
-            except OSError:
-                port += 1
-    print(f"\n  LeanAI đang chạy tại  http://127.0.0.1:{port}\n")
-    uvicorn.run(app, host="127.0.0.1", port=port, log_level="warning")
+    if config.DATA_DIR:
+        config.DATA_DIR.mkdir(parents=True, exist_ok=True)
+    print("\n" + config.banner() + "\n")
+    uvicorn.run(app, host=config.HOST, port=config.PORT, log_level="warning")
 
 
 if __name__ == "__main__":
