@@ -1,0 +1,36 @@
+{
+  "day": 90,
+  "title": "Demo Day",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Ba quy tắc demo là gì?",
+      "answer": "1) Dùng dữ liệu thật đã seed, không phải slide. 2) Thừa nhận giới hạn — nói trước 2 điều chưa làm được, người nghe tin bạn hơn. 3) Không sửa code trong lúc demo, có bản ghi màn hình dự phòng.",
+      "id": "d90q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Điều gì phải nói rõ trong demo về mặt kỹ thuật?",
+      "choices": [
+        "Framework đang dùng",
+        "Phần nào dùng AI, phần nào KHÔNG, và VÌ SAO",
+        "Số dòng code",
+        "Tên model"
+      ],
+      "answer": 1,
+      "explain": "Đây là thứ phân biệt người hiểu hệ thống với người ghép thư viện.",
+      "id": "d90q2"
+    },
+    {
+      "type": "open",
+      "q": "Sau 90 ngày, ba hướng đi tiếp theo là gì?",
+      "answer": "1) Thương mại hoá: 3 khách thử nghiệm trả phí, đo doanh thu thu hồi thật, hiệu chuẩn scoring. 2) Đi sâu kỹ thuật: fine-tuning, self-host, multi-agent. 3) Làm dịch vụ tư vấn AI cho doanh nghiệp.",
+      "keywords": [
+        "thương mại",
+        "kỹ thuật",
+        "dịch vụ"
+      ],
+      "id": "d90q3"
+    }
+  ]
+}

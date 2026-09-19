@@ -1,0 +1,63 @@
+{
+  "day": 10,
+  "title": "Pretraining",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Pretraining dùng kiểu học nào?",
+      "choices": [
+        "Có giám sát với nhãn người gán",
+        "Self-supervised: đoán token bị che, dữ liệu tự sinh nhãn",
+        "Học tăng cường",
+        "Học không giám sát phân cụm"
+      ],
+      "answer": 1,
+      "explain": "Đó là lý do có thể train trên toàn bộ internet mà không cần người gán nhãn.",
+      "id": "d10q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Model base khác model chat thế nào?",
+      "choices": [
+        "Base nhỏ hơn",
+        "Base chỉ tiếp tục văn bản, không trả lời câu hỏi",
+        "Base chạy nhanh hơn",
+        "Không khác gì"
+      ],
+      "answer": 1,
+      "explain": "Khả năng nghe lời đến từ instruction tuning, không từ pretraining.",
+      "id": "d10q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Model có biết bảng giá dịch vụ của phòng khám khách hàng bạn không?",
+      "choices": [
+        "Có, nếu hỏi đúng cách",
+        "Không — dữ liệu riêng không có trong tập train, phải đưa vào bằng prompt/RAG",
+        "Có nếu dùng model lớn",
+        "Có sau vài lần hỏi"
+      ],
+      "answer": 1,
+      "explain": "Đây chính là câu trả lời giúp bạn bán được dự án RAG.",
+      "id": "d10q3"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 cách đưa dữ liệu riêng vào LLM và khi nào dùng cái nào.",
+      "answer": "1) Nhồi vào prompt — dữ liệu nhỏ, ít đổi. 2) RAG — dữ liệu lớn, thay đổi thường xuyên (mặc định nên chọn). 3) Fine-tuning — cần định dạng/phong cách đặc thù, tốn kém, không dùng để nạp kiến thức.",
+      "id": "d10q4"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao không nên mặc định chọn model lớn nhất?",
+      "answer": "Vì lợi ích giảm dần trong khi chi phí tăng phi tuyến. Model nhỏ được train tốt thường đủ cho phần lớn tác vụ, rẻ hơn 5–10 lần và nhanh hơn. Phải đo mới biết (Ngày 70).",
+      "keywords": [
+        "chi phí",
+        "đủ",
+        "đo",
+        "rẻ hơn"
+      ],
+      "id": "d10q5"
+    }
+  ]
+}

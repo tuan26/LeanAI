@@ -1,0 +1,38 @@
+{
+  "day": 45,
+  "title": "Query rewriting",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "HyDE hoạt động thế nào?",
+      "choices": [
+        "Viết lại câu hỏi ngắn hơn",
+        "Sinh câu TRẢ LỜI giả định rồi embed nó thay vì embed câu hỏi",
+        "Dịch câu hỏi sang tiếng Anh",
+        "Tách câu hỏi thành nhiều phần"
+      ],
+      "answer": 1,
+      "explain": "Câu trả lời giả định gần với tài liệu thật hơn là câu hỏi. Nhưng phải đo, đừng mặc định bật.",
+      "id": "d45q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 5 kỹ thuật viết lại truy vấn.",
+      "answer": "Chuẩn hoá (code, ~0đ); giải tham chiếu đại từ từ lịch sử; mở rộng đa truy vấn rồi gộp bằng RRF; tách câu hỏi ghép; HyDE.",
+      "id": "d45q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao cần router thay vì luôn viết lại truy vấn?",
+      "choices": [
+        "Tiết kiệm code",
+        "Mỗi lần viết lại tốn thêm 300-800ms và tiền — với truy vấn đơn giản là lãng phí",
+        "Viết lại làm giảm chất lượng",
+        "Không cần router"
+      ],
+      "answer": 1,
+      "explain": "Chỉ viết lại khi truy vấn quá ngắn, có đại từ, hoặc lần tìm đầu cho điểm thấp.",
+      "id": "d45q3"
+    }
+  ]
+}

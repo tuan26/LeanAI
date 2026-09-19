@@ -1,0 +1,50 @@
+{
+  "day": 22,
+  "title": "Zero-shot prompting",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Ràng buộc nào là ĐO ĐƯỢC?",
+      "choices": [
+        "Viết ngắn gọn",
+        "Giọng thân thiện",
+        "Tối đa 50 từ",
+        "Đừng bịa"
+      ],
+      "answer": 2,
+      "explain": "Nếu code không kiểm tra được thì model cũng không biết mình có tuân thủ không.",
+      "id": "d22q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 6 thành phần của prompt zero-shot tốt.",
+      "answer": "1) Ngữ cảnh (ai hỏi, để làm gì). 2) Nhiệm vụ (động từ rõ ràng). 3) Dữ liệu (bọc trong thẻ). 4) Ràng buộc đo được. 5) Định dạng output chính xác. 6) Xử lý ngoại lệ.",
+      "id": "d22q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Yêu cầu định dạng nên đặt ở đâu trong prompt dài?",
+      "choices": [
+        "Đầu prompt",
+        "Giữa",
+        "Cuối, ngay trước khi model sinh",
+        "Trong system"
+      ],
+      "answer": 2,
+      "explain": "Lost in the middle — Ngày 8.",
+      "id": "d22q3"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải viết hàm check() chấm tự động thay vì đọc bằng mắt?",
+      "answer": "Vì đọc mắt không lặp lại được, không so sánh được giữa các phiên bản prompt, và không chạy được trên 20-100 case. Không đo được thì không cải thiện được.",
+      "keywords": [
+        "lặp lại",
+        "so sánh",
+        "nhiều case",
+        "đo"
+      ],
+      "id": "d22q4"
+    }
+  ]
+}

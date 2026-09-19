@@ -1,0 +1,37 @@
+{
+  "day": 85,
+  "title": "Agent: detect → recommend",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Trong job đêm 7 bước, bao nhiêu bước dùng LLM?",
+      "choices": [
+        "Tất cả 7",
+        "2 bước (giải thích và soạn tin)",
+        "5 bước",
+        "0 bước"
+      ],
+      "answer": 1,
+      "explain": "Đây là lý do chi phí thấp.",
+      "id": "d85q1"
+    },
+    {
+      "type": "recall",
+      "q": "Job đêm cần những ngân sách nào?",
+      "answer": "max_opportunities_per_run (không làm ngập hàng chờ duyệt); max_cost_per_run; max_duration. Vượt thì dừng, ghi log, xử lý phần còn lại lần sau — không chạy vô hạn.",
+      "id": "d85q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Một khách gây lỗi thì job phải làm gì?",
+      "choices": [
+        "Dừng toàn bộ",
+        "Ghi log lỗi, chuyển sang khách tiếp theo, báo cáo cuối",
+        "Thử lại vô hạn",
+        "Bỏ qua im lặng"
+      ],
+      "answer": 1,
+      "id": "d85q3"
+    }
+  ]
+}

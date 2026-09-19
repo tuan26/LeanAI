@@ -1,0 +1,32 @@
+{
+  "day": 88,
+  "title": "Dashboard",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Chỉ số nào là lý do khách hàng trả tiền?",
+      "choices": [
+        "Số cơ hội phát hiện",
+        "Doanh thu thu hồi được",
+        "Số tin nhắn gửi",
+        "Tỉ lệ duyệt"
+      ],
+      "answer": 1,
+      "explain": "Bốn chỉ số đầu chỉ là quá trình.",
+      "id": "d88q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao dashboard chỉ nên có 5 chỉ số?",
+      "choices": [
+        "Giới hạn kỹ thuật",
+        "Dashboard 20 chỉ số = không ai nhìn; chủ phòng khám chỉ cần trả lời một câu về tiền",
+        "Tiết kiệm băng thông",
+        "Dễ code"
+      ],
+      "answer": 1,
+      "explain": "Chỉ số kỹ thuật để màn hình riêng cho bạn.",
+      "id": "d88q2"
+    }
+  ]
+}

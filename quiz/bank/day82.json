@@ -1,0 +1,37 @@
+{
+  "day": 82,
+  "title": "Revenue Opportunity engine",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao detector KHÔNG dùng LLM?",
+      "choices": [
+        "LLM không đủ thông minh",
+        "Luật rõ ràng, cần chính xác 100%, chạy 3.000 khách, cần kiểm toán được, chi phí ~0",
+        "Chưa có API",
+        "Quá phức tạp"
+      ],
+      "answer": 1,
+      "explain": "Đây là ADR-002 được thực thi.",
+      "id": "d82q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 quy tắc loại trừ áp dụng cho MỌI loại cơ hội.",
+      "answer": "1) opt_out = true → bỏ qua. 2) has_open_complaint = true → bỏ qua, chuyển quản lý. 3) đã gửi tin trong 7 ngày → bỏ qua (cooldown).",
+      "id": "d82q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Loại cơ hội nào nên ưu tiên cao nhất và vì sao?",
+      "choices": [
+        "OVERDUE_REVISIT",
+        "EXPIRING_SOON — có deadline thật nên dễ thuyết phục",
+        "UNUSED_PACKAGE",
+        "HIGH_INTENT_LEAD"
+      ],
+      "answer": 1,
+      "id": "d82q3"
+    }
+  ]
+}

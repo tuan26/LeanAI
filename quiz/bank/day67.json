@@ -1,0 +1,50 @@
+{
+  "day": 67,
+  "title": "Evaluation: scorer & LLM-judge",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Với CareDesk-AI, precision hay recall quan trọng hơn? Vì sao?",
+      "choices": [
+        "Recall — không được bỏ sót cơ hội",
+        "Precision — làm phiền nhầm khách làm hỏng quan hệ thật, còn bỏ sót chỉ mất tiền tiềm năng",
+        "Bằng nhau",
+        "Không cái nào"
+      ],
+      "answer": 1,
+      "explain": "Tuỳ bài toán, nhưng với việc nhắn tin cho khách thật thì precision quan trọng hơn.",
+      "id": "d67q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 quy tắc bắt buộc khi dùng LLM-judge.",
+      "answer": "1) Tiêu chí CỤ THỂ, không hỏi 'có tốt không'. 2) Thang RỜI RẠC (pass/fail), không thang 1-10. 3) Bắt nêu LÝ DO/lỗi trước khi cho điểm. 4) HIỆU CHUẨN với nhãn người trên ≥20 ca — đồng ý <85% thì judge vô dụng.",
+      "id": "d67q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Thiên lệch nào của LLM-judge KHÓ thấy nhất?",
+      "choices": [
+        "Thích câu trả lời dài",
+        "Thích văn của chính model đó (self-preference)",
+        "Thích phương án đầu",
+        "Nới tay"
+      ],
+      "answer": 1,
+      "explain": "Giảm bằng cách dùng model khác làm judge.",
+      "id": "d67q3"
+    },
+    {
+      "type": "open",
+      "q": "Điều gì nên chấm bằng code thay vì LLM-judge?",
+      "answer": "Mọi thứ xác định được bằng luật: enum, số, boolean, regex, độ dài, JSON hợp lệ, số có trong nguồn hay không. LLM-judge chỉ cho phần cần đánh giá chất lượng văn bản.",
+      "keywords": [
+        "enum",
+        "số",
+        "regex",
+        "độ dài"
+      ],
+      "id": "d67q4"
+    }
+  ]
+}

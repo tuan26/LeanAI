@@ -1,0 +1,37 @@
+{
+  "day": 50,
+  "title": "Project #2: Company Knowledge AI",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 6 chỉ số phải báo cáo cho một hệ thống RAG production.",
+      "answer": "Retrieval recall@5 (≥0.85); Answer accuracy (≥0.80); Citation accuracy (≥0.90); Hallucination rate (<0.05); Latency p50/p95 (<3s/<8s); Cost per query.",
+      "id": "d50q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Bộ test 100 câu nên có bao nhiêu câu KHÔNG có đáp án?",
+      "choices": [
+        "0",
+        "Khoảng 15",
+        "50",
+        "90"
+      ],
+      "answer": 1,
+      "explain": "Để đo khả năng từ chối đúng. Không có ca âm thì chỉ số đẹp giả.",
+      "id": "d50q2"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải so sánh nhiều cấu hình chứ không chỉ chạy một lần?",
+      "answer": "Để biết mỗi thành phần (rerank, hybrid, chunk size) thật sự đóng góp bao nhiêu. Có thành phần tốn tiền mà không cải thiện gì — chỉ đo mới biết để bỏ đi.",
+      "keywords": [
+        "đóng góp",
+        "tốn tiền",
+        "bỏ",
+        "đo"
+      ],
+      "id": "d50q3"
+    }
+  ]
+}

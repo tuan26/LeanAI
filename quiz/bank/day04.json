@@ -1,0 +1,76 @@
+{
+  "day": 4,
+  "title": "Tokenization",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Tiếng Việt có dấu tốn token gấp khoảng bao nhiêu lần tiếng Anh cho cùng nội dung?",
+      "choices": [
+        "Bằng nhau",
+        "Khoảng 2 lần",
+        "Khoảng 10 lần",
+        "Ít hơn tiếng Anh"
+      ],
+      "answer": 1,
+      "explain": "Hệ quả trực tiếp: gấp đôi chi phí và chiếm gấp đôi context window.",
+      "id": "d04q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao LLM thường đếm sai số chữ cái trong một từ?",
+      "choices": [
+        "Model kém thông minh",
+        "Model không nhìn thấy từng ký tự, chỉ thấy các token đã gộp",
+        "Lỗi của API",
+        "Do temperature cao"
+      ],
+      "answer": 1,
+      "explain": "'strawberry' với model là ['straw','berry'] — nó không thấy từng chữ r.",
+      "id": "d04q2"
+    },
+    {
+      "type": "mcq",
+      "q": "BPE (Byte Pair Encoding) hoạt động thế nào?",
+      "choices": [
+        "Cắt theo từ trong từ điển",
+        "Lặp lại việc gộp cặp ký tự xuất hiện nhiều nhất thành token mới",
+        "Cắt theo số ký tự cố định",
+        "Cắt theo dấu câu"
+      ],
+      "answer": 1,
+      "explain": "Chuỗi phổ biến trong corpus → 1 token; chuỗi hiếm → bị chẻ vụn.",
+      "id": "d04q3"
+    },
+    {
+      "type": "recall",
+      "q": "Viết công thức tính chi phí một request LLM.",
+      "answer": "cost = (input_tokens × giá_input + output_tokens × giá_output) / 1.000.000, với giá tính theo USD trên 1 triệu token.",
+      "id": "d04q4"
+    },
+    {
+      "type": "open",
+      "q": "Context window 200k token thì chứa được khoảng bao nhiêu từ tiếng Việt? Vì sao không phải 200.000?",
+      "answer": "Khoảng 70.000–90.000 từ, vì một từ tiếng Việt có dấu thường tốn hơn 2 token. Không được quy đổi 1 token = 1 từ.",
+      "keywords": [
+        "70.000",
+        "90.000",
+        "2 token",
+        "dấu"
+      ],
+      "id": "d04q5"
+    },
+    {
+      "type": "mcq",
+      "q": "Cách rẻ nhất để giảm chi phí một sản phẩm LLM là gì?",
+      "choices": [
+        "Đổi sang model lớn hơn",
+        "Ép model trả lời ngắn gọn và lọc bớt dữ liệu trước khi gọi",
+        "Tăng temperature",
+        "Gọi API nhiều lần hơn"
+      ],
+      "answer": 1,
+      "explain": "Output token đắt nhất; và lọc bằng SQL trước khi gọi LLM cắt được phần lớn chi phí.",
+      "id": "d04q6"
+    }
+  ]
+}

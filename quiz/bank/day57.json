@@ -1,0 +1,37 @@
+{
+  "day": 57,
+  "title": "Agent loop",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 5 điều kiện dừng bắt buộc của agent loop.",
+      "answer": "1) Model trả lời text (stop_reason != tool_use). 2) Vượt số bước tối đa. 3) Vượt ngân sách chi phí. 4) Quá số lỗi liên tiếp. 5) Cần người duyệt.",
+      "id": "d57q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Agent nên trả về gì ngoài câu trả lời?",
+      "choices": [
+        "Chỉ text là đủ",
+        "Cả quá trình: các bước, tool đã gọi, chi phí, lý do dừng — không có thì không debug và không đánh giá được",
+        "Chỉ chi phí",
+        "Chỉ số bước"
+      ],
+      "answer": 1,
+      "explain": "Đây là nền cho tracing Ngày 64 và eval Ngày 66.",
+      "id": "d57q2"
+    },
+    {
+      "type": "open",
+      "q": "System prompt của agent khác prompt thường ở điểm nào?",
+      "answer": "Phải nói rõ CÁCH LÀM VIỆC: lập kế hoạch ngắn trước khi gọi tool, mỗi bước một việc, dùng tool để lấy dữ liệu không tự nhớ/tự tính, tool lỗi 2 lần thì đổi hướng, đủ thông tin thì dừng.",
+      "keywords": [
+        "cách làm việc",
+        "một việc",
+        "tool",
+        "dừng"
+      ],
+      "id": "d57q3"
+    }
+  ]
+}

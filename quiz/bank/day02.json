@@ -1,0 +1,76 @@
+{
+  "day": 2,
+  "title": "Neural Network",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Khi nói 'model có 70 tỷ tham số', 70 tỷ con số đó là gì?",
+      "choices": [
+        "Số câu trong dữ liệu train",
+        "Các trọng số w và bias b của mạng",
+        "Số token trong từ vựng",
+        "Số lớp của mạng"
+      ],
+      "answer": 1,
+      "explain": "Tham số = weight + bias, được quyết định trong quá trình huấn luyện.",
+      "id": "d02q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao mạng neuron BẮT BUỘC phải có hàm phi tuyến?",
+      "choices": [
+        "Để chạy nhanh hơn",
+        "Vì chồng nhiều lớp tuyến tính vẫn chỉ tương đương một lớp tuyến tính",
+        "Để tiết kiệm bộ nhớ",
+        "Để tránh overfitting"
+      ],
+      "answer": 1,
+      "explain": "W2(W1x+b1)+b2 rút gọn được về một phép biến đổi tuyến tính duy nhất.",
+      "id": "d02q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Hàm nào được dùng ở ĐẦU RA của LLM để biến điểm số thành xác suất token?",
+      "choices": [
+        "ReLU",
+        "Sigmoid",
+        "Softmax",
+        "Tanh"
+      ],
+      "answer": 2,
+      "explain": "Softmax cho phân phối xác suất trên toàn bộ từ vựng.",
+      "id": "d02q3"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu đúng 4 bước của một vòng lặp huấn luyện.",
+      "answer": "1) Forward: tính dự đoán. 2) Loss: đo sai lệch. 3) Backward: tính gradient của loss theo từng tham số. 4) Update: w ← w − lr × gradient.",
+      "id": "d02q4"
+    },
+    {
+      "type": "mcq",
+      "q": "Learning rate quá lớn dẫn đến điều gì?",
+      "choices": [
+        "Học chậm nhưng chắc",
+        "Loss dao động/nổ tung vì nhảy qua điểm tối ưu",
+        "Model nhớ dữ liệu train",
+        "Không ảnh hưởng"
+      ],
+      "answer": 1,
+      "explain": "Bạn đã tự quan sát điều này khi đặt lr=5.0.",
+      "id": "d02q5"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải trừ max trước khi tính exp trong softmax?",
+      "answer": "Để tránh tràn số (overflow): exp(1000) vượt giới hạn float. Trừ max không đổi kết quả toán học vì exp(a−m)/Σexp(b−m) = exp(a)/Σexp(b).",
+      "keywords": [
+        "tràn",
+        "overflow",
+        "exp",
+        "không đổi"
+      ],
+      "id": "d02q6"
+    }
+  ]
+}

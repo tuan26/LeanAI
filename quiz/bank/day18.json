@@ -1,0 +1,50 @@
+{
+  "day": 18,
+  "title": "Conversation & memory",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Tổng chi phí của N lượt hội thoại không nén tăng theo?",
+      "choices": [
+        "O(1)",
+        "O(N)",
+        "O(N²)",
+        "O(log N)"
+      ],
+      "answer": 2,
+      "explain": "Mỗi lượt gửi lại toàn bộ lịch sử.",
+      "id": "d18q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Thông tin cứng (tên khách, số buổi còn lại) nên nằm ở đâu?",
+      "choices": [
+        "Trong lịch sử hội thoại",
+        "Trong facts/system prompt, lấy từ database mỗi lượt",
+        "Trong tóm tắt",
+        "Trong câu hỏi của user"
+      ],
+      "answer": 1,
+      "explain": "Tóm tắt có thể làm sai lệch con số — dữ liệu cứng phải từ nguồn đáng tin.",
+      "id": "d18q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 chiến lược quản lý bộ nhớ hội thoại và nhược điểm từng cái.",
+      "answer": "Full (không mất gì nhưng O(N²), vỡ context). Sliding window (rẻ nhưng quên phần đầu). Summarize (cân bằng, tốn 1 lần gọi LLM, mất chi tiết). Facts extraction (chính xác, bền, nhưng phức tạp nhất). Thực tế dùng summarize + facts.",
+      "id": "d18q3"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao nén hội thoại vẫn có thể làm mất thông tin quan trọng?",
+      "answer": "Vì tóm tắt là một lần gọi LLM — nó có thể bỏ sót hoặc diễn đạt sai chi tiết, đặc biệt là con số và tên riêng. Đó là lý do dữ liệu cứng phải tách ra khỏi luồng tóm tắt.",
+      "keywords": [
+        "tóm tắt",
+        "bỏ sót",
+        "con số",
+        "tách"
+      ],
+      "id": "d18q4"
+    }
+  ]
+}

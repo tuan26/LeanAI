@@ -1,0 +1,38 @@
+{
+  "day": 72,
+  "title": "Security",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 5 mặt trận an ninh của AI SaaS.",
+      "answer": "1) Prompt injection (trực tiếp và gián tiếp). 2) Rò rỉ dữ liệu (giữa tenant, ra log, ra bên thứ ba). 3) Quản lý bí mật. 4) Kiểm soát truy cập. 5) Lạm dụng tài nguyên (đốt quota, prompt dài).",
+      "id": "d72q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Gửi prompt cho LLM nghĩa là gì về mặt dữ liệu?",
+      "choices": [
+        "Không có gì",
+        "GỬI DỮ LIỆU KHÁCH HÀNG RA BÊN THỨ BA — phải che dữ liệu định danh khi không cần và nói rõ trong hợp đồng",
+        "Dữ liệu được mã hoá tự động",
+        "Chỉ là metadata"
+      ],
+      "answer": 1,
+      "explain": "Nhiều tác vụ không cần tên thật: phát hiện cơ hội chỉ cần số liệu.",
+      "id": "d72q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Lập trình viên nên có quyền gì với dữ liệu khách hàng thật?",
+      "choices": [
+        "Toàn quyền",
+        "KHÔNG có quyền đọc dữ liệu thật — chỉ có quyền xem chi phí và quản trị hệ thống",
+        "Chỉ đọc",
+        "Chỉ ghi"
+      ],
+      "answer": 1,
+      "explain": "Nguyên tắc đặc quyền tối thiểu.",
+      "id": "d72q3"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "day": 65,
+  "title": "Project #3: Research Agent",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 8 bước của research agent.",
+      "answer": "1) Lập kế hoạch thành truy vấn cụ thể. 2) Tìm kiếm nhiều truy vấn. 3) Trích xuất bản ghi có cấu trúc. 4) Chuẩn hoá. 5) Khử trùng. 6) Phân loại. 7) Chấm điểm. 8) Báo cáo có nguồn và nêu rõ dữ liệu thiếu.",
+      "id": "d65q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Mỗi bản ghi trong báo cáo research agent bắt buộc phải có gì?",
+      "choices": [
+        "Chỉ tên công ty",
+        "source_url và evidence_quote verify được",
+        "Giá",
+        "Logo"
+      ],
+      "answer": 1,
+      "explain": "Không có nguồn thì báo cáo không dùng được cho quyết định kinh doanh.",
+      "id": "d65q2"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao báo cáo phải có mục 'Giới hạn' và 'Dữ liệu còn thiếu'?",
+      "answer": "Vì thông tin lấy từ web công khai chưa được xác minh, giá có thể đã đổi, và một số bản ghi độ tin cậy thấp. Nêu rõ giúp người đọc biết chỗ nào cần kiểm chứng trước khi dùng — giấu đi là làm hại người dùng.",
+      "keywords": [
+        "chưa xác minh",
+        "kiểm chứng",
+        "tin cậy thấp"
+      ],
+      "id": "d65q3"
+    }
+  ]
+}

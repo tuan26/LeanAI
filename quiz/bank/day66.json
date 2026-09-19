@@ -1,0 +1,50 @@
+{
+  "day": 66,
+  "title": "Evaluation: dataset",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao eval set phải có ≥25% ca ÂM (không có cơ hội)?",
+      "choices": [
+        "Cho đủ số lượng",
+        "Để đo false positive — toàn ca dương thì chỉ số đẹp giả",
+        "Để cân bằng dữ liệu train",
+        "Không cần thiết"
+      ],
+      "answer": 1,
+      "explain": "Hệ thống báo cơ hội cho mọi khách vẫn đạt recall 100% nhưng vô dụng.",
+      "id": "d66q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 6 nguyên tắc xây eval dataset.",
+      "answer": "1) Lấy từ thực tế, đừng bịa hết. 2) Cân bằng dễ/trung bình/khó. 3) Có ca KHÔNG nên hành động. 4) Có ca biên và mâu thuẫn. 5) Nhãn do NGƯỜI gán. 6) ĐÓNG BĂNG test set — sửa test set để đạt chỉ số là tự lừa.",
+      "id": "d66q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Nhãn eval do AI gán thì sao?",
+      "choices": [
+        "Tiết kiệm thời gian, nên làm",
+        "Chỉ đo được 'AI giống AI', không đo được đúng sai thật",
+        "Chính xác hơn người",
+        "Tốt cho ca khó"
+      ],
+      "answer": 1,
+      "explain": "Đây là lý do gán nhãn tay là việc không được nhờ AI làm.",
+      "id": "d66q3"
+    },
+    {
+      "type": "open",
+      "q": "Tách dev set và test set để làm gì?",
+      "answer": "Dev set để thử nghiệm và tinh chỉnh; test set ĐÓNG BĂNG chỉ chạy khi cần đo thật. Nếu dùng chung, bạn sẽ vô tình tối ưu theo test set và chỉ số không còn phản ánh thực tế.",
+      "keywords": [
+        "thử nghiệm",
+        "đóng băng",
+        "tối ưu theo",
+        "phản ánh"
+      ],
+      "id": "d66q4"
+    }
+  ]
+}

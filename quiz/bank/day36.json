@@ -1,0 +1,43 @@
+{
+  "day": 36,
+  "title": "Hybrid search",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Truy vấn 'gói VIP-7788 còn hạn không' — cách nào bắt được mã?",
+      "choices": [
+        "Vector search",
+        "BM25 keyword",
+        "Cả hai như nhau",
+        "Không cách nào"
+      ],
+      "answer": 1,
+      "explain": "Vector trượt mã hiệu, BM25 bắt chính xác. Ngược lại với câu diễn đạt khác từ ngữ.",
+      "id": "d36q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao RRF tốt hơn weighted sum khi gộp 2 hệ tìm kiếm?",
+      "choices": [
+        "Nhanh hơn",
+        "Chỉ dùng thứ hạng nên không cần chuẩn hoá điểm giữa hai thang khác nhau",
+        "Chính xác hơn tuyệt đối",
+        "Đơn giản hơn để code"
+      ],
+      "answer": 1,
+      "explain": "Điểm BM25 và cosine không cùng thang — chuẩn hoá rất dễ sai.",
+      "id": "d36q2"
+    },
+    {
+      "type": "open",
+      "q": "Hybrid search tốn thêm gì và có đáng không?",
+      "answer": "Tốn gấp đôi công tìm kiếm nhưng latency tăng ít nếu chạy song song, chi phí LLM không đổi. Đây là một trong những cải tiến RẺ nhất của RAG — thường đáng làm.",
+      "keywords": [
+        "song song",
+        "rẻ",
+        "LLM không đổi"
+      ],
+      "id": "d36q3"
+    }
+  ]
+}

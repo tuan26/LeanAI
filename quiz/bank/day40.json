@@ -1,0 +1,38 @@
+{
+  "day": 40,
+  "title": "Excel parsing",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Bảng 3.000 dòng dữ liệu khách hàng nên xử lý thế nào?",
+      "choices": [
+        "Chunk và đưa vào RAG",
+        "Đưa vào database, truy vấn bằng SQL — KHÔNG phải RAG",
+        "Tóm tắt bằng LLM",
+        "Bỏ qua"
+      ],
+      "answer": 1,
+      "explain": "Đây là DỮ LIỆU, không phải TRI THỨC. Câu hỏi tổng hợp cần SQL, RAG không trả lời đúng được.",
+      "id": "d40q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu nguyên tắc quyết định đưa bảng Excel vào RAG hay không.",
+      "answer": "Bảng là TRI THỨC (bảng giá, ma trận chính sách, bảng quy đổi) → RAG dưới dạng câu có ngữ nghĩa. Bảng là DỮ LIỆU (khách hàng, giao dịch, lịch hẹn) → database + SQL.",
+      "id": "d40q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Row-to-sentence là gì?",
+      "choices": [
+        "Nối các dòng lại",
+        "Biến mỗi dòng thành câu có ngữ nghĩa đọc hiểu được độc lập",
+        "Xoá dòng trống",
+        "Sắp xếp dòng"
+      ],
+      "answer": 1,
+      "explain": "'Trị liệu da: giá 12.000.000đ, gồm 10 buổi, hạn 6 tháng.' thay vì 'Trị liệu da 12000000 10 6'.",
+      "id": "d40q3"
+    }
+  ]
+}

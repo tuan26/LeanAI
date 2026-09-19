@@ -1,0 +1,37 @@
+{
+  "day": 7,
+  "title": "Ôn tập tuần 1",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Kể lại toàn bộ hành trình của một câu hỏi đi qua LLM, từ text đến text.",
+      "answer": "Text → tokenizer cắt thành token ID → token embedding + positional encoding → qua N khối Transformer (LayerNorm, masked multi-head attention, residual, FFN, residual) → LayerNorm cuối → Linear chiếu lên vocab → softmax ra phân phối xác suất → sampling chọn 1 token → nối vào input → lặp lại cho đến khi gặp token kết thúc.",
+      "id": "d07q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Điều nào sau đây SAI?",
+      "choices": [
+        "LLM đoán token tiếp theo",
+        "LLM có trí nhớ giữa các lần gọi API",
+        "Tiếng Việt tốn token hơn tiếng Anh",
+        "FFN chứa phần lớn tham số"
+      ],
+      "answer": 1,
+      "explain": "LLM hoàn toàn không có trí nhớ giữa các request — app phải gửi lại lịch sử.",
+      "id": "d07q2"
+    },
+    {
+      "type": "open",
+      "q": "Nêu 4 số liệu bạn TỰ ĐO được trong tuần 1.",
+      "answer": "Ví dụ: tỉ lệ token VI/EN; chi phí một tin nhắn chăm sóc khách; similarity 'có bảo hành' vs 'không có bảo hành'; thời gian attention n=1024 vs n=2048; recall@1 trên KB mini.",
+      "keywords": [
+        "token",
+        "chi phí",
+        "similarity",
+        "attention"
+      ],
+      "id": "d07q3"
+    }
+  ]
+}

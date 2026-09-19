@@ -1,0 +1,36 @@
+{
+  "day": 56,
+  "title": "Retry & backoff cho agent",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Hành động nào TUYỆT ĐỐI không được retry?",
+      "choices": [
+        "Đọc hồ sơ khách",
+        "Gửi tin nhắn cho khách",
+        "Tìm kiếm tài liệu",
+        "Tính toán"
+      ],
+      "answer": 1,
+      "explain": "Khách nhận 3 tin giống nhau. Nhóm này cần idempotency key.",
+      "id": "d56q1"
+    },
+    {
+      "type": "recall",
+      "q": "Ba tầng retry trong agent là gì và rủi ro khi nhân chúng lại?",
+      "answer": "Tầng 1 retry HTTP, tầng 2 retry tool, tầng 3 retry kế hoạch. Nhân lại có thể thành 18 lần gọi cho một yêu cầu — bắt buộc phải có ngân sách tổng.",
+      "id": "d56q2"
+    },
+    {
+      "type": "open",
+      "q": "Retry kế hoạch là gì?",
+      "answer": "Khi agent thất bại sau N bước, cho nó biết đã thử gì và thất bại vì sao, yêu cầu đề xuất cách tiếp cận KHÁC hoặc nói rõ không làm được — thay vì lặp lại cách cũ.",
+      "keywords": [
+        "đã thử",
+        "cách khác",
+        "không làm được"
+      ],
+      "id": "d56q3"
+    }
+  ]
+}

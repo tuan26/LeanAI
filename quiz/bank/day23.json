@@ -1,0 +1,50 @@
+{
+  "day": 23,
+  "title": "Few-shot prompting",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Số ví dụ few-shot ở điểm ngọt thường là?",
+      "choices": [
+        "1",
+        "3-5",
+        "10-15",
+        "càng nhiều càng tốt"
+      ],
+      "answer": 1,
+      "explain": "Thêm nữa lợi ích giảm dần, chi phí tăng tuyến tính.",
+      "id": "d23q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Nếu 4/5 ví dụ đều là nhãn TIÊU_CỰC thì sao?",
+      "choices": [
+        "Không sao",
+        "Model thiên lệch về TIÊU_CỰC",
+        "Model chính xác hơn",
+        "Model từ chối trả lời"
+      ],
+      "answer": 1,
+      "explain": "Phải cân bằng nhãn trong bộ ví dụ.",
+      "id": "d23q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 quy tắc chọn ví dụ few-shot.",
+      "answer": "Đa dạng (không trùng dạng); có ít nhất 1 ca biên; ví dụ cuối gần nhất với ca thật; định dạng đồng nhất và không có lỗi (model sao chép cả lỗi).",
+      "id": "d23q3"
+    },
+    {
+      "type": "open",
+      "q": "Khi nào few-shot KHÔNG đáng dùng?",
+      "answer": "Khi zero-shot đã đạt ~95% — mức cải thiện nhỏ không bù được token tăng thêm nhân với số request. Phải đo cả hai rồi so sánh.",
+      "keywords": [
+        "95%",
+        "token",
+        "đo",
+        "so sánh"
+      ],
+      "id": "d23q4"
+    }
+  ]
+}

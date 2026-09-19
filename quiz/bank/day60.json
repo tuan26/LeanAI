@@ -1,0 +1,38 @@
+{
+  "day": 60,
+  "title": "Workflow vs Agent",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Quy tắc chọn giữa workflow và agent là gì?",
+      "choices": [
+        "Luôn dùng agent cho linh hoạt",
+        "Luôn chọn mức CỨNG NHẤT vẫn giải quyết được bài toán",
+        "Luôn dùng workflow",
+        "Tuỳ ngân sách"
+      ],
+      "answer": 1,
+      "explain": "Agent đắt hơn, khó đoán hơn, khó kiểm toán hơn.",
+      "id": "d60q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 5 mẫu workflow phổ biến.",
+      "answer": "Chain (A→B→C); Router (phân loại rồi chọn nhánh); Parallel (chạy song song rồi gộp); Evaluator (sinh→chấm→sửa); Orchestrator (LLM lập kế hoạch một lần, code thực thi).",
+      "id": "d60q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Trong CareDesk-AI, phát hiện khách quá hạn nên dùng gì?",
+      "choices": [
+        "Agent",
+        "SQL thuần",
+        "LLM với temperature 0",
+        "RAG"
+      ],
+      "answer": 1,
+      "explain": "Luật rõ ràng, cần chính xác 100%, chạy 3.000 khách mỗi đêm — agent chỉ thêm chi phí và rủi ro.",
+      "id": "d60q3"
+    }
+  ]
+}

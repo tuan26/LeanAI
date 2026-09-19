@@ -1,0 +1,63 @@
+{
+  "day": 15,
+  "title": "Python, API, JSON",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Mã lỗi nào KHÔNG nên retry?",
+      "choices": [
+        "429",
+        "500",
+        "400",
+        "529"
+      ],
+      "answer": 2,
+      "explain": "400 là lỗi do request của bạn sai — retry bao nhiêu lần cũng vậy.",
+      "id": "d15q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao không hardcode API key trong code?",
+      "choices": [
+        "Khó đọc",
+        "Bị lộ khi commit lên git, bot quét được trong vài phút",
+        "Chạy chậm",
+        "Tốn RAM"
+      ],
+      "answer": 1,
+      "explain": ".env + gitignore là mức tối thiểu.",
+      "id": "d15q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 module nền cần có trong leanai_core và vai trò từng cái.",
+      "answer": "config.py (đọc .env, giữ hằng số ở một chỗ), http.py (gọi HTTP có retry/timeout), logging.py (ghi log JSONL có timestamp). Thêm jsonutil.py để parse JSON bền bỉ.",
+      "id": "d15q3"
+    },
+    {
+      "type": "mcq",
+      "q": "safe_json_loads cần xử lý trường hợp nào đầu tiên?",
+      "choices": [
+        "Bỏ markdown fence và tìm khối {...} cân bằng",
+        "Đổi sang YAML",
+        "Gọi lại API",
+        "Ghi log"
+      ],
+      "answer": 0,
+      "explain": "Output LLM hay bị bọc ```json và có chữ thừa trước/sau.",
+      "id": "d15q4"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải kiểm tra stop_reason của response?",
+      "answer": "Nếu stop_reason = max_tokens thì câu trả lời bị CẮT giữa chừng — JSON sẽ hỏng, nội dung thiếu. Không bao giờ parse output mà không kiểm tra field này.",
+      "keywords": [
+        "max_tokens",
+        "cắt",
+        "JSON",
+        "thiếu"
+      ],
+      "id": "d15q5"
+    }
+  ]
+}

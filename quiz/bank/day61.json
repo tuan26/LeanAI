@@ -1,0 +1,31 @@
+{
+  "day": 61,
+  "title": "Human-in-the-loop",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Ba mức tự động và điều kiện lên mức cao hơn?",
+      "answer": "Mức 1 đề xuất (AI soạn, người bấm gửi); mức 2 duyệt lô; mức 3 tự động (người xem lại sau). Chỉ lên mức cao hơn khi có ≥200 mẫu ở mức hiện tại với tỉ lệ người sửa <10%.",
+      "id": "d61q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 5 cách thiết kế màn hình duyệt để chống 'bấm cho xong'.",
+      "answer": "1) Hiện ĐÚNG NGUYÊN VĂN sẽ gửi. 2) Hiện VÌ SAO kèm dữ liệu. 3) Đánh dấu đỏ điểm cần chú ý. 4) Bắt buộc nhập lý do khi Reject. 5) Sắp xếp theo rủi ro, ca khó lên đầu.",
+      "id": "d61q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Reject có giá trị gì ngoài việc chặn tin sai?",
+      "choices": [
+        "Không có gì",
+        "Là dữ liệu quý nhất — mỗi lần sửa/từ chối là một mẫu 'AI làm sai' dùng cho few-shot và eval",
+        "Chỉ để thống kê",
+        "Để phạt AI"
+      ],
+      "answer": 1,
+      "explain": "Đủ 100 mẫu này tốt hơn mọi bộ test tự nghĩ ra.",
+      "id": "d61q3"
+    }
+  ]
+}

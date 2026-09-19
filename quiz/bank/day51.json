@@ -1,0 +1,44 @@
+{
+  "day": 51,
+  "title": "Function calling",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Khi LLM 'gọi tool', điều gì thực sự xảy ra?",
+      "choices": [
+        "LLM chạy hàm trực tiếp",
+        "LLM chỉ trả về TEXT có cấu trúc đề nghị gọi; CODE CỦA BẠN mới thực thi",
+        "Server của provider chạy hàm",
+        "Hàm chạy trong sandbox của model"
+      ],
+      "answer": 1,
+      "explain": "Mọi rủi ro an ninh nằm ở chỗ code của bạn có kiểm tra trước khi chạy hay không.",
+      "id": "d51q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Description của tool có vai trò gì?",
+      "choices": [
+        "Chỉ để tài liệu hoá",
+        "Nó là PROMPT — model chọn tool dựa trên nó",
+        "Không quan trọng",
+        "Chỉ hiện trong UI"
+      ],
+      "answer": 1,
+      "explain": "Phải viết rõ: làm gì, khi nào dùng, khi nào KHÔNG dùng, trả về gì.",
+      "id": "d51q2"
+    },
+    {
+      "type": "open",
+      "q": "Khi nào dùng tool thay vì RAG?",
+      "answer": "Khi dữ liệu THAY ĐỔI LIÊN TỤC (số buổi còn lại, lịch hẹn hôm nay) — RAG index tĩnh không phản ánh kịp. RAG cho tri thức ổn định, tool cho dữ liệu sống.",
+      "keywords": [
+        "thay đổi",
+        "dữ liệu sống",
+        "tri thức",
+        "index tĩnh"
+      ],
+      "id": "d51q3"
+    }
+  ]
+}

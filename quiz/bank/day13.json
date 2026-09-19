@@ -1,0 +1,75 @@
+{
+  "day": 13,
+  "title": "Hallucination",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao hallucination là bản chất chứ không phải bug?",
+      "choices": [
+        "Do lỗi lập trình của provider",
+        "Vì model được train để sinh chuỗi có xác suất cao, không phải chuỗi đúng sự thật",
+        "Do temperature mặc định",
+        "Do context window nhỏ"
+      ],
+      "answer": 1,
+      "explain": "Cộng thêm RLHF khiến 'tôi không biết' bị chấm thấp.",
+      "id": "d13q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 6 kỹ thuật giảm hallucination.",
+      "answer": "1) Cung cấp ngữ cảnh (RAG). 2) Cho phép trả lời 'KHÔNG ĐỦ THÔNG TIN'. 3) Bắt trích nguồn kèm chunk_id. 4) Giới hạn phạm vi: chỉ dùng tài liệu được cấp. 5) Tách tính toán ra cho code. 6) Kiểm tra lại bằng pass thứ hai.",
+      "id": "d13q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Khi nào model dễ bịa nhất?",
+      "choices": [
+        "Câu hỏi phổ thông",
+        "Câu hỏi rất cụ thể về số/ngày/tên riêng mà model không được cấp dữ liệu",
+        "Câu hỏi ngắn",
+        "Câu hỏi bằng tiếng Anh"
+      ],
+      "answer": 1,
+      "explain": "Cộng thêm: câu hỏi có tiền giả định sai và suy luận nhiều bước.",
+      "id": "d13q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Trong tin nhắn gửi khách, số buổi còn lại và ngày hết hạn nên đến từ đâu?",
+      "choices": [
+        "Để LLM tự viết cho tự nhiên",
+        "Do code lấy từ database và chèn vào, LLM chỉ viết phần diễn đạt",
+        "Copy từ tin nhắn cũ",
+        "Không cần chính xác"
+      ],
+      "answer": 1,
+      "explain": "Mọi con số có hệ quả tiền bạc phải có tỉ lệ bịa 0%.",
+      "id": "d13q4"
+    },
+    {
+      "type": "open",
+      "q": "Đánh đổi khi siết chống bịa là gì?",
+      "answer": "Tỉ lệ từ chối nhầm tăng: model trả lời 'KHÔNG ĐỦ THÔNG TIN' cả khi tài liệu thật ra có câu trả lời. Phải đo cả hai chỉ số, không chỉ đo tỉ lệ bịa.",
+      "keywords": [
+        "từ chối nhầm",
+        "đo",
+        "cả hai"
+      ],
+      "id": "d13q5"
+    },
+    {
+      "type": "mcq",
+      "q": "Loại bịa 'trích dẫn điều khoản không tồn tại' chữa bằng cách nào?",
+      "choices": [
+        "Giảm temperature",
+        "Bắt trả về ID đoạn có thật rồi verify bằng code",
+        "Tăng max_tokens",
+        "Đổi model"
+      ],
+      "answer": 1,
+      "explain": "Bạn đã cài verify_citations ở Ngày 14.",
+      "id": "d13q6"
+    }
+  ]
+}

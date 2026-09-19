@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LeanAI — 90 ngày</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn only-mobile" id="btn-menu" title="Menu">☰</button>
+  <a class="brand" href="#/">LeanAI <span>90 ngày</span></a>
+
+  <div class="top-progress" id="top-progress" title="Tiến trình tổng">
+    <div class="tp-track"><div class="tp-fill" id="tp-fill"></div></div>
+    <span class="tp-label" id="tp-label">0/90</span>
+  </div>
+
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Tìm trong 90 bài học…" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+
+  <button class="btn ghost" id="btn-review" title="Ôn các câu đến hạn">
+    Ôn tập <span class="badge" id="due-badge" hidden>0</span>
+  </button>
+  <button class="icon-btn" id="btn-theme" title="Sáng/tối">◐</button>
+</header>
+
+<div class="layout">
+  <!-- ------------------------------------------------ sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <nav class="nav-tabs">
+      <button class="tab active" data-view="dashboard">Tiến trình</button>
+      <button class="tab" data-view="lessons">Bài học</button>
+    </nav>
+    <div class="side-body" id="side-body"></div>
+  </aside>
+
+  <!-- ------------------------------------------------ main -->
+  <main class="main" id="main">
+    <div class="loading">Đang tải…</div>
+  </main>
+</div>
+
+<!-- ------------------------------------------------ quiz modal -->
+<div class="modal-backdrop" id="quiz-modal" hidden>
+  <div class="modal">
+    <header class="modal-head">
+      <div>
+        <div class="modal-title" id="quiz-title">Quiz</div>
+        <div class="modal-sub" id="quiz-sub"></div>
+      </div>
+      <button class="icon-btn" id="quiz-close">✕</button>
+    </header>
+    <div class="quiz-progress"><div id="quiz-bar"></div></div>
+    <div class="modal-body" id="quiz-body"></div>
+    <footer class="modal-foot" id="quiz-foot"></footer>
+  </div>
+</div>
+
+<!-- ------------------------------------------------ mark done modal -->
+<div class="modal-backdrop" id="done-modal" hidden>
+  <div class="modal narrow">
+    <header class="modal-head">
+      <div class="modal-title" id="done-title">Hoàn thành ngày</div>
+      <button class="icon-btn" id="done-close">✕</button>
+    </header>
+    <div class="modal-body">
+      <div class="field"><label>Thời gian học (phút)</label>
+        <input id="f-minutes" type="number" min="0" step="5" value="120"></div>
+      <div class="field"><label>Chi phí API (USD)</label>
+        <input id="f-cost" type="number" min="0" step="0.01" value="0"></div>
+      <div class="field"><label>Ghi chú</label>
+        <input id="f-note" type="text" placeholder="điều khó nhất hôm nay…"></div>
+      <div class="checklist" id="f-criteria"></div>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn danger ghost" id="btn-mark-fail">Đánh dấu FAIL</button>
+      <button class="btn primary" id="btn-mark-pass">PASS — hoàn thành</button>
+    </footer>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

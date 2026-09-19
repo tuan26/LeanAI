@@ -1,0 +1,50 @@
+{
+  "day": 27,
+  "title": "Self-verification",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao hỏi 'câu trả lời trên có đúng không?' thường vô dụng?",
+      "choices": [
+        "Model không hiểu",
+        "Sycophancy — model thiên vị trả lời là đúng",
+        "Tốn token",
+        "Model quên câu trả lời"
+      ],
+      "answer": 1,
+      "explain": "Phải yêu cầu LIỆT KÊ LỖI theo từng tiêu chí cụ thể.",
+      "id": "d27q1"
+    },
+    {
+      "type": "recall",
+      "q": "Ba loại kiểm tra và công cụ tương ứng?",
+      "answer": "Xác định được bằng luật (độ dài, từ cấm, JSON hợp lệ, số có trong nguồn) → CODE. Cần đối chiếu nguồn (khẳng định có được tài liệu hỗ trợ không) → LLM critic. Cần cảm nhận (giọng văn tự nhiên không) → NGƯỜI.",
+      "id": "d27q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Mỗi vòng critic tốn thêm khoảng bao nhiêu chi phí?",
+      "choices": [
+        "Không đáng kể",
+        "+60-100%",
+        "+5%",
+        "Giảm chi phí"
+      ],
+      "answer": 1,
+      "explain": "Chỉ dùng khi hậu quả lỗi lớn hoặc đo được nó bắt lỗi thật.",
+      "id": "d27q3"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải đo cả false positive của critic?",
+      "answer": "Nếu prompt ép critic 'bắt buộc tìm ít nhất 1 lỗi', nó sẽ bịa lỗi ngay cả với output hoàn hảo — gây retry vô ích và làm hỏng output đúng. Phải test trên cả output đúng lẫn sai.",
+      "keywords": [
+        "bịa lỗi",
+        "output đúng",
+        "retry vô ích",
+        "test"
+      ],
+      "id": "d27q4"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "day": 68,
+  "title": "Tracing: span model",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Log dòng khác trace ở điểm nào?",
+      "choices": [
+        "Trace nhanh hơn",
+        "Log cho biết CÁI GÌ đã xảy ra; trace cho biết cái gì GÂY RA cái gì và mất bao lâu ở đâu",
+        "Trace rẻ hơn",
+        "Không khác"
+      ],
+      "answer": 1,
+      "explain": "Không có trace, bạn tối ưu theo cảm tính.",
+      "id": "d68q1"
+    },
+    {
+      "type": "recall",
+      "q": "Chiến lược sampling trace thực tế là gì?",
+      "answer": "100% request LỖI; 100% request CHẬM (>p95); 100% request có hành động ghi (audit); 5-10% request bình thường. Trace đầy đủ mọi request quá tốn dung lượng.",
+      "id": "d68q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Span LLM cần ghi thêm thuộc tính gì?",
+      "choices": [
+        "Chỉ thời gian",
+        "model, input_tokens, output_tokens, cost, temperature",
+        "Chỉ tên model",
+        "Chỉ chi phí"
+      ],
+      "answer": 1,
+      "explain": "Đủ để trả lời 'tiền đi đâu' mà không cần chạy lại.",
+      "id": "d68q3"
+    }
+  ]
+}

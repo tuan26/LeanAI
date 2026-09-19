@@ -1,0 +1,37 @@
+{
+  "day": 71,
+  "title": "Latency",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao đo p95 thay vì trung bình?",
+      "choices": [
+        "Dễ tính hơn",
+        "Người dùng nhớ lần CHẬM NHẤT, không nhớ trung bình — 9 lần 1s + 1 lần 20s cho trung bình 2.9s nghe ổn nhưng thực tế rất tệ",
+        "p95 nhỏ hơn",
+        "Quy ước ngành"
+      ],
+      "answer": 1,
+      "id": "d71q1"
+    },
+    {
+      "type": "recall",
+      "q": "Ngân sách latency là gì và dùng thế nào?",
+      "answer": "Phân bổ trước thời gian cho từng tầng (vd guardrail 0.05s, retrieval 0.4s, rerank 0.8s, LLM 2.4s) với tổng mục tiêu. Đo thực tế, tầng nào vượt ngân sách thì biết ngay phải sửa gì.",
+      "id": "d71q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Ngưỡng latency chấp nhận cho agent nhiều bước?",
+      "choices": [
+        "< 3s",
+        "< 30s nhưng PHẢI hiện tiến trình",
+        "< 1s",
+        "Không giới hạn"
+      ],
+      "answer": 1,
+      "explain": "Người dùng chịu được chờ lâu nếu thấy hệ thống đang làm việc.",
+      "id": "d71q3"
+    }
+  ]
+}

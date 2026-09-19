@@ -1,0 +1,38 @@
+{
+  "day": 63,
+  "title": "Multi-step agent",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Mỗi bước đúng 95%, agent 10 bước đạt tỉ lệ thành công bao nhiêu?",
+      "choices": [
+        "95%",
+        "Khoảng 60%",
+        "90%",
+        "50%"
+      ],
+      "answer": 1,
+      "explain": "0.95^10 ≈ 0.60. Độ tin cậy giảm theo luỹ thừa.",
+      "id": "d63q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 kỹ thuật tăng độ tin cậy agent nhiều bước, cái nào hiệu quả nhất?",
+      "answer": "1) Lập kế hoạch trước và code kiểm tra. 2) Checkpoint sau mỗi bước. 3) Xác minh từng bước. 4) GIẢM SỐ BƯỚC — hiệu quả nhất: agent 3 bước tin cậy hơn agent 10 bước.",
+      "id": "d63q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Đo độ tin cậy agent đúng cách là gì?",
+      "choices": [
+        "Chạy 1 lần thấy được là ổn",
+        "Chạy CÙNG một nhiệm vụ 10 lần, đếm số lần thành công",
+        "Hỏi model tự đánh giá",
+        "Đo latency"
+      ],
+      "answer": 1,
+      "explain": "Chạy một lần rồi kết luận là tự lừa mình.",
+      "id": "d63q3"
+    }
+  ]
+}

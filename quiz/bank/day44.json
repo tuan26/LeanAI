@@ -1,0 +1,36 @@
+{
+  "day": 44,
+  "title": "Ingestion pipeline",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 8 bước của pipeline ingest hoàn chỉnh.",
+      "answer": "1) Liệt kê file (bỏ file tạm, quá lớn). 2) Parse theo định dạng. 3) Kiểm chất lượng → quarantine nếu thấp. 4) Quét injection → quarantine. 5) Chunk. 6) Làm giàu metadata. 7) Index tăng dần. 8) Báo cáo có lý do cho mọi file bị bỏ.",
+      "id": "d44q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Pipeline gặp một file lỗi thì nên làm gì?",
+      "choices": [
+        "Dừng toàn bộ",
+        "Ghi lỗi, chuyển sang file tiếp theo, báo cáo cuối cùng",
+        "Bỏ qua im lặng",
+        "Thử lại vô hạn"
+      ],
+      "answer": 1,
+      "explain": "Một file hỏng không được làm chết cả lô 500 file.",
+      "id": "d44q2"
+    },
+    {
+      "type": "open",
+      "q": "Chạy ingest lần 2 trên cùng thư mục không đổi thì kết quả phải thế nào?",
+      "answer": "100% file bị skipped nhờ file hash, 0 chunk thêm mới, chi phí gần bằng 0. Nếu không đạt thì incremental indexing của bạn chưa hoạt động.",
+      "keywords": [
+        "skipped",
+        "hash",
+        "chi phí 0"
+      ],
+      "id": "d44q3"
+    }
+  ]
+}

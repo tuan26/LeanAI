@@ -1,0 +1,43 @@
+{
+  "day": 79,
+  "title": "Auth",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "tenant_id phải lấy từ đâu?",
+      "choices": [
+        "Query parameter",
+        "SESSION — không bao giờ từ tham số request",
+        "Header tuỳ chỉnh",
+        "Body của request"
+      ],
+      "answer": 1,
+      "explain": "Nếu client gửi ?tenant_id=clinic_002 và server tin thì đó là lỗ hổng nghiêm trọng nhất.",
+      "id": "d79q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Phân quyền nên kiểm tra ở đâu?",
+      "choices": [
+        "Chỉ ở UI",
+        "Ở tầng service/API — UI chỉ để ẩn nút cho tiện",
+        "Ở database",
+        "Ở client"
+      ],
+      "answer": 1,
+      "explain": "Ẩn nút không phải bảo mật.",
+      "id": "d79q2"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao vẫn so sánh mật khẩu kể cả khi không tìm thấy user?",
+      "answer": "Để thời gian phản hồi như nhau, chống dò tài khoản qua kênh thời gian (timing attack). Nếu trả về ngay khi không có user, kẻ tấn công biết email nào tồn tại.",
+      "keywords": [
+        "thời gian",
+        "dò tài khoản",
+        "timing"
+      ],
+      "id": "d79q3"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "day": 64,
+  "title": "Logging & observability",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Ba câu hỏi mà log phải trả lời được?",
+      "answer": "1) Chuyện gì đã xảy ra — chuỗi sự kiện đầy đủ của một run. 2) Vì sao nó làm vậy — prompt, tool call, kết quả, quyết định. 3) Tốn bao nhiêu — token, tiền, thời gian từng bước.",
+      "id": "d64q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Điều gì TUYỆT ĐỐI không được log?",
+      "choices": [
+        "Tên tool",
+        "Số điện thoại khách, API key, nội dung y tế nhạy cảm",
+        "Thời gian chạy",
+        "Số token"
+      ],
+      "answer": 1,
+      "explain": "Lộ log = lộ dữ liệu khách hàng, là rủi ro pháp lý thật.",
+      "id": "d64q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Một span trong trace cần những thuộc tính gì?",
+      "choices": [
+        "Chỉ tên",
+        "trace_id, span_id, parent_id, name, start, duration + thuộc tính riêng theo loại span",
+        "Chỉ thời gian",
+        "Chỉ lỗi"
+      ],
+      "answer": 1,
+      "explain": "Mô hình chuẩn OpenTelemetry.",
+      "id": "d64q3"
+    }
+  ]
+}

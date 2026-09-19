@@ -1,0 +1,50 @@
+{
+  "day": 41,
+  "title": "Chunking strategies",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Chunk quá nhỏ gây vấn đề gì?",
+      "choices": [
+        "Tốn tiền",
+        "Thiếu ngữ cảnh — có đoạn đúng nhưng không đủ để trả lời",
+        "Chậm",
+        "Không sao"
+      ],
+      "answer": 1,
+      "explain": "Chunk quá lớn thì embedding bị pha loãng. Điểm cân bằng thường 400-800 token nhưng phải tự đo.",
+      "id": "d41q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 chiến lược chunking và chiến lược nào thường tốt nhất.",
+      "answer": "Fixed-size (đơn giản, cắt giữa câu); Recursive (tôn trọng ranh giới tự nhiên); Structure-aware theo heading (thường TỐT NHẤT nếu tài liệu có cấu trúc); Semantic (chất lượng cao nhưng tốn tiền embed và khó đoán).",
+      "id": "d41q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Kỹ thuật làm giàu chunk nào gần như miễn phí và hiệu quả nhất?",
+      "choices": [
+        "Sinh câu hỏi giả định",
+        "Thêm section_path vào đầu chunk",
+        "Tóm tắt bằng LLM",
+        "Dịch sang tiếng Anh"
+      ],
+      "answer": 1,
+      "explain": "Không tốn lời gọi LLM nào mà thường cải thiện recall rõ rệt.",
+      "id": "d41q3"
+    },
+    {
+      "type": "open",
+      "q": "Small-to-big retrieval là gì?",
+      "answer": "Tìm bằng chunk NHỎ (embedding chính xác hơn) nhưng đưa cho LLM chunk LỚN bao quanh (đủ ngữ cảnh để trả lời). Cài bằng cách lưu parent_id hoặc parent_text trong metadata.",
+      "keywords": [
+        "nhỏ",
+        "lớn",
+        "parent",
+        "ngữ cảnh"
+      ],
+      "id": "d41q4"
+    }
+  ]
+}

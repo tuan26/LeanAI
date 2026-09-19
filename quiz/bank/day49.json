@@ -1,0 +1,38 @@
+{
+  "day": 49,
+  "title": "Hallucination control trong RAG",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Nếu truy hồi trượt (không tìm được tài liệu đúng) thì kỹ thuật prompt có cứu được không?",
+      "choices": [
+        "Có, prompt tốt sẽ cứu",
+        "Không — mọi kỹ thuật prompt đều vô dụng, phải sửa tầng truy hồi",
+        "Tuỳ model",
+        "Chỉ cần tăng temperature"
+      ],
+      "answer": 1,
+      "explain": "Luôn kiểm tra recall trước khi đổ lỗi cho LLM.",
+      "id": "d49q1"
+    },
+    {
+      "type": "recall",
+      "q": "Hai chỉ số phải đo cùng nhau khi chống bịa là gì và mục tiêu bao nhiêu?",
+      "answer": "Tỉ lệ bịa (< 5%) và tỉ lệ từ chối nhầm (< 15%). Siết chống bịa luôn làm tăng từ chối nhầm — sản phẩm từ chối 50% câu hỏi thì không ai dùng.",
+      "id": "d49q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Chế độ PARTIAL giúp gì?",
+      "choices": [
+        "Tăng tốc",
+        "Giảm từ chối nhầm rõ rệt mà không tăng bịa — trả lời được phần nào, nêu rõ phần thiếu",
+        "Giảm chi phí",
+        "Không giúp gì"
+      ],
+      "answer": 1,
+      "explain": "Cho model 3 lựa chọn ANSWER/PARTIAL/INSUFFICIENT thay vì 2.",
+      "id": "d49q3"
+    }
+  ]
+}

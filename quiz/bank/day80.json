@@ -1,0 +1,30 @@
+{
+  "day": 80,
+  "title": "Multi-tenant isolation",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 4 tầng phòng thủ cách ly tenant.",
+      "answer": "1) Ứng dụng: mọi query có filter tenant_id. 2) Database: Row Level Security — quên filter cũng không rò rỉ. 3) Vector DB: filter bắt buộc. 4) Kiểm thử: test tự động chạy mỗi commit. Chỉ tầng 1 là KHÔNG ĐỦ.",
+      "id": "d80q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Quên SET app.tenant_id khi dùng RLS thì sao?",
+      "choices": [
+        "Thấy hết dữ liệu",
+        "current_setting trả NULL nên KHÔNG thấy dòng nào — fail closed, đúng hướng",
+        "Lỗi kết nối",
+        "Thấy dữ liệu tenant đầu tiên"
+      ],
+      "answer": 1,
+      "id": "d80q2"
+    },
+    {
+      "type": "recall",
+      "q": "Kể 5 chỗ hay rò rỉ tenant ngoài database.",
+      "answer": "Vector DB (quên filter); cache (key không có tenant); log/trace; job nền chạy quyền admin; thông báo lỗi lộ id tenant khác; file upload đường dẫn đoán được; prompt LLM nhồi dữ liệu nhiều tenant.",
+      "id": "d80q3"
+    }
+  ]
+}

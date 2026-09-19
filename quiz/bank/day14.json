@@ -1,0 +1,37 @@
+{
+  "day": 14,
+  "title": "Mini project: AI Explanation Engine",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Liệt kê 8 yêu cầu kỹ thuật của AI Explanation Engine và mỗi cái đến từ ngày học nào.",
+      "answer": "1) Đếm token trước khi gửi (N4,N8). 2) Sắp xếp prompt đúng thứ tự (N8). 3) temperature=0 (N9). 4) System prompt có vai trò/quy tắc/điều cấm (N11). 5) Prompt trung lập không nịnh (N12). 6) Bắt trích dẫn nguyên văn (N13). 7) Trường độ tin cậy + 'không tìm thấy' (N13). 8) In token/chi phí/latency (N4).",
+      "id": "d14q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vòng lặp cốt lõi của AI engineering là gì?",
+      "choices": [
+        "Viết prompt rồi hy vọng",
+        "Đo → sửa → đo lại",
+        "Đổi model cho đến khi được",
+        "Tăng temperature dần"
+      ],
+      "answer": 1,
+      "explain": "Bạn sẽ lặp vòng này suốt 76 ngày còn lại.",
+      "id": "d14q2"
+    },
+    {
+      "type": "open",
+      "q": "verify_citations kiểm tra điều gì và vì sao nó quan trọng?",
+      "answer": "Kiểm tra mọi chuỗi trong dấu ngoặc kép của output có thật sự xuất hiện nguyên văn trong tài liệu gốc không. Quan trọng vì đây là cách phát hiện bịa nguồn bằng code, tự động, không cần người đọc.",
+      "keywords": [
+        "nguyên văn",
+        "tài liệu",
+        "bịa nguồn",
+        "tự động"
+      ],
+      "id": "d14q3"
+    }
+  ]
+}

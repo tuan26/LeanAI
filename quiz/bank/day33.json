@@ -1,0 +1,38 @@
+{
+  "day": 33,
+  "title": "Vector database (Qdrant)",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Payload index trong Qdrant dùng để làm gì?",
+      "choices": [
+        "Nén dữ liệu",
+        "Làm filter theo metadata nhanh, không phải quét toàn bộ",
+        "Tăng độ chính xác tìm kiếm",
+        "Sao lưu"
+      ],
+      "answer": 1,
+      "explain": "Không có index, filter phải quét — rất chậm ở quy mô lớn.",
+      "id": "d33q1"
+    },
+    {
+      "type": "recall",
+      "q": "Payload của một điểm trong vector DB phải chứa tối thiểu những gì?",
+      "answer": "tenant_id (bắt buộc cho multi-tenant), doc_id, chunk_index, text gốc, và các trường cần cho trích dẫn (page, section). Nguyên tắc: payload phải đủ để tái tạo trích dẫn mà không truy vấn thêm.",
+      "id": "d33q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Tham số ef khi search ảnh hưởng gì?",
+      "choices": [
+        "Kích thước vector",
+        "Độ kỹ khi tìm — cao thì chính xác hơn nhưng chậm hơn",
+        "Số lượng collection",
+        "Dung lượng đĩa"
+      ],
+      "answer": 1,
+      "explain": "m và ef_construct ảnh hưởng lúc build; ef ảnh hưởng lúc search.",
+      "id": "d33q3"
+    }
+  ]
+}

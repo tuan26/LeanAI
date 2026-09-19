@@ -1,0 +1,44 @@
+{
+  "day": 32,
+  "title": "Cosine similarity & vector math",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Khi vector đã chuẩn hoá, cosine similarity tương đương phép nào?",
+      "choices": [
+        "Khoảng cách Euclidean",
+        "Dot product",
+        "Tổng các phần tử",
+        "Tích các phần tử"
+      ],
+      "answer": 1,
+      "explain": "Nhanh hơn mà kết quả y hệt — nên luôn chuẩn hoá khi lưu.",
+      "id": "d32q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vector DB dùng ANN để làm gì?",
+      "choices": [
+        "Tăng độ chính xác",
+        "Đổi một chút độ chính xác lấy tốc độ gấp hàng trăm lần",
+        "Giảm dung lượng",
+        "Hỗ trợ nhiều ngôn ngữ"
+      ],
+      "answer": 1,
+      "explain": "Brute force O(N×d) không dùng được ở quy mô triệu vector.",
+      "id": "d32q2"
+    },
+    {
+      "type": "open",
+      "q": "'Lời nguyền số chiều' ảnh hưởng thế nào tới cách bạn dùng điểm similarity?",
+      "answer": "Ở số chiều cao, vector ngẫu nhiên gần như trực giao, nên điểm tuyệt đối mất ý nghĩa. Phải dùng THỨ HẠNG tương đối, không đặt ngưỡng cứng kiểu 'score > 0.8' mà chưa tự đo.",
+      "keywords": [
+        "thứ hạng",
+        "ngưỡng cứng",
+        "tự đo",
+        "trực giao"
+      ],
+      "id": "d32q3"
+    }
+  ]
+}

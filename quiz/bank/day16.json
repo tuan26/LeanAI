@@ -1,0 +1,50 @@
+{
+  "day": 16,
+  "title": "LLM API request",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao phải bọc SDK trong LLMClient thay vì gọi trực tiếp?",
+      "choices": [
+        "Cho đẹp code",
+        "Để có MỘT chỗ duy nhất thêm log, cache, retry, đo lường, đổi provider",
+        "SDK chạy chậm",
+        "Bắt buộc bởi API"
+      ],
+      "answer": 1,
+      "explain": "Không bọc thì khi cần thêm tracing bạn phải sửa 40 chỗ.",
+      "id": "d16q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 field của response cần đọc mỗi lần gọi.",
+      "answer": "content[0].text (nội dung), usage.input_tokens và usage.output_tokens (tính tiền), stop_reason (kiểm tra có bị cắt không).",
+      "id": "d16q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Usage tracking theo tag dùng để làm gì?",
+      "choices": [
+        "Trang trí",
+        "Biết chức năng nào tốn tiền nhất để tối ưu đúng chỗ",
+        "Tăng tốc",
+        "Giảm lỗi"
+      ],
+      "answer": 1,
+      "explain": "Ngày 70 bạn sẽ dựa vào đây để cắt giảm chi phí.",
+      "id": "d16q3"
+    },
+    {
+      "type": "open",
+      "q": "Chế độ dry_run dùng khi nào?",
+      "answer": "Khi chuẩn bị chạy hàng loạt (vd 1000 request ở Ngày 89): đếm token và ước tính chi phí trước, không gọi API, để biết trước hoá đơn.",
+      "keywords": [
+        "ước tính",
+        "trước",
+        "hàng loạt",
+        "chi phí"
+      ],
+      "id": "d16q4"
+    }
+  ]
+}

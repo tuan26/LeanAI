@@ -1,0 +1,37 @@
+{
+  "day": 46,
+  "title": "Top-k & context budget",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Tăng k thì recall và chất lượng câu trả lời thay đổi thế nào?",
+      "choices": [
+        "Cả hai cùng tăng",
+        "Recall luôn tăng nhưng chất lượng câu trả lời đạt đỉnh rồi GIẢM",
+        "Cả hai cùng giảm",
+        "Không đổi"
+      ],
+      "answer": 1,
+      "explain": "Nhiễu nhiều → model phân tán → lost in the middle → tốn tiền và chậm.",
+      "id": "d46q1"
+    },
+    {
+      "type": "recall",
+      "q": "Chiến lược chọn context tốt nhất là gì?",
+      "answer": "Ngân sách token + ngưỡng điểm tương đối: lấy đến khi hết ngân sách HOẶC khi điểm tụt quá xa so với chunk đầu (vd < 60% điểm cao nhất). Kèm khử trùng lặp và sắp xếp lại vị trí.",
+      "id": "d46q2"
+    },
+    {
+      "type": "open",
+      "q": "Sắp xếp lại chunk trong prompt theo nguyên tắc gì và vì sao?",
+      "answer": "Đặt chunk quan trọng nhất ở ĐẦU và CUỐI, chunk kém hơn ở giữa — vì hiện tượng lost in the middle (Ngày 8). Kỹ thuật này miễn phí.",
+      "keywords": [
+        "đầu",
+        "cuối",
+        "giữa",
+        "lost in the middle"
+      ],
+      "id": "d46q3"
+    }
+  ]
+}

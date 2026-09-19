@@ -1,0 +1,37 @@
+{
+  "day": 89,
+  "title": "Evaluation 100 scenarios",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Chỉ số nào BẮT BUỘC phải bằng 0?",
+      "choices": [
+        "False positive",
+        "Số liệu sai trong tin nhắn gửi khách",
+        "False negative",
+        "Tỉ lệ từ chối"
+      ],
+      "answer": 1,
+      "explain": "Đây là ranh giới đỏ — mọi con số trong tin nhắn phải từ database.",
+      "id": "d89q1"
+    },
+    {
+      "type": "recall",
+      "q": "RESULTS.md cho khách hàng phải có mục gì mà nhiều người bỏ qua?",
+      "answer": "Mục 'GIỚI HẠN ĐÃ BIẾT' — nói trước hệ thống KHÔNG làm được gì, cần dữ liệu tối thiểu nào, độ chính xác giảm ở trường hợp nào. Giấu đi sẽ mất uy tín khi khách phát hiện.",
+      "id": "d89q2"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải phân tích thất bại theo NHÓM chứ không chỉ tổng?",
+      "answer": "Vì tổng 85% có thể che giấu một nhóm chỉ đạt 40% — ví dụ nhóm dữ liệu bẩn hoặc ca biên. Phân tích theo nhóm chỉ ra chính xác chỗ cần sửa.",
+      "keywords": [
+        "che giấu",
+        "nhóm",
+        "ca biên",
+        "chỗ cần sửa"
+      ],
+      "id": "d89q3"
+    }
+  ]
+}

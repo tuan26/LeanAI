@@ -1,0 +1,50 @@
+{
+  "day": 38,
+  "title": "PDF parsing",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Cách phát hiện PDF scan?",
+      "choices": [
+        "Xem đuôi file",
+        "Số ký tự trích được chia số trang < ~100",
+        "Kích thước file",
+        "Số trang"
+      ],
+      "answer": 1,
+      "explain": "PDF scan là ảnh, trích được rất ít hoặc không có text.",
+      "id": "d38q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 vấn đề thường gặp khi parse PDF và cách xử lý.",
+      "answer": "Cột đôi (dùng toạ độ tách cột); bảng biểu (trích riêng, chuyển Markdown); header/footer lặp (phát hiện dòng lặp trên ≥50% trang rồi bỏ); ngắt dòng giữa câu (ghép khi dòng trước không kết thúc bằng dấu câu).",
+      "id": "d38q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Nguyên tắc chất lượng khi ingest là gì?",
+      "choices": [
+        "Index mọi file để không thiếu",
+        "Thà từ chối một file còn hơn để rác làm hỏng chất lượng toàn hệ thống",
+        "Luôn dùng OCR",
+        "Chỉ nhận file Word"
+      ],
+      "answer": 1,
+      "explain": "Rác vào = rác ra. Không kỹ thuật RAG nào cứu được chunk vô nghĩa.",
+      "id": "d38q3"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao parser phải trích cả văn bản ẩn trong PDF?",
+      "answer": "Vì chữ trắng trên nền trắng hoặc font size 0 có thể chứa chỉ dẫn độc hại (indirect prompt injection). Phải trích ra để quét trước khi đưa vào index.",
+      "keywords": [
+        "chữ trắng",
+        "injection",
+        "quét",
+        "index"
+      ],
+      "id": "d38q4"
+    }
+  ]
+}

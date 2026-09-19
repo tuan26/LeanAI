@@ -1,0 +1,42 @@
+{
+  "day": 87,
+  "title": "Human approval + send",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao phải chạy guardrail LẦN NỮA tại thời điểm gửi?",
+      "choices": [
+        "Cho chắc",
+        "Giữa lúc soạn nháp (đêm) và lúc duyệt (sáng), tình hình có thể đổi: khách vừa đến, vừa khiếu nại, đã có người gửi tin",
+        "Yêu cầu của luật",
+        "Để ghi log"
+      ],
+      "answer": 1,
+      "id": "d87q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Nhân viên bấm Approve hai lần do mạng chậm thì sao?",
+      "choices": [
+        "Gửi 2 tin",
+        "Chỉ gửi 1 tin nhờ idempotency key",
+        "Báo lỗi",
+        "Tuỳ tốc độ mạng"
+      ],
+      "answer": 1,
+      "id": "d87q2"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao Reject bắt buộc nhập lý do?",
+      "answer": "Vì mỗi lý do là một mẫu dữ liệu 'AI làm sai' — dùng làm few-shot và eval để cải tiến. Không bắt buộc thì nhân viên bấm cho xong và bạn mất dữ liệu quý nhất.",
+      "keywords": [
+        "mẫu",
+        "few-shot",
+        "eval",
+        "cải tiến"
+      ],
+      "id": "d87q3"
+    }
+  ]
+}

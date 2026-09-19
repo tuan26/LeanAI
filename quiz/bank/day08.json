@@ -1,0 +1,63 @@
+{
+  "day": 8,
+  "title": "Context window",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "LLM có nhớ cuộc hội thoại trước không?",
+      "choices": [
+        "Có, model lưu lại",
+        "Không, ứng dụng phải gửi lại toàn bộ lịch sử mỗi lần",
+        "Có nếu dùng cùng API key",
+        "Chỉ nhớ 24 giờ"
+      ],
+      "answer": 1,
+      "explain": "Mỗi request là một tờ giấy trắng. Hội thoại dài → mỗi lượt càng đắt.",
+      "id": "d08q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Hiện tượng 'lost in the middle' là gì?",
+      "choices": [
+        "Model quên câu hỏi",
+        "Thông tin nằm giữa prompt dài bị bỏ sót nhiều hơn ở đầu/cuối",
+        "API mất gói tin",
+        "Token bị cắt"
+      ],
+      "answer": 1,
+      "explain": "Đó là lý do câu hỏi và yêu cầu định dạng phải đặt ở CUỐI prompt.",
+      "id": "d08q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu đúng thứ tự 4 tầng khi sắp xếp một prompt dài.",
+      "answer": "1) System prompt / vai trò. 2) Tài liệu tham chiếu. 3) Ví dụ few-shot. 4) Câu hỏi + yêu cầu định dạng (đặt cuối cùng, ngay trước khi model sinh).",
+      "id": "d08q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Nhồi thật nhiều tài liệu vào context có phải chiến lược tốt không?",
+      "choices": [
+        "Có, càng nhiều càng chính xác",
+        "Không: tốn tiền, latency O(n²), và chú ý bị pha loãng",
+        "Có nếu context đủ lớn",
+        "Tuỳ model"
+      ],
+      "answer": 1,
+      "explain": "Ngữ cảnh ĐÚNG thắng ngữ cảnh NHIỀU.",
+      "id": "d08q4"
+    },
+    {
+      "type": "open",
+      "q": "Phân biệt context window và max output tokens.",
+      "answer": "Context window là giới hạn tổng input + output. Max output tokens là giới hạn riêng cho phần model sinh ra, thường nhỏ hơn nhiều. Nhầm lẫn dẫn đến output bị cắt giữa chừng.",
+      "keywords": [
+        "tổng",
+        "input",
+        "output",
+        "cắt"
+      ],
+      "id": "d08q5"
+    }
+  ]
+}

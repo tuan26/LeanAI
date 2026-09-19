@@ -1,0 +1,36 @@
+{
+  "day": 69,
+  "title": "Tracing: viewer & debug",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Quy trình tối ưu dựa trên trace gồm những bước nào?",
+      "answer": "1) Gom 100 trace gần nhất. 2) Tính p50/p95 cho TỪNG span. 3) Chọn span có (p95 × tần suất) lớn nhất — nút thắt thật. 4) Tối ưu đúng span đó. 5) Đo lại và so sánh.",
+      "id": "d69q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Sai lầm phổ biến khi tối ưu hiệu năng là gì?",
+      "choices": [
+        "Tối ưu quá sớm",
+        "Tối ưu span mình NGHĨ là chậm thay vì span ĐO ĐƯỢC là chậm",
+        "Dùng công cụ sai",
+        "Không đủ RAM"
+      ],
+      "answer": 1,
+      "explain": "Trực giác về hiệu năng thường sai.",
+      "id": "d69q2"
+    },
+    {
+      "type": "open",
+      "q": "Khi tối ưu latency, ngoài thời gian còn phải kiểm tra gì?",
+      "answer": "CHẤT LƯỢNG — chạy lại eval set. Nếu tối ưu làm giảm độ chính xác thì phải ghi rõ đánh đổi và cân nhắc lại, không được im lặng chấp nhận.",
+      "keywords": [
+        "chất lượng",
+        "eval",
+        "đánh đổi"
+      ],
+      "id": "d69q3"
+    }
+  ]
+}

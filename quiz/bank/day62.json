@@ -1,0 +1,49 @@
+{
+  "day": 62,
+  "title": "Guardrails cho agent",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Ràng buộc 'tối đa 1 tin/khách/tuần' nên đặt ở đâu?",
+      "choices": [
+        "Trong system prompt",
+        "Trong CODE chạy trước khi tool thực thi",
+        "Trong description của tool",
+        "Trong few-shot"
+      ],
+      "answer": 1,
+      "explain": "Prompt có thể bị quên hoặc bị injection ghi đè. Code thì không thể vượt qua.",
+      "id": "d62q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 tầng guardrail của agent.",
+      "answer": "1) Trước khi gọi tool: kiểm tra tham số, quyền, hạn mức. 2) Sau khi có kết quả: lọc dữ liệu nhạy cảm. 3) Trước khi hành động: quy tắc nghiệp vụ. 4) Sau khi xong: kiểm tra kết quả cuối.",
+      "id": "d62q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Guardrail không kiểm tra được (DB lỗi) thì nên làm gì?",
+      "choices": [
+        "Cho qua để không chặn người dùng",
+        "CHẶN — fail closed, an toàn hơn là đúng",
+        "Thử lại vô hạn",
+        "Bỏ qua guardrail đó"
+      ],
+      "answer": 1,
+      "explain": "Fail open là lỗ hổng.",
+      "id": "d62q3"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao cần hạn mức tổng (vd 200 tin/ngày/phòng khám)?",
+      "answer": "Để giới hạn thiệt hại khi có lỗi logic hàng loạt: sự cố dừng ở 200 tin thay vì 3.000 tin. Đây là van an toàn cuối cùng.",
+      "keywords": [
+        "giới hạn thiệt hại",
+        "lỗi hàng loạt",
+        "van an toàn"
+      ],
+      "id": "d62q4"
+    }
+  ]
+}

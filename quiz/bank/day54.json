@@ -1,0 +1,38 @@
+{
+  "day": 54,
+  "title": "Tool result handling",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Chi phí agent nhiều bước tăng theo?",
+      "choices": [
+        "O(1)",
+        "O(N)",
+        "O(N²) vì mỗi lượt gửi lại toàn bộ lịch sử gồm mọi kết quả tool trước",
+        "O(log N)"
+      ],
+      "answer": 2,
+      "explain": "Agent 8 bước với tool trả 2.000 token mỗi lần → lượt cuối gửi hơn 16.000 token chỉ riêng kết quả tool.",
+      "id": "d54q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 kỹ thuật nén kết quả tool.",
+      "answer": "1) Chọn trường — chỉ trả trường model cần. 2) Tóm tắt kết quả lớn. 3) Tham chiếu: trả ref + preview, model xin chi tiết nếu cần. 4) Dọn lịch sử: thay kết quả cũ bằng tóm tắt một dòng.",
+      "id": "d54q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Trường retryable trong lỗi tool dùng để làm gì?",
+      "choices": [
+        "Thống kê",
+        "Cho vòng lặp agent biết nên thử lại hay đổi hướng",
+        "Ghi log",
+        "Tính tiền"
+      ],
+      "answer": 1,
+      "explain": "Lỗi tạm thời thì retry; lỗi vĩnh viễn thì đổi cách tiếp cận.",
+      "id": "d54q3"
+    }
+  ]
+}

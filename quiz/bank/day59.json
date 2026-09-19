@@ -1,0 +1,37 @@
+{
+  "day": 59,
+  "title": "Memory",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 4 loại bộ nhớ của agent.",
+      "answer": "Working (trong 1 lượt, ở messages); Episodic (trong 1 phiên, ở state.facts); Semantic (lâu dài, chia sẻ, ở vector DB/bảng); Procedural (quy trình, ở code/prompt).",
+      "id": "d59q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Điều gì KHÔNG nên đưa vào bộ nhớ dài hạn?",
+      "choices": [
+        "Khách không thích bị gọi điện",
+        "Số buổi còn lại của khách",
+        "Quy trình xử lý khiếu nại",
+        "Khách thích khung giờ sáng"
+      ],
+      "answer": 1,
+      "explain": "Dữ liệu biến động phải luôn tra lại từ hệ thống. Nhớ sai còn tệ hơn không nhớ.",
+      "id": "d59q2"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao memory phải có nguồn gốc (run_id, evidence, confidence)?",
+      "answer": "Để kiểm chứng được memory đó đúng không, xoá đúng cái sai, và biết mức tin cậy. Không có nguồn gốc thì một ghi nhớ sai sẽ ảnh hưởng mọi phiên sau mà không ai truy được.",
+      "keywords": [
+        "kiểm chứng",
+        "xoá",
+        "tin cậy",
+        "truy"
+      ],
+      "id": "d59q3"
+    }
+  ]
+}

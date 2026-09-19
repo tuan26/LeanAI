@@ -1,0 +1,49 @@
+{
+  "day": 31,
+  "title": "Embedding thực chiến",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao không được chọn model embedding theo bảng xếp hạng tiếng Anh?",
+      "choices": [
+        "Bảng xếp hạng không đáng tin",
+        "Chất lượng tiếng Việt khác hẳn, phải tự test trên dữ liệu của mình",
+        "Model tiếng Anh đắt hơn",
+        "Không có lý do"
+      ],
+      "answer": 1,
+      "explain": "Luôn chạy bộ test tiếng Việt của chính bạn trước khi chọn.",
+      "id": "d31q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 nguyên tắc bắt buộc khi làm embedding service.",
+      "answer": "1) Cache theo hash(model+text) — cùng text cùng vector, không gọi lại API. 2) Batch 50-100 text/lần thay vì từng cái. 3) Chuẩn hoá vector khi lưu để cosine trở thành dot product.",
+      "id": "d31q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Embedding KHÔNG nên dùng cho việc gì?",
+      "choices": [
+        "Tìm câu diễn đạt khác nhau cùng ý",
+        "So sánh số lượng và kiểm tra phủ định",
+        "Tìm kiếm đa ngôn ngữ",
+        "Phân cụm tài liệu"
+      ],
+      "answer": 1,
+      "explain": "'gói 5 buổi' và 'gói 50 buổi' rất gần nhau — dùng metadata filter và hybrid search để chữa.",
+      "id": "d31q3"
+    },
+    {
+      "type": "open",
+      "q": "Chuẩn hoá text trước khi embed cần lưu ý gì với tiếng Việt?",
+      "answer": "Chỉ chuẩn hoá khoảng trắng và ký tự vô hình. TUYỆT ĐỐI không bỏ dấu tiếng Việt — bỏ dấu làm giảm chất lượng rõ rệt.",
+      "keywords": [
+        "không bỏ dấu",
+        "khoảng trắng",
+        "giảm chất lượng"
+      ],
+      "id": "d31q4"
+    }
+  ]
+}

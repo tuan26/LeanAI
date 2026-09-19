@@ -1,0 +1,38 @@
+{
+  "day": 43,
+  "title": "Indexing & incremental update",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Cơ chế nào cho phép re-index mà không embed lại phần không đổi?",
+      "choices": [
+        "Timestamp",
+        "Content hash của từng chunk",
+        "Số thứ tự",
+        "Kích thước file"
+      ],
+      "answer": 1,
+      "explain": "Diff 3 chiều giống git: hash mới → embed; hash cũ còn → giữ; hash không còn → xoá.",
+      "id": "d43q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 bất biến của index và cách đảm bảo bất biến thứ 3.",
+      "answer": "1) Không trùng: một (doc_id, chunk_hash) chỉ tồn tại 1 lần. 2) Không mồ côi: không còn chunk của tài liệu đã xoá. 3) Nhất quán khi đang re-index — đảm bảo bằng cách UPSERT TRƯỚC rồi mới XOÁ, không xoá trước.",
+      "id": "d43q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao dùng uuid5 thay vì uuid4 cho point id?",
+      "choices": [
+        "Ngắn hơn",
+        "Cùng nội dung cho cùng id nên upsert tự ghi đè, không tạo bản trùng",
+        "Nhanh hơn",
+        "Bảo mật hơn"
+      ],
+      "answer": 1,
+      "explain": "uuid5(NAMESPACE, tenant:doc:hash) là id ổn định.",
+      "id": "d43q3"
+    }
+  ]
+}

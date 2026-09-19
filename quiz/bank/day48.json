@@ -1,0 +1,38 @@
+{
+  "day": 48,
+  "title": "Citation",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Citation mức 3 gồm những gì?",
+      "choices": [
+        "Nói 'theo tài liệu'",
+        "Mã [1] map tới chunk",
+        "Mã [1] + trích NGUYÊN VĂN đoạn hỗ trợ, verify được cả tồn tại lẫn nội dung",
+        "Đường link"
+      ],
+      "answer": 2,
+      "explain": "Chỉ mức 3 mới verify được bằng code.",
+      "id": "d48q1"
+    },
+    {
+      "type": "recall",
+      "q": "Ba tầng verify citation bằng code là gì?",
+      "answer": "1) Tồn tại: mọi [n] nằm trong 1..số_chunk. 2) Nguyên văn: đoạn trong ngoặc kép khớp text chunk. 3) Số liệu: mọi con số trong câu trả lời có trong chunk được trích.",
+      "id": "d48q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Câu trả lời chứa số liệu bịa thì xử lý thế nào?",
+      "choices": [
+        "Cảnh báo nhưng vẫn hiển thị",
+        "CHẶN, không hiển thị cho người dùng",
+        "Sửa số tự động",
+        "Giảm điểm tin cậy"
+      ],
+      "answer": 1,
+      "explain": "Đây là ranh giới đỏ với sản phẩm B2B.",
+      "id": "d48q3"
+    }
+  ]
+}

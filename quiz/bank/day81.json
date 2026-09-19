@@ -1,0 +1,31 @@
+{
+  "day": 81,
+  "title": "Tenant-scoped RAG",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Khi nào nên tách collection riêng cho mỗi tenant?",
+      "choices": [
+        "Ngay từ đầu",
+        "Khi > ~50 tenant hoặc khách hàng yêu cầu cách ly vật lý",
+        "Không bao giờ",
+        "Khi dữ liệu lớn"
+      ],
+      "answer": 1,
+      "explain": "Một collection + filter đủ cho giai đoạn đầu, và dễ vận hành hơn.",
+      "id": "d81q1"
+    },
+    {
+      "type": "open",
+      "q": "Tài liệu upload có injection ẩn thì xử lý thế nào?",
+      "answer": "Quarantine — copy sang thư mục cách ly kèm lý do, KHÔNG đưa vào index, và báo cho người upload. Đây là lỗ hổng indirect injection từ Ngày 28.",
+      "keywords": [
+        "quarantine",
+        "không index",
+        "báo",
+        "injection"
+      ],
+      "id": "d81q2"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "day": 20,
+  "title": "Error handling & retry",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao retry bắt buộc phải có jitter?",
+      "choices": [
+        "Cho ngẫu nhiên",
+        "Tránh thundering herd: hàng loạt request lỗi cùng lúc sẽ retry cùng lúc",
+        "Tiết kiệm tiền",
+        "Tăng tốc"
+      ],
+      "answer": 1,
+      "explain": "Không có jitter, bạn tự đánh sập chính mình.",
+      "id": "d20q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Header retry-after trong response nên xử lý thế nào?",
+      "choices": [
+        "Bỏ qua",
+        "Luôn ưu tiên dùng con số server đưa ra",
+        "Nhân đôi nó",
+        "Chỉ dùng khi > 10s"
+      ],
+      "answer": 1,
+      "explain": "Server biết rõ khi nào nên thử lại.",
+      "id": "d20q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 lớp phòng thủ khi gọi LLM API.",
+      "answer": "1) Timeout — không bao giờ chờ vô hạn. 2) Retry với exponential backoff + jitter cho lỗi tạm thời. 3) Fallback — model phụ, câu trả lời mặc định, hoặc chuyển cho người.",
+      "id": "d20q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Retry một thao tác GỬI TIN NHẮN cho khách có rủi ro gì?",
+      "choices": [
+        "Tốn tiền",
+        "Gửi trùng nhiều lần cho khách — mất uy tín",
+        "Chậm",
+        "Không rủi ro"
+      ],
+      "answer": 1,
+      "explain": "Giải pháp: idempotency key, kiểm tra trước khi thực hiện.",
+      "id": "d20q4"
+    },
+    {
+      "type": "open",
+      "q": "Retry ngữ nghĩa khác retry thường thế nào?",
+      "answer": "Retry thường gọi lại y hệt. Retry ngữ nghĩa đưa output sai và MÔ TẢ LỖI ngược lại cho model trong messages, yêu cầu sửa — tỉ lệ thành công lần 2 cao hơn hẳn.",
+      "keywords": [
+        "mô tả lỗi",
+        "messages",
+        "sửa",
+        "cao hơn"
+      ],
+      "id": "d20q5"
+    }
+  ]
+}

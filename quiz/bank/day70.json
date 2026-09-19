@@ -1,0 +1,50 @@
+{
+  "day": 70,
+  "title": "Cost optimization",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Đòn bẩy giảm chi phí LỚN NHẤT thường là gì?",
+      "choices": [
+        "Đổi model rẻ hơn",
+        "Lọc bằng CODE/SQL trước khi gọi LLM (giảm 50-90%)",
+        "Cắt context",
+        "Giới hạn output"
+      ],
+      "answer": 1,
+      "explain": "CareDesk-AI: SQL lọc 3.000 khách xuống 80 → giảm 97% số lời gọi.",
+      "id": "d70q1"
+    },
+    {
+      "type": "recall",
+      "q": "Ba đơn vị chi phí phải biết và dùng để làm gì?",
+      "answer": "cost/request để tối ưu kỹ thuật; cost/user hoặc /tenant/tháng để ĐỊNH GIÁ sản phẩm; cost/tenant để biết khách nào có lãi. Không biết cái thứ hai thì không định giá được.",
+      "id": "d70q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Ngưỡng nào cho thấy mô hình kinh doanh có vấn đề?",
+      "choices": [
+        "Chi phí AI > 5% doanh thu",
+        "Chi phí AI > 20% doanh thu",
+        "Chi phí AI > 50% doanh thu",
+        "Không có ngưỡng"
+      ],
+      "answer": 1,
+      "explain": "Phải tính con số này TRƯỚC khi bán.",
+      "id": "d70q3"
+    },
+    {
+      "type": "open",
+      "q": "Khi nào nên chuyển tác vụ sang model nhỏ?",
+      "answer": "Khi đo trên eval set thấy model nhỏ đạt ≥95% chất lượng model lớn cho tác vụ ĐÓ. Thường đúng với phân loại và trích xuất; không đúng với soạn văn bản cần tự nhiên.",
+      "keywords": [
+        "eval",
+        "95%",
+        "phân loại",
+        "trích xuất"
+      ],
+      "id": "d70q4"
+    }
+  ]
+}

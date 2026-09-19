@@ -1,0 +1,37 @@
+{
+  "day": 73,
+  "title": "Guardrails vào/ra",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao cần 3 hành động thay vì reject/allow?",
+      "choices": [
+        "Cho linh hoạt",
+        "ESCALATE là van an toàn — chỉ có 2 lựa chọn thì hoặc quá chặt (chặn khách thật) hoặc quá lỏng",
+        "Dễ code hơn",
+        "Chuẩn ngành"
+      ],
+      "answer": 1,
+      "id": "d73q1"
+    },
+    {
+      "type": "recall",
+      "q": "Hai chỉ số phải đo cho guardrail và mục tiêu?",
+      "answer": "Tỉ lệ bắt được (recall) ≥95% trên ca vi phạm; tỉ lệ báo nhầm (FPR) ≤3% trên ca hợp lệ. Guardrail bắt 100% nhưng chặn nhầm 30% yêu cầu hợp lệ là guardrail tồi.",
+      "id": "d73q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Output chứa số không có trong nguồn thì hành động nào?",
+      "choices": [
+        "REWRITE",
+        "REJECT — không hiển thị",
+        "ESCALATE",
+        "ALLOW kèm cảnh báo"
+      ],
+      "answer": 1,
+      "explain": "Số liệu sai là ranh giới đỏ.",
+      "id": "d73q3"
+    }
+  ]
+}

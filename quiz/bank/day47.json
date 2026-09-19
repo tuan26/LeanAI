@@ -1,0 +1,44 @@
+{
+  "day": 47,
+  "title": "Reranking",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Cross-encoder khác bi-encoder thế nào?",
+      "choices": [
+        "Nhanh hơn",
+        "Đọc CẶP (truy vấn, tài liệu) cùng lúc nên hiểu quan hệ sâu hơn, nhưng chậm nên chỉ xếp lại vài chục ứng viên",
+        "Dùng ít RAM hơn",
+        "Không cần training"
+      ],
+      "answer": 1,
+      "explain": "Bi-encoder nén cả đoạn thành 1 vector nên mất chi tiết.",
+      "id": "d47q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Kiến trúc hai tầng đúng là gì?",
+      "choices": [
+        "Truy hồi hẹp rồi rerank rộng",
+        "Truy hồi RỘNG (k=30-50) rồi rerank HẸP (→5)",
+        "Rerank trước rồi truy hồi",
+        "Chỉ rerank"
+      ],
+      "answer": 1,
+      "explain": "Nếu truy hồi đã bỏ sót tài liệu đúng thì rerank không cứu được.",
+      "id": "d47q2"
+    },
+    {
+      "type": "open",
+      "q": "Rerank cải thiện chỉ số nào nhiều nhất, và bạn phải kiểm tra thêm điều gì?",
+      "answer": "Cải thiện MRR và nDCG (thứ hạng) nhiều hơn recall@5. Phải kiểm tra thêm: nó có cải thiện CÂU TRẢ LỜI CUỐI không — nếu không, cân nhắc bỏ để tiết kiệm chi phí và latency.",
+      "keywords": [
+        "MRR",
+        "nDCG",
+        "câu trả lời cuối",
+        "bỏ"
+      ],
+      "id": "d47q3"
+    }
+  ]
+}

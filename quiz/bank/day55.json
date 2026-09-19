@@ -1,0 +1,36 @@
+{
+  "day": 55,
+  "title": "Tool error handling",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 3 lớp chặn vòng lặp lỗi vô hạn của agent.",
+      "answer": "1) Giới hạn số lần gọi CÙNG tool với CÙNG tham số (≤2). 2) Giới hạn tổng số bước (≤15). 3) Giới hạn tổng chi phí phiên. Thêm: giới hạn số lỗi liên tiếp.",
+      "id": "d55q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Nguyên tắc fail-safe cho agent là gì?",
+      "choices": [
+        "Luôn thử tiếp",
+        "Khi không chắc chắn, DỪNG và hỏi người, không đoán bừa rồi hành động",
+        "Luôn dùng giá trị mặc định",
+        "Bỏ qua lỗi"
+      ],
+      "answer": 1,
+      "explain": "Đặc biệt với tool ghi: gửi tin, đổi lịch, hoàn tiền.",
+      "id": "d55q2"
+    },
+    {
+      "type": "open",
+      "q": "Khi LoopGuard chặn, agent phải làm gì?",
+      "answer": "Nhận được thông báo chặn kèm lý do, và phải TỔNG KẾT những gì đã biết rồi dừng lại — không được chết giữa chừng hoặc im lặng.",
+      "keywords": [
+        "tổng kết",
+        "dừng",
+        "lý do"
+      ],
+      "id": "d55q3"
+    }
+  ]
+}

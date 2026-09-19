@@ -1,0 +1,50 @@
+{
+  "day": 29,
+  "title": "JSON output",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 4 kỹ thuật ổn định JSON output, dùng đồng thời.",
+      "answer": "1) Prompt: CHỈ trả JSON, không markdown. 2) Prefill: mồi assistant bằng '{'. 3) stop_sequences chặn phần thừa. 4) Parse mềm: gỡ fence, tìm khối cân bằng, sửa lỗi phổ biến. Còn lại xử lý bằng retry ngữ nghĩa.",
+      "id": "d29q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Nguyên tắc nào SAI khi thiết kế schema?",
+      "choices": [
+        "Dùng enum thay text tự do",
+        "Luôn có trường confidence",
+        "Lồng sâu nhiều tầng cho chi tiết",
+        "Có giá trị KHÔNG_XÁC_ĐỊNH trong enum"
+      ],
+      "answer": 2,
+      "explain": "Trường phẳng ổn định hơn — model hay sai ở cấu trúc lồng nhiều tầng.",
+      "id": "d29q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao enum nên có giá trị KHÔNG_XÁC_ĐỊNH?",
+      "choices": [
+        "Cho đủ",
+        "Cho model lối thoát thay vì bịa khi không chắc",
+        "Tăng độ chính xác",
+        "Giảm token"
+      ],
+      "answer": 1,
+      "explain": "Đây là kỹ thuật chống bịa số 2 của Ngày 13.",
+      "id": "d29q3"
+    },
+    {
+      "type": "open",
+      "q": "Kể 4 nguyên nhân JSON từ LLM bị hỏng.",
+      "answer": "Rào đón trước JSON; bọc trong markdown fence; dấu phẩy thừa hoặc nháy đơn; bị cắt do max_tokens; có chữ thừa sau JSON; nháy thông minh từ bộ gõ.",
+      "keywords": [
+        "rào đón",
+        "fence",
+        "phẩy thừa",
+        "cắt"
+      ],
+      "id": "d29q4"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "day": 3,
+  "title": "Transformer",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Ưu thế lớn nhất của Transformer so với RNN là gì?",
+      "choices": [
+        "Ít tham số hơn",
+        "Xử lý song song toàn bộ chuỗi thay vì tuần tự",
+        "Không cần GPU",
+        "Không cần dữ liệu train"
+      ],
+      "answer": 1,
+      "explain": "Song song hoá là thứ cho phép scale lên nghìn tỷ token.",
+      "id": "d03q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Phần lớn KIẾN THỨC của model được lưu ở khối nào?",
+      "choices": [
+        "Attention",
+        "Feed-Forward (MLP)",
+        "LayerNorm",
+        "Positional Encoding"
+      ],
+      "answer": 1,
+      "explain": "FFN chiếm khoảng 2/3 tham số — bạn đã tự tính bằng model_size.py.",
+      "id": "d03q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Bỏ Positional Encoding đi thì hậu quả là gì?",
+      "choices": [
+        "Model chậm hơn",
+        "Model không phân biệt được thứ tự từ: 'chó cắn người' = 'người cắn chó'",
+        "Model tốn RAM hơn",
+        "Không sao cả"
+      ],
+      "answer": 1,
+      "explain": "Attention tự nó không có khái niệm thứ tự.",
+      "id": "d03q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Residual connection (đường cộng tắt) giải quyết vấn đề gì?",
+      "choices": [
+        "Giảm số tham số",
+        "Cho gradient truyền qua mạng rất sâu mà không biến mất",
+        "Tăng tốc inference",
+        "Chống hallucination"
+      ],
+      "answer": 1,
+      "explain": "Không có residual thì mạng 80 lớp gần như không train được.",
+      "id": "d03q4"
+    },
+    {
+      "type": "recall",
+      "q": "Vì sao output token thường đắt hơn input token 3-5 lần?",
+      "answer": "Vì mỗi token sinh ra phải chạy qua TOÀN BỘ N lớp Transformer một lần, trong khi input được xử lý song song một lượt. Sinh 100 token = 100 lần chạy qua toàn mạng.",
+      "id": "d03q5"
+    },
+    {
+      "type": "open",
+      "q": "Liệt kê theo thứ tự các khối mà một token đi qua trong một block Transformer.",
+      "answer": "LayerNorm → Masked Multi-Head Self-Attention → cộng residual → LayerNorm → Feed-Forward → cộng residual.",
+      "keywords": [
+        "LayerNorm",
+        "Attention",
+        "residual",
+        "Feed-Forward"
+      ],
+      "id": "d03q6"
+    }
+  ]
+}

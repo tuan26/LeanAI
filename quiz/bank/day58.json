@@ -1,0 +1,38 @@
+{
+  "day": 58,
+  "title": "State",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao lịch sử hội thoại không đủ làm trạng thái agent?",
+      "choices": [
+        "Quá ngắn",
+        "Dài vô hạn, không truy vấn được, không bền sau restart, không chờ người duyệt được",
+        "Khó đọc",
+        "Tốn RAM"
+      ],
+      "answer": 1,
+      "explain": "State phải tách riêng và lưu bền.",
+      "id": "d58q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 5 trạng thái của agent state machine.",
+      "answer": "RUNNING, WAITING_APPROVAL, COMPLETED, FAILED, CANCELLED. Từ RUNNING có thể sang WAITING_APPROVAL; approve quay lại RUNNING, reject sang CANCELLED.",
+      "id": "d58q2"
+    },
+    {
+      "type": "mcq",
+      "q": "facts trong AgentState khác messages thế nào?",
+      "choices": [
+        "Không khác",
+        "facts là NGUỒN SỰ THẬT, không bị mất khi nén lịch sử",
+        "facts ngắn hơn",
+        "facts chỉ để hiển thị"
+      ],
+      "answer": 1,
+      "explain": "Nén lịch sử không được làm mất facts.",
+      "id": "d58q3"
+    }
+  ]
+}

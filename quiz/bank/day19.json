@@ -1,0 +1,50 @@
+{
+  "day": 19,
+  "title": "Streaming",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "TTFT là gì?",
+      "choices": [
+        "Tổng thời gian phản hồi",
+        "Thời gian từ lúc gửi đến khi nhận token đầu tiên",
+        "Số token mỗi giây",
+        "Thời gian retry"
+      ],
+      "answer": 1,
+      "explain": "Ngưỡng tốt: dưới 1 giây.",
+      "id": "d19q1"
+    },
+    {
+      "type": "mcq",
+      "q": "TTFT phụ thuộc chủ yếu vào?",
+      "choices": [
+        "Độ dài output",
+        "Độ dài input",
+        "Temperature",
+        "max_tokens"
+      ],
+      "answer": 1,
+      "explain": "Vì model phải xử lý toàn bộ input trước khi sinh chữ đầu — nhớ O(n²) của attention.",
+      "id": "d19q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 trường hợp KHÔNG nên stream.",
+      "answer": "1) Output là JSON cần parse. 2) Cần validate trước khi hiển thị. 3) Batch job chạy nền không ai xem. 4) Kết quả phải qua guardrail kiểm duyệt trước khi hiện.",
+      "id": "d19q3"
+    },
+    {
+      "type": "open",
+      "q": "Streaming có làm câu trả lời đến nhanh hơn không?",
+      "answer": "Không — tổng thời gian gần như y hệt. Nó chỉ thay đổi CẢM NHẬN: người dùng thấy chữ sau 0.6s thay vì chờ 8 giây trong im lặng.",
+      "keywords": [
+        "không",
+        "cảm nhận",
+        "tổng thời gian",
+        "như nhau"
+      ],
+      "id": "d19q4"
+    }
+  ]
+}

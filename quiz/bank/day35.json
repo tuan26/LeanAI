@@ -1,0 +1,38 @@
+{
+  "day": 35,
+  "title": "Semantic search & recall",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Với RAG, chỉ số nào quan trọng nhất?",
+      "choices": [
+        "Precision@k",
+        "Recall@k",
+        "Latency",
+        "nDCG"
+      ],
+      "answer": 1,
+      "explain": "Nếu tài liệu đúng không trong top-k, LLM KHÔNG THỂ trả lời đúng. Nhiễu thừa thì LLM còn lọc được.",
+      "id": "d35q1"
+    },
+    {
+      "type": "recall",
+      "q": "Bộ test truy hồi tối thiểu cần bao nhiêu truy vấn và phân bố thế nào?",
+      "answer": "Tối thiểu 30 truy vấn: 40% diễn đạt lại, 20% multi-hop, 15% phủ định, 15% có số/ngày, 10% không có đáp án (để đo từ chối đúng). Nhãn do người gán.",
+      "id": "d35q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Quy tắc quan trọng nhất khi cải thiện RAG là gì?",
+      "choices": [
+        "Thay nhiều thứ cùng lúc cho nhanh",
+        "Đo baseline, thay ĐÚNG MỘT thứ, đo lại",
+        "Luôn dùng model lớn nhất",
+        "Tăng k lên tối đa"
+      ],
+      "answer": 1,
+      "explain": "Thay nhiều thứ cùng lúc thì không biết cái nào có tác dụng.",
+      "id": "d35q3"
+    }
+  ]
+}

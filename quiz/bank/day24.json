@@ -1,0 +1,50 @@
+{
+  "day": 24,
+  "title": "Role & context",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vai trò nào có tác dụng thật?",
+      "choices": [
+        "Bạn là chuyên gia đẳng cấp thế giới 30 năm kinh nghiệm",
+        "Bạn hỗ trợ nhân viên CSKH 22-30 tuổi đang bận, cần quyết trong 30 giây",
+        "Bạn là AI thông minh nhất",
+        "Bạn là thiên tài"
+      ],
+      "answer": 1,
+      "explain": "Vai trò hữu ích khi nói rõ AI ĐỌC và ĐỂ LÀM GÌ, không phải khi tâng bốc model.",
+      "id": "d24q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 loại ngữ cảnh cần cung cấp, loại nào hay bị quên nhất?",
+      "answer": "Ngữ cảnh người đọc, nghiệp vụ, hệ quả, dữ liệu. Ngữ cảnh HỆ QUẢ ('output này sẽ gửi thẳng cho khách') bị quên nhiều nhất nhưng tác dụng mạnh nhất.",
+      "id": "d24q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Nguyên nhân số 1 của output không ổn định là gì?",
+      "choices": [
+        "Temperature cao",
+        "Quy tắc mâu thuẫn nhau trong prompt",
+        "Model yếu",
+        "Context ngắn"
+      ],
+      "answer": 1,
+      "explain": "Vd: 'viết thật chi tiết' + 'tối đa 50 từ'. Model chọn ngẫu nhiên một trong hai.",
+      "id": "d24q3"
+    },
+    {
+      "type": "open",
+      "q": "System prompt nên dài bao nhiêu và vì sao?",
+      "answer": "Dưới ~300 token. Dài hơn thường là dấu hiệu đang nhồi quy tắc mâu thuẫn hoặc quy tắc mơ hồ. Prompt dài cũng tốn token trên MỌI request.",
+      "keywords": [
+        "300",
+        "mâu thuẫn",
+        "token",
+        "mọi request"
+      ],
+      "id": "d24q4"
+    }
+  ]
+}

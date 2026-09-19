@@ -1,0 +1,37 @@
+{
+  "day": 21,
+  "title": "Mini chatbot",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Liệt kê 8 yêu cầu kỹ thuật của mini chatbot và ngày học tương ứng.",
+      "answer": "LLMClient chung (N16), system prompt 5 phần (N17), facts tách khỏi lịch sử (N18), tự nén lịch sử (N18), streaming + TTFT (N19), retry + fallback (N20), log JSONL (N15), báo cáo chi phí (N16).",
+      "id": "d21q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Lệnh /clear nên xoá gì?",
+      "choices": [
+        "Tất cả",
+        "Lịch sử hội thoại nhưng GIỮ facts",
+        "Chỉ facts",
+        "Chỉ tóm tắt"
+      ],
+      "answer": 1,
+      "explain": "Facts là dữ liệu từ hệ thống, không phải nội dung hội thoại.",
+      "id": "d21q2"
+    },
+    {
+      "type": "open",
+      "q": "Bạn nên thử phá chatbot của mình bằng những cách nào?",
+      "answer": "Nhập câu cực dài; nhập lệnh sai; ngắt mạng giữa chừng; Ctrl+C khi đang stream; nhập ký tự đặc biệt/emoji; hội thoại 50 lượt liên tục để test nén.",
+      "keywords": [
+        "dài",
+        "ngắt mạng",
+        "Ctrl+C",
+        "lệnh sai"
+      ],
+      "id": "d21q3"
+    }
+  ]
+}

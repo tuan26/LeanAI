@@ -1,0 +1,50 @@
+{
+  "day": 26,
+  "title": "Decomposition",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Nhược điểm lớn nhất của một prompt làm-mọi-thứ?",
+      "choices": [
+        "Tốn tiền",
+        "Lỗi bước đầu lan sang mọi bước sau và bạn không biết bước nào hỏng",
+        "Chậm",
+        "Khó viết"
+      ],
+      "answer": 1,
+      "explain": "Không debug được, không đo từng phần, không tái sử dụng.",
+      "id": "d26q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 kiểu chia nhỏ nhiệm vụ và ví dụ.",
+      "answer": "Tuần tự/chain (trích xuất → phân loại → soạn tin). Song song/map (phân tích 100 phản hồi cùng lúc). Gộp/reduce (100 phản hồi → 5 chủ đề). Map-reduce dùng để xử lý tài liệu vượt context.",
+      "id": "d26q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Trong pipeline, bước tính toán số liệu nên do ai làm?",
+      "choices": [
+        "LLM với temperature=0",
+        "CODE",
+        "LLM với chain-of-thought",
+        "LLM model lớn nhất"
+      ],
+      "answer": 1,
+      "explain": "Đây là nguyên tắc từ Ngày 1 và Ngày 13.",
+      "id": "d26q3"
+    },
+    {
+      "type": "open",
+      "q": "Chain-of-thought có nên luôn bật không?",
+      "answer": "Không. Nó tăng độ chính xác cho bài toán nhiều bước nhưng tốn token và chậm hơn. Chỉ bật khi đo được cải thiện thực tế trên bộ test của bạn. Và code chỉ lấy phần <answer>.",
+      "keywords": [
+        "đo",
+        "token",
+        "chậm",
+        "answer"
+      ],
+      "id": "d26q4"
+    }
+  ]
+}

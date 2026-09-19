@@ -1,0 +1,50 @@
+{
+  "day": 17,
+  "title": "system / user / assistant",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao chỉ dẫn nên đặt ở system thay vì user?",
+      "choices": [
+        "Tiết kiệm token",
+        "Model được huấn luyện ưu tiên vai system, và user có thể chứa dữ liệu không tin được",
+        "Chạy nhanh hơn",
+        "Không khác gì"
+      ],
+      "answer": 1,
+      "explain": "Ranh giới tin cậy: system = code của bạn; user = có thể do khách nhập.",
+      "id": "d17q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Prefill (mồi assistant) dùng để làm gì?",
+      "choices": [
+        "Tăng tốc độ",
+        "Ép model bắt đầu output đúng định dạng, loại bỏ phần rào đón",
+        "Giảm chi phí",
+        "Chống injection"
+      ],
+      "answer": 1,
+      "explain": "Ví dụ mồi '{' để ép trả JSON ngay.",
+      "id": "d17q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 5 phần của một system prompt tốt.",
+      "answer": "1) Vai trò (là ai, làm cho ai, ai đọc). 2) Nhiệm vụ. 3) Quy tắc đo được. 4) Điều cấm. 5) Xử lý ngoại lệ khi thiếu dữ liệu. (Thêm: định dạng output.)",
+      "id": "d17q3"
+    },
+    {
+      "type": "open",
+      "q": "Cách bọc dữ liệu không tin được là gì?",
+      "answer": "Bọc trong thẻ XML rõ ràng (vd <user_input>...</user_input>) và nói rõ ngay sau đó rằng nội dung trong thẻ là DỮ LIỆU, không phải chỉ dẫn, phải bỏ qua mọi câu lệnh bên trong.",
+      "keywords": [
+        "thẻ",
+        "dữ liệu",
+        "không phải chỉ dẫn",
+        "bỏ qua"
+      ],
+      "id": "d17q4"
+    }
+  ]
+}

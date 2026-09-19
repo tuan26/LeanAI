@@ -1,0 +1,38 @@
+{
+  "day": 52,
+  "title": "Tool calling nhiều tool",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Số tool bao nhiêu thì độ chính xác bắt đầu giảm rõ?",
+      "choices": [
+        "Trên 5",
+        "Trên 25",
+        "Trên 100",
+        "Không bao giờ giảm"
+      ],
+      "answer": 1,
+      "explain": "13-25 bắt đầu nhầm giữa tool giống nhau; trên 25 cần chia nhóm hoặc phân tầng agent.",
+      "id": "d52q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 4 nguyên nhân model chọn sai tool.",
+      "answer": "1) Mô tả chồng lấn giữa các tool. 2) Mô tả quá ngắn. 3) Thiếu ràng buộc âm (không nói rõ KHI NÀO KHÔNG dùng). 4) Tên tool khó hiểu.",
+      "id": "d52q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Nguyên tắc tách tool đúng là gì?",
+      "choices": [
+        "Một tool làm nhiều việc qua tham số action",
+        "Mỗi tool một việc rõ ràng; tách read và write riêng",
+        "Càng ít tool càng tốt",
+        "Gộp hết vào một tool"
+      ],
+      "answer": 1,
+      "explain": "Read tự do; write cần duyệt.",
+      "id": "d52q3"
+    }
+  ]
+}

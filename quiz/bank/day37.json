@@ -1,0 +1,36 @@
+{
+  "day": 37,
+  "title": "Mini RAG end-to-end",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 6 bước của luồng RAG hoàn chỉnh.",
+      "answer": "1) Tiền xử lý câu hỏi, xác định tenant. 2) Truy hồi hybrid + filter. 3) Chọn lọc theo ngân sách token. 4) Dựng prompt (tài liệu trước, câu hỏi sau). 5) Gọi LLM T=0 bắt trích nguồn. 6) Hậu kiểm verify trích dẫn bằng code.",
+      "id": "d37q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao gán id ngắn [1] [2] cho mỗi tài liệu trong prompt?",
+      "choices": [
+        "Tiết kiệm token",
+        "Để model trích dẫn được và bạn map ngược về nguồn thật để verify",
+        "Cho đẹp",
+        "Bắt buộc bởi API"
+      ],
+      "answer": 1,
+      "explain": "Đây là nền tảng của citation verify ở Ngày 48.",
+      "id": "d37q2"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao cắt context theo NGÂN SÁCH TOKEN thay vì theo số lượng chunk cố định?",
+      "answer": "Vì chunk dài ngắn khác nhau — lấy cố định 5 chunk có thể vượt ngân sách hoặc lãng phí. Cắt theo token đảm bảo dùng hết nhưng không vượt ngân sách.",
+      "keywords": [
+        "dài ngắn khác nhau",
+        "vượt",
+        "lãng phí"
+      ],
+      "id": "d37q3"
+    }
+  ]
+}

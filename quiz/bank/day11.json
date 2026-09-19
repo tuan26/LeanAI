@@ -1,0 +1,63 @@
+{
+  "day": 11,
+  "title": "Instruction tuning",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Instruction tuning dạy model điều gì?",
+      "choices": [
+        "Kiến thức mới về thế giới",
+        "Làm theo chỉ dẫn và hiểu cấu trúc vai system/user/assistant",
+        "Tính toán nhanh hơn",
+        "Nói nhiều ngôn ngữ hơn"
+      ],
+      "answer": 1,
+      "explain": "Rẻ hơn pretraining hàng nghìn lần nhưng thay đổi hành vi nhiều nhất.",
+      "id": "d11q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Fine-tuning phù hợp nhất để làm gì?",
+      "choices": [
+        "Nạp kiến thức mới cho model",
+        "Dạy CÁCH LÀM: phong cách, định dạng, giọng văn",
+        "Giảm chi phí API",
+        "Tăng context window"
+      ],
+      "answer": 1,
+      "explain": "Muốn thêm kiến thức → RAG. Nhầm lẫn này là sai lầm tốn kém nhất.",
+      "id": "d11q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 điều kiện BẮT BUỘC có đủ trước khi quyết định fine-tune.",
+      "answer": "1) Đã thử hết prompt engineering và few-shot mà vẫn không đạt. 2) Có ≥500–1000 ví dụ chất lượng cao, nhất quán. 3) Tác vụ lặp đủ nhiều để tiết kiệm token bù được chi phí train.",
+      "id": "d11q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao system prompt có sức nặng hơn user message?",
+      "choices": [
+        "Nó được gửi trước",
+        "Model được instruction-tune để ưu tiên vai system trong chat template",
+        "Nó tốn ít token hơn",
+        "Đó là quy định của API"
+      ],
+      "answer": 1,
+      "explain": "Và đó cũng là lý do phải chặn người dùng chèn chuỗi giả vai (Ngày 28).",
+      "id": "d11q4"
+    },
+    {
+      "type": "open",
+      "q": "CareDesk-AI có cần fine-tune trong 90 ngày không? Vì sao?",
+      "answer": "Không. Giọng thương hiệu → few-shot; kiến thức phòng khám → RAG; JSON ổn định → schema + validation; xưng hô tiếng Việt → system prompt. Chỉ cân nhắc khi đã có hàng nghìn tin nhắn được nhân viên duyệt.",
+      "keywords": [
+        "few-shot",
+        "RAG",
+        "schema",
+        "không"
+      ],
+      "id": "d11q5"
+    }
+  ]
+}

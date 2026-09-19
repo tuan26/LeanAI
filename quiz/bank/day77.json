@@ -1,0 +1,32 @@
+{
+  "day": 77,
+  "title": "Architecture",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "ADR (Architecture Decision Record) phải có gì ngoài quyết định?",
+      "choices": [
+        "Sơ đồ",
+        "Các PHƯƠNG ÁN BỊ LOẠI và lý do, cùng hệ quả và cách kiểm chứng",
+        "Tên người quyết",
+        "Ngày tháng"
+      ],
+      "answer": 1,
+      "explain": "Không có phương án bị loại thì người sau không hiểu vì sao và sẽ làm lại từ đầu.",
+      "id": "d77q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Trong CareDesk-AI, LLM chỉ chạy trên bao nhiêu khách mỗi đêm?",
+      "choices": [
+        "Toàn bộ 3.000",
+        "Khoảng 80 khách đã được SQL lọc",
+        "300 khách",
+        "Không dùng LLM"
+      ],
+      "answer": 1,
+      "explain": "Đây là quyết định kiến trúc quyết định chi phí.",
+      "id": "d77q2"
+    }
+  ]
+}

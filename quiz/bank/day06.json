@@ -1,0 +1,76 @@
+{
+  "day": 6,
+  "title": "Attention",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Trong attention, Q (Query) đại diện cho điều gì?",
+      "choices": [
+        "Nội dung thông tin của token",
+        "Điều mà token hiện tại đang cần tìm",
+        "Vị trí của token",
+        "Xác suất của token"
+      ],
+      "answer": 1,
+      "explain": "Q = tôi đang cần gì; K = mỗi token tự mô tả; V = nội dung thật.",
+      "id": "d06q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao phải chia cho √d_k trong công thức attention?",
+      "choices": [
+        "Để tiết kiệm bộ nhớ",
+        "Giữ phương sai ổn định, tránh softmax bão hoà làm gradient chết",
+        "Để kết quả nằm trong [0,1]",
+        "Để chạy nhanh hơn"
+      ],
+      "answer": 1,
+      "explain": "Bạn đã đo được điều này qua entropy trong bài thực hành.",
+      "id": "d06q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Causal mask dùng để làm gì?",
+      "choices": [
+        "Ẩn thông tin nhạy cảm",
+        "Chặn token nhìn thấy các token phía sau (tương lai)",
+        "Giảm số tham số",
+        "Tăng tốc độ"
+      ],
+      "answer": 1,
+      "explain": "Không có mask thì model gian lận khi train và vô dụng khi sinh văn bản.",
+      "id": "d06q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Chi phí tính toán của self-attention theo độ dài chuỗi n là?",
+      "choices": [
+        "O(n)",
+        "O(n log n)",
+        "O(n²)",
+        "O(1)"
+      ],
+      "answer": 2,
+      "explain": "Ma trận điểm n×n. Gấp đôi context → gấp 4 lần tính toán.",
+      "id": "d06q4"
+    },
+    {
+      "type": "recall",
+      "q": "Viết công thức self-attention đầy đủ.",
+      "answer": "Attention(Q,K,V) = softmax(Q·Kᵀ / √d_k) · V, với Q=X·Wq, K=X·Wk, V=X·Wv.",
+      "id": "d06q5"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao chi phí O(n²) là lý do RAG tồn tại?",
+      "answer": "Vì nhồi toàn bộ tài liệu vào prompt làm n rất lớn → chi phí và latency tăng bình phương, đồng thời chú ý bị pha loãng. RAG chỉ lấy vài đoạn liên quan, giữ n nhỏ.",
+      "keywords": [
+        "bình phương",
+        "latency",
+        "pha loãng",
+        "đoạn liên quan"
+      ],
+      "id": "d06q6"
+    }
+  ]
+}

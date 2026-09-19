@@ -1,0 +1,42 @@
+{
+  "day": 76,
+  "title": "Domain & problem framing",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Việc quan trọng nhất trước khi code capstone là gì?",
+      "choices": [
+        "Chọn framework",
+        "Nói chuyện với người dùng thật để kiểm chứng bài toán",
+        "Thiết kế database",
+        "Mua tên miền"
+      ],
+      "answer": 1,
+      "explain": "Bài toán sai thì 14 ngày còn lại là lãng phí.",
+      "id": "d76q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao PRD phải có mục 'KHÔNG CÓ' (ngoài phạm vi)?",
+      "choices": [
+        "Cho đủ hình thức",
+        "Để không bị cuốn theo tính năng phụ và giao được sản phẩm trong thời hạn",
+        "Để đàm phán giá",
+        "Không cần thiết"
+      ],
+      "answer": 1,
+      "id": "d76q2"
+    },
+    {
+      "type": "open",
+      "q": "Câu hỏi nào quan trọng nhất khi phỏng vấn chủ phòng khám?",
+      "answer": "'Điều gì khiến chị KHÔNG làm việc này thường xuyên?' — nó cho biết rào cản thật, và 'Chị sẵn sàng trả bao nhiêu?' — nó kiểm chứng giá trị thật của bài toán.",
+      "keywords": [
+        "rào cản",
+        "sẵn sàng trả",
+        "giá trị thật"
+      ],
+      "id": "d76q3"
+    }
+  ]
+}

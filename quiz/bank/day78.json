@@ -1,0 +1,25 @@
+{
+  "day": 78,
+  "title": "Data model",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 5 nguyên tắc thiết kế schema cho AI SaaS multi-tenant.",
+      "answer": "1) Mọi bảng nghiệp vụ có tenant_id NOT NULL. 2) Index (tenant_id, cột hay lọc). 3) Không xoá cứng — dùng status/deleted_at để audit. 4) Tiền lưu số nguyên VNĐ, không dùng float. 5) Ngày giờ lưu UTC.",
+      "id": "d78q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao dữ liệu seed phải có phân bố THỰC TẾ?",
+      "choices": [
+        "Cho đẹp",
+        "Toàn ca đẹp thì không phát hiện được lỗi ở ca biên và ca xấu",
+        "Để test hiệu năng",
+        "Không quan trọng"
+      ],
+      "answer": 1,
+      "explain": "Vd: 60% đang hoạt động, 25% chậm quay lại, 15% đã rời bỏ.",
+      "id": "d78q2"
+    }
+  ]
+}

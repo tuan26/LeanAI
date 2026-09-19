@@ -1,0 +1,37 @@
+{
+  "day": 84,
+  "title": "Explanation layer",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "LLM được phép làm gì trong tầng giải thích?",
+      "choices": [
+        "Tính toán lại số liệu",
+        "CHỈ diễn đạt những con số CODE đã tính thành câu dễ hiểu",
+        "Suy đoán ý định khách",
+        "Đề xuất giảm giá"
+      ],
+      "answer": 1,
+      "id": "d84q1"
+    },
+    {
+      "type": "recall",
+      "q": "Ba lớp chống bịa ở tầng giải thích?",
+      "answer": "1) Chỉ đưa reason_data vào prompt, không đưa gì khác. 2) Guardrail: mọi số trong output phải có trong reason_data. 3) Vi phạm thì hiển thị bản TEMPLATE không có LLM — luôn có đường lui.",
+      "id": "d84q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Mỗi gạch đầu dòng trong giải thích phải có gì?",
+      "choices": [
+        "Một emoji",
+        "ÍT NHẤT một con số cụ thể từ dữ liệu",
+        "Một động từ",
+        "Một tên riêng"
+      ],
+      "answer": 1,
+      "explain": "Nhân viên phải quyết định được trong 10 giây.",
+      "id": "d84q3"
+    }
+  ]
+}

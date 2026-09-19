@@ -1,0 +1,77 @@
+{
+  "day": 1,
+  "title": "AI vs ML vs DL vs LLM",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Khác biệt CỐT LÕI giữa lập trình truyền thống và Machine Learning là gì?",
+      "choices": [
+        "ML chạy nhanh hơn",
+        "ML học quy luật từ dữ liệu thay vì người viết quy luật",
+        "ML dùng nhiều RAM hơn",
+        "ML luôn chính xác hơn"
+      ],
+      "answer": 1,
+      "explain": "Câu hỏi luôn là: ai tạo ra quy luật — con người hay dữ liệu?",
+      "id": "d01q1"
+    },
+    {
+      "type": "mcq",
+      "q": "LLM về bản chất làm gì?",
+      "choices": [
+        "Tra cứu trong cơ sở dữ liệu khổng lồ",
+        "Suy luận logic theo luật hình thức",
+        "Dự đoán token tiếp theo dựa trên xác suất",
+        "Tìm kiếm trên internet"
+      ],
+      "answer": 2,
+      "explain": "Mọi hành vi giống 'hiểu' đều nổi lên từ việc đoán token tiếp theo.",
+      "id": "d01q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Bài toán 'tính số tiền còn lại trong gói liệu trình của khách' nên dùng gì?",
+      "choices": [
+        "LLM vì nó thông minh",
+        "Rule/code thường",
+        "Deep Learning",
+        "RAG"
+      ],
+      "answer": 1,
+      "explain": "Phép toán có đáp án xác định → code. Dùng LLM tính tiền là sai lầm kinh điển.",
+      "id": "d01q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao Deep Learning khác Machine Learning cổ điển?",
+      "choices": [
+        "DL không cần dữ liệu",
+        "DL dùng mạng neuron nhiều lớp và tự học đặc trưng",
+        "DL chỉ chạy trên cloud",
+        "DL không cần huấn luyện"
+      ],
+      "answer": 1,
+      "explain": "Điểm mấu chốt: tự học đặc trưng, con người không phải định nghĩa feature.",
+      "id": "d01q4"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 câu hỏi cần trả lời TRƯỚC khi quyết định dùng LLM cho một bài toán.",
+      "answer": "1) Bài toán có đáp án đúng xác định bằng luật không? 2) Đầu vào có phải ngôn ngữ tự nhiên/phi cấu trúc không? 3) Sai một chút có gây hậu quả nghiêm trọng không (nếu có → bắt buộc human-in-the-loop)?",
+      "id": "d01q5"
+    },
+    {
+      "type": "open",
+      "q": "Trong CareDesk-AI, phần nào KHÔNG được dùng LLM và vì sao?",
+      "answer": "Phát hiện khách quá hạn (SQL/rule) và ước tính giá trị cơ hội (rule) — vì cần chính xác tuyệt đối, kiểm toán được, chi phí ~0. LLM chỉ dùng để giải thích và soạn tin nhắn.",
+      "keywords": [
+        "SQL",
+        "rule",
+        "chính xác",
+        "tin nhắn",
+        "giải thích"
+      ],
+      "id": "d01q6"
+    }
+  ]
+}

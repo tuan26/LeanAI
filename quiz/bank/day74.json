@@ -1,0 +1,37 @@
+{
+  "day": 74,
+  "title": "Reliability",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Nêu 5 cơ chế độ tin cậy bắt buộc.",
+      "answer": "1) Timeout cho mọi lời gọi ra ngoài. 2) Retry backoff+jitter, không retry hành động ghi. 3) Fallback: model phụ → mặc định → chuyển người. 4) Idempotency. 5) Circuit breaker.",
+      "id": "d74q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Nguyên tắc suy giảm có kiểm soát là gì?",
+      "choices": [
+        "Sập cả hệ thống để báo lỗi rõ",
+        "Luôn có một ĐƯỜNG ĐI KHÔNG CẦN AI — sản phẩm vẫn dùng được, chỉ kém tiện hơn",
+        "Luôn thử lại",
+        "Tắt tính năng hỏng"
+      ],
+      "answer": 1,
+      "explain": "Rerank hỏng → dùng retrieval; vector hỏng → dùng BM25; LLM hỏng → hiện dữ liệu thô + template.",
+      "id": "d74q2"
+    },
+    {
+      "type": "open",
+      "q": "Job quét 3.000 khách chết ở khách 1.847, chạy lại phải đảm bảo gì?",
+      "answer": "Chỉ xử lý phần chưa xong (checkpoint), không bỏ sót ai, KHÔNG GỬI TRÙNG cho người đã gửi (idempotency), và báo cáo rõ đã xử lý bao nhiêu / lỗi bao nhiêu / còn lại bao nhiêu.",
+      "keywords": [
+        "checkpoint",
+        "không trùng",
+        "không bỏ sót",
+        "báo cáo"
+      ],
+      "id": "d74q3"
+    }
+  ]
+}

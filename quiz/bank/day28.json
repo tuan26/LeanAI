@@ -1,0 +1,62 @@
+{
+  "day": 28,
+  "title": "Prompt injection",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao prompt injection tồn tại?",
+      "choices": [
+        "Lỗi của provider",
+        "LLM không phân biệt được đâu là chỉ dẫn của bạn, đâu là dữ liệu người khác",
+        "Do temperature",
+        "Do context ngắn"
+      ],
+      "answer": 1,
+      "explain": "Tất cả đều là text trong cùng một context.",
+      "id": "d28q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Loại injection nào nguy hiểm hơn với RAG và Agent?",
+      "choices": [
+        "Direct (người dùng gõ thẳng)",
+        "Indirect (ẩn trong tài liệu, email, website AI đọc)",
+        "Cả hai như nhau",
+        "Không loại nào"
+      ],
+      "answer": 1,
+      "explain": "Người dùng vô tội, bạn không kiểm soát nguồn — vd chữ trắng trên nền trắng trong PDF.",
+      "id": "d28q2"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 6 lớp phòng thủ và 2 lớp nào thật sự đáng tin.",
+      "answer": "1) Phân tách dữ liệu bằng thẻ. 2) Lọc đầu vào. 3) Nhắc lại chỉ dẫn sau dữ liệu. 4) Lọc đầu ra. 5) Đặc quyền tối thiểu. 6) Người duyệt. CHỈ lớp 5 và 6 đáng tin — prompt không phải biện pháp an ninh.",
+      "id": "d28q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Khi đo bộ lọc đầu vào, ngoài tỉ lệ bắt được, phải đo thêm gì?",
+      "choices": [
+        "Tốc độ",
+        "Tỉ lệ báo nhầm trên câu hỏi hợp lệ (false positive)",
+        "Số dòng code",
+        "Chi phí"
+      ],
+      "answer": 1,
+      "explain": "Bộ lọc chặn cả khách hàng thật thì vô dụng.",
+      "id": "d28q4"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao Ngày 80 (multi-tenant isolation) quan trọng hơn mọi prompt bạn viết?",
+      "answer": "Vì nếu AI về mặt kiến trúc không có quyền truy cập dữ liệu tenant khác, thì injection giỏi đến mấy cũng không lấy được gì. Đặc quyền tối thiểu là phòng thủ thật; prompt chỉ là lớp giảm thiểu.",
+      "keywords": [
+        "không có quyền",
+        "kiến trúc",
+        "đặc quyền tối thiểu"
+      ],
+      "id": "d28q5"
+    }
+  ]
+}

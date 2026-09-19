@@ -1,0 +1,38 @@
+{
+  "day": 39,
+  "title": "Word parsing",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao Word tốt hơn PDF để làm RAG?",
+      "choices": [
+        "File nhỏ hơn",
+        "Giữ nguyên cấu trúc heading, bảng, danh sách — PDF là ảnh chụp layout đã mất cấu trúc",
+        "Mở nhanh hơn",
+        "Ít lỗi font hơn"
+      ],
+      "answer": 1,
+      "explain": "Có cả hai định dạng thì luôn ưu tiên Word.",
+      "id": "d39q1"
+    },
+    {
+      "type": "recall",
+      "q": "section_path dùng để làm gì (3 lợi ích)?",
+      "answer": "1) Trích dẫn chính xác đến điều khoản, không chỉ số trang. 2) Chunk theo ranh giới ngữ nghĩa thay vì cắt mù. 3) Thêm ngữ cảnh vào text trước khi embed giúp chunk ngắn vẫn hiểu được.",
+      "id": "d39q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Track changes chưa chấp nhận trong .docx nghĩa là gì?",
+      "choices": [
+        "File hỏng",
+        "Nội dung có thể là bản nháp CHƯA ĐƯỢC DUYỆT — index nhầm sẽ khiến AI trả lời sai",
+        "Không sao cả",
+        "Cần OCR"
+      ],
+      "answer": 1,
+      "explain": "Phải cảnh báo hoặc từ chối.",
+      "id": "d39q3"
+    }
+  ]
+}

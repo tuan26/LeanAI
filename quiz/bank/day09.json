@@ -1,0 +1,75 @@
+{
+  "day": 9,
+  "title": "Temperature & sampling",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Temperature làm gì về mặt toán học?",
+      "choices": [
+        "Nhân xác suất với T",
+        "Chia logits cho T trước khi softmax",
+        "Lọc bỏ token xác suất thấp",
+        "Thay đổi số lớp của model"
+      ],
+      "answer": 1,
+      "explain": "T thấp → phân phối nhọn; T cao → phân phối phẳng.",
+      "id": "d09q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Câu nào ĐÚNG về temperature = 0?",
+      "choices": [
+        "Model sẽ không bao giờ bịa",
+        "Model nhất quán hơn nhưng vẫn có thể sai một cách tự tin",
+        "Model trả lời nhanh hơn",
+        "Model không cần prompt tốt"
+      ],
+      "answer": 1,
+      "explain": "T=0 kiểm soát tính ngẫu nhiên, không kiểm soát sự thật.",
+      "id": "d09q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Nên dùng temperature bao nhiêu cho trích xuất dữ liệu ra JSON?",
+      "choices": [
+        "0",
+        "0.7",
+        "1.0",
+        "1.5"
+      ],
+      "answer": 0,
+      "explain": "Cần lặp lại được và parse được → T=0.",
+      "id": "d09q3"
+    },
+    {
+      "type": "mcq",
+      "q": "Khác biệt giữa top-k và top-p?",
+      "choices": [
+        "Không khác gì",
+        "top-k giữ k token cao nhất (cố định); top-p giữ token đến khi tổng xác suất đạt p (thích nghi)",
+        "top-p nhanh hơn",
+        "top-k chính xác hơn"
+      ],
+      "answer": 1,
+      "explain": "Nên dùng top-p vì thích nghi theo ngữ cảnh.",
+      "id": "d09q4"
+    },
+    {
+      "type": "recall",
+      "q": "Trong CareDesk-AI, temperature nào cho phát hiện cơ hội và nào cho soạn tin nhắn? Vì sao?",
+      "answer": "Phát hiện/phân loại cơ hội: T=0 — cần nhất quán và đánh giá được. Soạn tin nhắn Zalo: T=0.6–0.8 — cần tự nhiên, tránh 1000 khách nhận tin giống hệt nhau.",
+      "id": "d09q5"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao không nên chỉnh temperature và top_p cùng lúc?",
+      "answer": "Vì khi kết quả thay đổi, bạn không biết yếu tố nào gây ra. Chỉ chỉnh một biến để có thể quy kết nguyên nhân.",
+      "keywords": [
+        "không biết",
+        "nguyên nhân",
+        "một biến"
+      ],
+      "id": "d09q6"
+    }
+  ]
+}

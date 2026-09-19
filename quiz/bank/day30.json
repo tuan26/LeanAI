@@ -1,0 +1,50 @@
+{
+  "day": 30,
+  "title": "Schema validation + Project #1",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Vì sao json.loads chưa đủ, cần Pydantic?",
+      "choices": [
+        "Pydantic nhanh hơn",
+        "Parse được không có nghĩa dùng được: cần ép kiểu, bắt buộc trường, chặn enum lạ",
+        "Pydantic rẻ hơn",
+        "Bắt buộc bởi API"
+      ],
+      "answer": 1,
+      "explain": "Và lỗi Pydantic có cấu trúc, đưa thẳng lại cho model để retry rất hiệu quả.",
+      "id": "d30q1"
+    },
+    {
+      "type": "recall",
+      "q": "Vì sao AI Business Analyst bắt buộc phải có open_questions?",
+      "answer": "Vì BA giỏi không tự quyết thay khách hàng. Thứ không được nêu rõ trong yêu cầu phải thành câu hỏi làm rõ, không phải giả định ngầm. Schema đặt min_length=1 để ép điều này.",
+      "id": "d30q2"
+    },
+    {
+      "type": "mcq",
+      "q": "source_quote trong business rule dùng để làm gì?",
+      "choices": [
+        "Trang trí",
+        "Cho phép verify bằng code rằng rule không bị bịa",
+        "Tăng độ dài",
+        "Giúp model suy nghĩ"
+      ],
+      "answer": 1,
+      "explain": "verify_quotes đối chiếu với input gốc — kỹ thuật từ Ngày 14.",
+      "id": "d30q3"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải tự phân tích tay 1 file rồi so với output AI?",
+      "answer": "Để biết AI bỏ sót gì (giới hạn của nó) và tìm ra gì mình quên (giá trị của nó). Không có phép so sánh này thì bạn không biết sản phẩm đang tốt hay tệ.",
+      "keywords": [
+        "bỏ sót",
+        "quên",
+        "so sánh",
+        "giới hạn"
+      ],
+      "id": "d30q4"
+    }
+  ]
+}

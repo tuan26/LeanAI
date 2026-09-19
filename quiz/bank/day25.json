@@ -1,0 +1,50 @@
+{
+  "day": 25,
+  "title": "Constraints & format control",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Ràng buộc nào model tuân thủ KÉM nhất?",
+      "choices": [
+        "Cấu trúc JSON",
+        "Danh sách giá trị enum",
+        "Số từ / số ký tự",
+        "Số gạch đầu dòng"
+      ],
+      "answer": 2,
+      "explain": "Do tokenization — model không đếm được ký tự, đếm từ cũng rất tệ.",
+      "id": "d25q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 3 lớp kiểm soát định dạng và lớp nào cho đảm bảo thật.",
+      "answer": "Lớp 1 prompt (~85%), lớp 2 prefill (+10%), lớp 3 validate bằng code + retry. CHỈ lớp 3 cho đảm bảo; hai lớp đầu chỉ giảm số lần phải retry.",
+      "id": "d25q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Thay cho 'viết tối đa 50 từ', cách nào hiệu quả hơn?",
+      "choices": [
+        "Viết tối đa 50 từ, tôi nhấn mạnh",
+        "Viết 2-3 câu ngắn + max_tokens + validate",
+        "Viết ít thôi",
+        "Đặt temperature=0"
+      ],
+      "answer": 1,
+      "explain": "Kết hợp diễn đạt model hiểu được, cắt cứng bằng max_tokens, và validate.",
+      "id": "d25q3"
+    },
+    {
+      "type": "open",
+      "q": "stop_sequences dùng để làm gì trong thực tế?",
+      "answer": "Cắt output khi model bắt đầu 'nói thêm' sau khi đã xong việc (vd dừng ở '\\n\\n' hoặc '```'). Tiết kiệm token thật và giữ định dạng sạch.",
+      "keywords": [
+        "cắt",
+        "nói thêm",
+        "tiết kiệm",
+        "định dạng"
+      ],
+      "id": "d25q4"
+    }
+  ]
+}

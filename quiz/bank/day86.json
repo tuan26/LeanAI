@@ -1,0 +1,37 @@
+{
+  "day": 86,
+  "title": "Agent: draft message",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Kỹ thuật quan trọng nhất để tin nhắn không bao giờ sai số?",
+      "choices": [
+        "Temperature = 0",
+        "LLM sinh BIẾN {buoi_con_lai}, CODE thay bằng số từ database",
+        "Dùng model lớn nhất",
+        "Kiểm tra thủ công"
+      ],
+      "answer": 1,
+      "explain": "Biến hallucination số liệu từ 'hiếm khi' thành 'không thể'.",
+      "id": "d86q1"
+    },
+    {
+      "type": "recall",
+      "q": "Nêu 5 dấu hiệu 'mùi AI' trong tin nhắn và cách chữa.",
+      "answer": "Lời chào sáo rỗng (few-shot bằng tin người thật); quá trang trọng (quy tắc xưng hô cụ thể); cấu trúc lặp y hệt (temperature 0.7 + đa dạng mẫu); dài dòng (giới hạn cứng 2-3 câu); emoji tràn lan (tối đa 1).",
+      "id": "d86q2"
+    },
+    {
+      "type": "open",
+      "q": "Bài test mù để đánh giá tin nhắn là gì và ngưỡng đạt?",
+      "answer": "Trộn tin AI viết với tin người thật viết, hỏi 3 người 'cái nào do máy viết'. Nếu người ta nhận ra >70% tin do AI thì few-shot chưa đủ tốt.",
+      "keywords": [
+        "trộn",
+        "3 người",
+        "70%",
+        "few-shot"
+      ],
+      "id": "d86q3"
+    }
+  ]
+}

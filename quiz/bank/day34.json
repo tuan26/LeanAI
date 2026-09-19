@@ -1,0 +1,49 @@
+{
+  "day": 34,
+  "title": "Metadata & filtering",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Thiếu filter tenant_id trong vector search là vấn đề gì?",
+      "choices": [
+        "Chất lượng kết quả giảm",
+        "SỰ CỐ BẢO MẬT — lộ dữ liệu khách hàng này cho khách hàng khác",
+        "Chậm hơn",
+        "Tốn tiền hơn"
+      ],
+      "answer": 1,
+      "explain": "Đây không phải vấn đề chất lượng mà là rủi ro pháp lý.",
+      "id": "d34q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Pre-filter khác post-filter thế nào?",
+      "choices": [
+        "Không khác",
+        "Pre-filter lọc trước rồi tìm top-k nên luôn đủ k; post-filter tìm rồi lọc nên có thể còn quá ít",
+        "Post-filter nhanh hơn",
+        "Pre-filter kém chính xác"
+      ],
+      "answer": 1,
+      "explain": "Qdrant làm pre-filter khi có payload index.",
+      "id": "d34q2"
+    },
+    {
+      "type": "recall",
+      "q": "Ba quy tắc thiết kế metadata là gì?",
+      "answer": "1) Trường nào sẽ lọc thì phải tạo payload index. 2) Trường nào cần cho trích dẫn thì phải lưu trong payload. 3) Luôn có tenant_id ngay cả khi hiện chỉ có 1 khách hàng — thêm sau phải re-index toàn bộ.",
+      "id": "d34q3"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao nên viết hàm safe_search thay vì gọi vs.search trực tiếp?",
+      "answer": "Để biến quy tắc an ninh thành thứ không thể quên: hàm luôn chèn tenant_id vào filter và ném lỗi nếu thiếu. Dựa vào việc lập trình viên nhớ là không đủ.",
+      "keywords": [
+        "không thể quên",
+        "tenant_id",
+        "ném lỗi"
+      ],
+      "id": "d34q4"
+    }
+  ]
+}

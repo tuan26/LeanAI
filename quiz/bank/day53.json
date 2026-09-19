@@ -1,0 +1,36 @@
+{
+  "day": 53,
+  "title": "Tool schema design",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Bốn phần của một tool description tốt?",
+      "answer": "1) LÀM GÌ. 2) KHI NÀO DÙNG. 3) KHI NÀO KHÔNG DÙNG (chỉ sang tool khác). 4) TRẢ VỀ GÌ. Phần 3 và 4 hay bị bỏ qua nhưng cải thiện rõ nhất.",
+      "id": "d53q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Tool trả về 5.000 dòng dữ liệu gây vấn đề gì?",
+      "choices": [
+        "Chậm",
+        "Nổ context, tốn tiền, model lạc hướng — phải phân trang và cắt bớt có báo rõ",
+        "Lỗi parse",
+        "Không sao"
+      ],
+      "answer": 1,
+      "explain": "Luôn có limit/offset và trường truncated/total.",
+      "id": "d53q2"
+    },
+    {
+      "type": "open",
+      "q": "Trường hint trong lỗi tool có tác dụng gì?",
+      "answer": "Giúp model TỰ SỬA ở lượt sau thay vì lặp lại lỗi. Ví dụ: 'không tìm thấy C999, hint: dùng search_customers để tìm theo tên trước'.",
+      "keywords": [
+        "tự sửa",
+        "lặp lại",
+        "lượt sau"
+      ],
+      "id": "d53q3"
+    }
+  ]
+}

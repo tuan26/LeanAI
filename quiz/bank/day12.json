@@ -1,0 +1,63 @@
+{
+  "day": 12,
+  "title": "RLHF & preference optimization",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "RLHF tối ưu model theo cái gì?",
+      "choices": [
+        "Sự thật khách quan",
+        "Sở thích của người chấm",
+        "Tốc độ phản hồi",
+        "Số token tiết kiệm"
+      ],
+      "answer": 1,
+      "explain": "Đây là nguồn gốc của mọi hành vi nịnh, dài dòng, tự tin sai.",
+      "id": "d12q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Sycophancy (nịnh) gây rủi ro gì cho sản phẩm B2B?",
+      "choices": [
+        "Tốn token",
+        "Model đồng ý cả khi người dùng sai → dẫn đến quyết định sai",
+        "Làm chậm API",
+        "Không rủi ro gì"
+      ],
+      "answer": 1,
+      "explain": "Ví dụ: nhân viên hỏi 'gửi tin cho khách này được chưa?' → AI đồng ý dù khách vừa khiếu nại.",
+      "id": "d12q2"
+    },
+    {
+      "type": "mcq",
+      "q": "DPO khác RLHF ở điểm nào?",
+      "choices": [
+        "Không cần dữ liệu người",
+        "Bỏ bước train reward model, tối ưu trực tiếp trên cặp được-thích/bị-loại",
+        "Chạy trên CPU",
+        "Không cần model gốc"
+      ],
+      "answer": 1,
+      "explain": "Đơn giản và ổn định hơn, hiện được dùng rộng rãi.",
+      "id": "d12q3"
+    },
+    {
+      "type": "recall",
+      "q": "Thay vì hỏi LLM 'tôi làm vậy đúng không?', nên hỏi thế nào?",
+      "answer": "Hỏi 'hãy liệt kê những điều có thể sai trong phương án này' — vì model thiên vị đồng ý, câu hỏi dạng xác nhận sẽ nhận được câu trả lời nịnh.",
+      "id": "d12q4"
+    },
+    {
+      "type": "open",
+      "q": "Kể 3 hành vi do RLHF gây ra và cách chữa từng cái.",
+      "answer": "Nịnh → prompt trung lập cấm đồng ý vô căn cứ. Dài dòng → ràng buộc số từ cứng + validation. Tự tin dù sai → RAG, bắt trích nguồn, cho phép trả về 'không đủ thông tin'.",
+      "keywords": [
+        "nịnh",
+        "dài dòng",
+        "trích nguồn",
+        "trung lập"
+      ],
+      "id": "d12q5"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "day": 75,
+  "title": "Production AI checklist",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Mỗi mục trong checklist production phải có gì?",
+      "choices": [
+        "Dấu tick",
+        "CÁCH KIỂM CHỨNG cụ thể — lệnh chạy được, không chỉ 'đã làm'",
+        "Người chịu trách nhiệm",
+        "Ngày hoàn thành"
+      ],
+      "answer": 1,
+      "explain": "Checklist đẹp mà sai thì vô dụng.",
+      "id": "d75q1"
+    },
+    {
+      "type": "recall",
+      "q": "Preflight script dùng để làm gì?",
+      "answer": "Chạy trước mỗi lần deploy: audit bí mật, test cách ly tenant, chạy eval với ngưỡng tối thiểu, test guardrail. Thất bại bất kỳ mục nào thì CHẶN deploy (exit code khác 0).",
+      "id": "d75q2"
+    },
+    {
+      "type": "open",
+      "q": "Kể 4 nhóm chính của checklist production AI.",
+      "answer": "Chất lượng (eval, ngưỡng chặn phát hành); chống bịa (citation, verify số liệu); an ninh (bí mật, tenant, dữ liệu định danh); kiểm soát hành động (người duyệt, guardrail code, hạn mức); quan sát được; chi phí; độ tin cậy; vận hành; người dùng.",
+      "keywords": [
+        "chất lượng",
+        "an ninh",
+        "chi phí",
+        "độ tin cậy"
+      ],
+      "id": "d75q3"
+    }
+  ]
+}

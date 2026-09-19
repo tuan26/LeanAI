@@ -1,0 +1,38 @@
+{
+  "day": 42,
+  "title": "Metadata design",
+  "questions": [
+    {
+      "type": "recall",
+      "q": "Metadata đến từ 4 nguồn nào, nên ưu tiên nguồn nào?",
+      "answer": "1) Hệ thống (tenant_id, doc_id, hash) — miễn phí, chính xác 100%. 2) Parser (page, section, token_count). 3) Quy tắc (doc_type từ tên file). 4) LLM (tóm tắt, từ khoá) — tốn tiền. Ưu tiên tầng 1-3; chỉ dùng tầng 4 khi đo được nó cải thiện recall.",
+      "id": "d42q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Ba câu hỏi để quyết định có lưu một trường metadata không?",
+      "choices": [
+        "Nó có đẹp không",
+        "Có lọc theo nó không / có cần cho trích dẫn không / nó có thay đổi theo thời gian không",
+        "Nó có ngắn không",
+        "Nó có phải tiếng Anh không"
+      ],
+      "answer": 1,
+      "explain": "Không trả lời 'có' cho câu nào thì đừng lưu — metadata thừa làm chậm và tốn chỗ.",
+      "id": "d42q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Bảng giá 2025 và 2026 cùng trong hệ thống, xử lý thế nào là tốt nhất?",
+      "choices": [
+        "Xoá bản cũ",
+        "Soft delete: status=archived, filter mặc định loại ra, giữ được lịch sử để audit",
+        "Giữ cả hai không phân biệt",
+        "Tạo collection riêng"
+      ],
+      "answer": 1,
+      "explain": "AI trả lời giá cũ là lỗi gây thiệt hại tiền trực tiếp cho khách hàng.",
+      "id": "d42q3"
+    }
+  ]
+}

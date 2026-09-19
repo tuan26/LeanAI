@@ -1,0 +1,44 @@
+{
+  "day": 83,
+  "title": "Opportunity scoring",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Nên xếp hạng cơ hội theo gì?",
+      "choices": [
+        "Giá trị tuyệt đối",
+        "GIÁ TRỊ KỲ VỌNG = giá trị × xác suất thành công",
+        "Thời gian phát hiện",
+        "Tên khách"
+      ],
+      "answer": 1,
+      "explain": "10 triệu × 10% = 1 triệu thua 3 triệu × 60% = 1.8 triệu.",
+      "id": "d83q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Vì sao chưa nên dùng ML cho scoring ở v1?",
+      "choices": [
+        "ML quá chậm",
+        "Chưa có nhãn thật, và rule minh bạch hơn khi giải thích cho khách hàng",
+        "ML quá đắt",
+        "ML không chính xác"
+      ],
+      "answer": 1,
+      "explain": "Sau 3-6 tháng có ≥500 kết quả thật thì chuyển sang ML.",
+      "id": "d83q2"
+    },
+    {
+      "type": "open",
+      "q": "Hiệu chuẩn điểm nghĩa là gì?",
+      "answer": "Điểm 0.7 phải có nghĩa khoảng 70% thực sự quay lại. Nếu thực tế chỉ 30% thì điểm vô nghĩa. Đo bằng cách nhóm theo khoảng điểm rồi so dự đoán với thực tế.",
+      "keywords": [
+        "0.7",
+        "70%",
+        "vô nghĩa",
+        "so sánh"
+      ],
+      "id": "d83q3"
+    }
+  ]
+}

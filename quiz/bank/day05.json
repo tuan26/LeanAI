@@ -1,0 +1,76 @@
+{
+  "day": 5,
+  "title": "Embedding",
+  "questions": [
+    {
+      "type": "mcq",
+      "q": "Embedding là gì?",
+      "choices": [
+        "Một kiểu nén file",
+        "Vector số biểu diễn ngữ nghĩa của text",
+        "Một loại database",
+        "Cách viết prompt"
+      ],
+      "answer": 1,
+      "explain": "Text gần nghĩa → vector gần nhau trong không gian nhiều chiều.",
+      "id": "d05q1"
+    },
+    {
+      "type": "mcq",
+      "q": "Điểm yếu nghiêm trọng nào của embedding cần nhớ khi làm RAG?",
+      "choices": [
+        "Không xử lý được tiếng Anh",
+        "Xử lý kém phủ định và con số: 'có bảo hành' rất gần 'không có bảo hành'",
+        "Chỉ chạy được offline",
+        "Luôn trả về 0"
+      ],
+      "answer": 1,
+      "explain": "Chữa bằng hybrid search (Ngày 36) và metadata filter (Ngày 34).",
+      "id": "d05q2"
+    },
+    {
+      "type": "mcq",
+      "q": "Cosine similarity đo cái gì?",
+      "choices": [
+        "Khoảng cách tuyệt đối giữa 2 điểm",
+        "Góc giữa 2 vector, không phụ thuộc độ dài",
+        "Số từ chung giữa 2 câu",
+        "Độ dài của vector"
+      ],
+      "answer": 1,
+      "explain": "Công thức: A·B / (|A|×|B|), giá trị trong [-1, 1].",
+      "id": "d05q3"
+    },
+    {
+      "type": "recall",
+      "q": "Vẽ bằng lời luồng RAG cơ bản dùng embedding.",
+      "answer": "Tài liệu → chunk → embed → lưu vector DB. Câu hỏi → embed → tìm k vector gần nhất → lấy chunk tương ứng → đưa vào prompt cho LLM trả lời.",
+      "id": "d05q4"
+    },
+    {
+      "type": "open",
+      "q": "Vì sao phải cache embedding ngay từ đầu?",
+      "answer": "Vì mỗi lần gọi API embedding đều tốn tiền và thời gian, mà cùng một đoạn text luôn cho cùng một vector. Cache theo hash(model+text) tiết kiệm đáng kể khi phát triển và re-index.",
+      "keywords": [
+        "tiền",
+        "hash",
+        "lặp lại",
+        "re-index"
+      ],
+      "id": "d05q5"
+    },
+    {
+      "type": "mcq",
+      "q": "Ngưỡng cosine 0.8 = 'liên quan' có thể copy từ blog về dùng không?",
+      "choices": [
+        "Có, đó là chuẩn chung",
+        "Không, ngưỡng phụ thuộc model và dữ liệu, phải tự đo",
+        "Có, nếu cùng ngôn ngữ",
+        "Không quan trọng"
+      ],
+      "answer": 1,
+      "explain": "Phải tự đo trên dữ liệu của mình (Ngày 35).",
+      "id": "d05q6"
+    }
+  ]
+}
