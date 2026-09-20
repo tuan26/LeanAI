@@ -35,7 +35,15 @@ QUIZ_PROGRESS = (DATA_DIR / "quiz-progress.json") if DATA_DIR else ROOT / "quiz"
 STATUS_FILE = (DATA_DIR / "status.json") if DATA_DIR else ROOT / "progress" / "status.json"
 
 # --- an toàn ---
-EXPOSED = HOST not in ("127.0.0.1", "localhost", "::1")
+# Trên serverless KHÔNG có biến HOST, nên HOST rơi về 127.0.0.1 và app tưởng
+# mình đang chạy local -> lưới an toàn không bật. Phải nhận diện riêng.
+SERVERLESS = bool(
+    os.getenv("VERCEL")                     # Vercel
+    or os.getenv("AWS_LAMBDA_FUNCTION_NAME")  # Lambda
+    or os.getenv("K_SERVICE")                 # Cloud Run
+    or os.getenv("FUNCTIONS_WORKER_RUNTIME")  # Azure Functions
+)
+EXPOSED = SERVERLESS or HOST not in ("127.0.0.1", "localhost", "::1")
 # Mở ra ngoài mà không đặt mật khẩu -> chỉ cho ĐỌC, chặn mọi thao tác ghi.
 READ_ONLY = _bool("LEANAI_READ_ONLY", EXPOSED and not AUTH_ENABLED)
 
@@ -44,6 +52,8 @@ def banner() -> str:
     lines = [f"  LeanAI  →  http://{HOST}:{PORT}"]
     if DATA_DIR:
         lines.append(f"  Dữ liệu : {DATA_DIR}")
+    if SERVERLESS:
+        lines.append("  Môi trường: serverless (coi như mở ra internet)")
     if AUTH_ENABLED:
         lines.append(f"  Xác thực: BẬT (user: {USER})")
     elif EXPOSED:

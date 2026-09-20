@@ -180,9 +180,12 @@ def api_import(payload: dict, _: str = Depends(require_auth)):
 
 @app.get("/healthz")
 def healthz():
+    from .storage import store
     return {"ok": True, "lessons": len(core.lessons()),
             "questions": len(core.all_questions()),
-            "read_only": config.READ_ONLY, "auth": config.AUTH_ENABLED}
+            "read_only": config.READ_ONLY, "auth": config.AUTH_ENABLED,
+            "serverless": config.SERVERLESS, "storage": store.name,
+            "writable": not config.READ_ONLY}
 
 
 # ------------------------------------------------------------------ static
