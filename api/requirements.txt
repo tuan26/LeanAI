@@ -1,0 +1,6 @@
+# Vercel doc file nay (nam canh entrypoint) thay vi requirements.txt o goc.
+# Chi 4 thu viện -> build nhanh, function nho, khong dinh gioi han 250MB.
+fastapi>=0.111
+markdown>=3.6
+pygments>=2.18
+pydantic>=2.7

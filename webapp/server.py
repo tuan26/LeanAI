@@ -151,6 +151,33 @@ def api_reload():
     return {"ok": True, "lessons": len(core.lessons())}
 
 
+@app.get("/api/export")
+def api_export(_: str = Depends(require_auth)):
+    """Tải toàn bộ tiến trình về để sao lưu. Dùng khi dữ liệu nằm trên cloud."""
+    from datetime import datetime, timezone
+    return {
+        "exported_at": datetime.now(timezone.utc).isoformat(),
+        "version": 1,
+        "quiz_progress": core.load_quiz_progress(),
+        "status": core.load_status(),
+    }
+
+
+@app.post("/api/import")
+def api_import(payload: dict, _: str = Depends(require_auth)):
+    """Khôi phục từ bản sao lưu. GHI ĐÈ toàn bộ tiến trình hiện tại."""
+    if payload.get("version") != 1:
+        raise HTTPException(400, "Không nhận ra định dạng bản sao lưu")
+    qp, st = payload.get("quiz_progress"), payload.get("status")
+    if not isinstance(qp, dict) or not isinstance(st, dict):
+        raise HTTPException(400, "Bản sao lưu thiếu quiz_progress hoặc status")
+    if "cards" not in qp or "days" not in st:
+        raise HTTPException(400, "Bản sao lưu sai cấu trúc")
+    core.save_quiz_progress(qp)
+    core.save_status(st)
+    return {"ok": True, "cards": len(qp["cards"]), "days": len(st["days"])}
+
+
 @app.get("/healthz")
 def healthz():
     return {"ok": True, "lessons": len(core.lessons()),

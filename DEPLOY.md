@@ -171,6 +171,23 @@ curl -u user:pass https://<app>.vercel.app/healthz
 `lessons` phải bằng 90. Nếu ít hơn thì `includeFiles` trong `vercel.json` chưa gói
 được `curriculum/` vào function.
 
+### Sao lưu (làm mỗi tuần một lần)
+
+Dữ liệu nằm trên Upstash. Mất tài khoản đó là mất 90 ngày học, nên:
+
+```powershell
+python backup.py https://<app>.vercel.app -u <user> -p <mật-khẩu>
+# -> backups/leanai-2026-09-20.json
+```
+
+Khôi phục:
+
+```powershell
+python backup.py https://<app>.vercel.app -u <user> -p <mật-khẩu> --restore backups/leanai-2026-09-20.json
+```
+
+Đã kiểm chứng: sao lưu → xoá sạch → khôi phục, tiến trình về đúng như cũ.
+
 ### Hạn chế cần biết
 
 - **Tiến trình nằm trên Redis**, tách rời `quiz/quiz.py` và `track.py` trên máy bạn.
