@@ -11,6 +11,7 @@
 | `HOST=0.0.0.0` + **không** đặt mật khẩu | tự chuyển **CHẾ ĐỘ CHỈ ĐỌC** — mọi POST bị chặn 403 |
 | Docker publish ra `127.0.0.1` | đặt `LEANAI_READ_ONLY=0` để bật ghi (compose đã làm sẵn) |
 | `HOST=0.0.0.0` + `LEANAI_USER`/`LEANAI_PASS` | HTTP Basic auth, ghi bình thường |
+| Serverless (Vercel) | luôn cần `LEANAI_USER`/`LEANAI_PASS`, nếu không thì chỉ đọc |
 
 Nghĩa là: lỡ deploy mà quên mật khẩu thì người lạ **không phá được** tiến trình của bạn.
 
@@ -26,6 +27,8 @@ chạy sau HTTPS — mọi nền tảng dưới đây đều cấp HTTPS sẵn.
 | `LEANAI_USER` / `LEANAI_PASS` | rỗng | bật xác thực |
 | `LEANAI_DATA_DIR` | thư mục repo | trỏ vào volume để giữ tiến trình |
 | `LEANAI_READ_ONLY` | tự suy ra | ép chế độ chỉ đọc |
+| `LEANAI_SECRET` | `leanai-local-dev` | khoá xáo đáp án quiz — **đổi khi deploy** |
+| `UPSTASH_REDIS_REST_URL` / `_TOKEN` | rỗng | có thì lưu vào Redis thay vì file |
 
 ---
 
@@ -104,6 +107,77 @@ Cả hai đều tự nhận `Dockerfile`.
 
 > ⚠️ Không gắn disk thì tiến trình học **mất mỗi lần deploy lại**. Free tier của Render
 > không có disk — khi đó nên dùng Fly.io hoặc chấp nhận chế độ chỉ đọc.
+
+## Cách 6 — Vercel (free, KHÔNG cần thẻ thanh toán)
+
+Vercel là serverless: **không có ổ đĩa ghi được** và **không giữ trạng thái** giữa các
+request. App đã được sửa để chạy được ở đó:
+
+| Vấn đề của serverless | Cách app xử lý |
+|---|---|
+| Không ghi file được | `webapp/storage.py` — tự đổi sang Redis khi thấy biến `UPSTASH_REDIS_REST_*` |
+| Không giữ RAM giữa request | Đáp án quiz được xáo **xác định** từ `(secret, qid, seed)`, server không nhớ gì |
+| Không chạy Dockerfile | `api/index.py` + `vercel.json` |
+
+### Bước 1 — Tạo Redis (Upstash, free, không cần thẻ)
+
+1. Vào https://upstash.com → đăng ký (dùng được tài khoản GitHub)
+2. **Create Database** → chọn region gần nhất (Singapore) → Free tier
+3. Mở tab **REST API**, copy hai giá trị:
+   - `UPSTASH_REDIS_REST_URL`
+   - `UPSTASH_REDIS_REST_TOKEN`
+
+### Bước 2 — Deploy
+
+```bash
+npm i -g vercel
+vercel login
+vercel --prod
+```
+
+Hoặc không cần cài gì: vào https://vercel.com/new → **Import Git Repository** → chọn
+`tuan26/LeanAI` → Deploy.
+
+### Bước 3 — Đặt biến môi trường
+
+Trong Vercel: **Settings → Environment Variables**, thêm 5 biến cho môi trường Production:
+
+| Biến | Giá trị |
+|---|---|
+| `UPSTASH_REDIS_REST_URL` | lấy ở bước 1 |
+| `UPSTASH_REDIS_REST_TOKEN` | lấy ở bước 1 |
+| `LEANAI_USER` | tên đăng nhập bạn tự chọn |
+| `LEANAI_PASS` | mật khẩu mạnh, ít nhất 12 ký tự |
+| `LEANAI_SECRET` | chuỗi ngẫu nhiên bất kỳ (xáo đáp án quiz) |
+
+Sinh chuỗi ngẫu nhiên:
+
+```powershell
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+Rồi **Redeploy** để biến môi trường có hiệu lực.
+
+> Không đặt `LEANAI_USER`/`LEANAI_PASS` thì app tự vào chế độ chỉ đọc — xem được bài
+> nhưng không đánh dấu được tiến trình. Đó là lớp bảo vệ, không phải lỗi.
+
+### Bước 4 — Kiểm tra
+
+```bash
+curl -u user:pass https://<app>.vercel.app/healthz
+# {"ok":true,"lessons":90,"questions":324,"read_only":false,"auth":true}
+```
+
+`lessons` phải bằng 90. Nếu ít hơn thì `includeFiles` trong `vercel.json` chưa gói
+được `curriculum/` vào function.
+
+### Hạn chế cần biết
+
+- **Tiến trình nằm trên Redis**, tách rời `quiz/quiz.py` và `track.py` trên máy bạn.
+  Chọn một nơi để học, đừng dùng song song cả hai rồi thắc mắc sao số liệu lệch.
+- Free tier Upstash giới hạn số lệnh mỗi ngày — với một người học thì thừa sức.
+- Cold start lần đầu chậm khoảng 2–3 giây.
+- `Commit` trên dashboard sẽ luôn hiện 0 vì serverless không có repo git.
 
 ## Cách 5 — Tailscale (riêng tư nhất)
 

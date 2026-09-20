@@ -5,6 +5,7 @@ import datetime as dt
 import json
 import random
 import re
+import secrets
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -12,6 +13,7 @@ from pathlib import Path
 import markdown
 
 from . import config
+from .storage import store
 
 ROOT = Path(__file__).resolve().parent.parent
 CURRICULUM = ROOT / "curriculum"
@@ -141,18 +143,11 @@ def search(q: str, limit: int = 40) -> list[dict]:
 
 # -------------------------------------------------------------------- quiz
 def load_quiz_progress() -> dict:
-    if QUIZ_PROGRESS.exists():
-        try:
-            return json.loads(QUIZ_PROGRESS.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            pass
-    return {"cards": {}, "sessions": []}
+    return store.load("quiz_progress", {"cards": {}, "sessions": []})
 
 
 def save_quiz_progress(p: dict) -> None:
-    QUIZ_PROGRESS.parent.mkdir(parents=True, exist_ok=True)
-    QUIZ_PROGRESS.write_text(json.dumps(p, ensure_ascii=False, indent=2),
-                             encoding="utf-8")
+    store.save("quiz_progress", p)
 
 
 _bank_cache: dict[int, dict] | None = None
@@ -195,9 +190,28 @@ def schedule(card: dict, correct: bool) -> None:
     card["last"] = today()
 
 
+def shuffle_order(qid: str, seed: str, n: int) -> list[int]:
+    """Thứ tự xáo đáp án, suy lại được từ (qid, seed) nên server không cần nhớ gì.
+
+    Client nhận seed nhưng KHÔNG biết đáp án gốc, nên không suy ngược được."""
+    rnd = random.Random(f"{config.SECRET}:{qid}:{seed}")
+    idx = list(range(n))
+    rnd.shuffle(idx)
+    return idx
+
+
+def correct_index(qid: str, seed: str) -> int | None:
+    """Vị trí đáp án đúng SAU KHI xáo — tính lại lúc chấm."""
+    q = all_questions().get(qid)
+    if not q or q.get("type") != "mcq":
+        return None
+    order = shuffle_order(qid, seed, len(q["choices"]))
+    return order.index(q["answer"])
+
+
 def build_quiz(day: int | None = None, mode: str = "day",
-               limit: int = 25) -> tuple[list[dict], dict[str, int]]:
-    """Trả về (câu hỏi đã che đáp án, bản đồ qid -> vị trí đáp án sau khi xáo)."""
+               limit: int = 25, seed: str = "") -> tuple[list[dict], str]:
+    """Trả về (câu hỏi đã che đáp án, seed dùng để xáo)."""
     prog = load_quiz_progress()
     qs = list(all_questions().values())
 
@@ -217,24 +231,22 @@ def build_quiz(day: int | None = None, mode: str = "day",
         qs.sort(key=lambda q: -prog["cards"][q["id"]]["wrong"])
         qs = qs[:limit]
 
+    seed = seed or secrets.token_urlsafe(9)
     random.shuffle(qs)
-    answer_map: dict[str, int] = {}
     out = []
     for q in qs:
         item = {"id": q["id"], "day": q["day"], "topic": q.get("topic", ""),
                 "type": q.get("type", "mcq"), "q": q["q"],
                 "explain": q.get("explain", ""), "keywords": q.get("keywords", [])}
         if item["type"] == "mcq":
-            idx = list(range(len(q["choices"])))
-            random.shuffle(idx)
-            item["choices"] = [q["choices"][i] for i in idx]
-            answer_map[q["id"]] = idx.index(q["answer"])
+            order = shuffle_order(q["id"], seed, len(q["choices"]))
+            item["choices"] = [q["choices"][i] for i in order]
         else:
             item["answer"] = q["answer"]
         card = prog["cards"].get(q["id"])
         item["box"] = card["box"] if card else 0
         out.append(item)
-    return out, answer_map
+    return out, seed
 
 
 def grade(qid: str, correct: bool) -> dict:
@@ -280,17 +292,11 @@ def quiz_stats() -> dict:
 
 # ---------------------------------------------------------------- tiến trình
 def load_status() -> dict:
-    if STATUS.exists():
-        try:
-            return json.loads(STATUS.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            pass
-    return {"days": {}, "budget_usd": 40.0, "started": ""}
+    return store.load("status", {"days": {}, "budget_usd": 40.0, "started": ""})
 
 
 def save_status(s: dict) -> None:
-    STATUS.parent.mkdir(parents=True, exist_ok=True)
-    STATUS.write_text(json.dumps(s, ensure_ascii=False, indent=2), encoding="utf-8")
+    store.save("status", s)
 
 
 def set_day_status(day: int, status: str, *, cost: float = 0.0,

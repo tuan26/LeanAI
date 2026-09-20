@@ -19,6 +19,10 @@ def _bool(name: str, default: bool = False) -> bool:
 HOST = os.getenv("HOST", "127.0.0.1")
 PORT = int(os.getenv("PORT", "8080"))
 
+# --- bí mật dùng để xáo đáp án quiz một cách xác định ---
+# Đổi giá trị này thì các phiên quiz đang mở sẽ hết hiệu lực (không mất tiến trình).
+SECRET = os.getenv("LEANAI_SECRET", "leanai-local-dev")
+
 # --- xác thực ---
 USER = os.getenv("LEANAI_USER", "")
 PASS = os.getenv("LEANAI_PASS", "")

@@ -46,10 +46,6 @@ async def block_writes_when_readonly(request: Request, call_next):
             status_code=http.HTTP_403_FORBIDDEN)
     return await call_next(request)
 
-# bản đồ đáp án của phiên quiz đang mở (1 người dùng, chạy local)
-_answer_map: dict[str, int] = {}
-
-
 # ------------------------------------------------------------------ schemas
 class StatusIn(BaseModel):
     status: str = Field(pattern="^(pass|fail|clear)$")
@@ -62,6 +58,7 @@ class StatusIn(BaseModel):
 class AnswerIn(BaseModel):
     qid: str
     choice: int | None = None       # mcq: vị trí đã chọn
+    seed: str = ""                  # mcq: seed của phiên, để suy lại đáp án
     correct: bool | None = None     # open/recall: tự chấm
 
 
@@ -111,10 +108,8 @@ def api_set_status(day: int, body: StatusIn, _: str = Depends(require_auth)):
 @app.get("/api/quiz")
 def api_quiz(day: int | None = None, mode: str = "day", limit: int = 25,
               _: str = Depends(require_auth)):
-    qs, amap = core.build_quiz(day=day, mode=mode, limit=limit)
-    _answer_map.clear()
-    _answer_map.update(amap)
-    return {"mode": mode, "day": day, "questions": qs, "count": len(qs)}
+    qs, seed = core.build_quiz(day=day, mode=mode, limit=limit)
+    return {"mode": mode, "day": day, "questions": qs, "count": len(qs), "seed": seed}
 
 
 @app.post("/api/quiz/answer")
@@ -123,9 +118,9 @@ def api_answer(body: AnswerIn, _: str = Depends(require_auth)):
         correct = body.correct
         right_index = None
     else:
-        if body.qid not in _answer_map:
-            raise HTTPException(409, "Phiên quiz đã hết hạn, hãy tải lại")
-        right_index = _answer_map[body.qid]
+        right_index = core.correct_index(body.qid, body.seed)
+        if right_index is None:
+            raise HTTPException(400, f"Không chấm được câu {body.qid}")
         correct = body.choice == right_index
     card = core.grade(body.qid, correct)
     return {"correct": correct, "right_index": right_index, "card": card}

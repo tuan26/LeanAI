@@ -313,7 +313,7 @@ function enhanceCode() {
 }
 
 /* ------------------------------------------------------------ quiz */
-const quiz = { items: [], i: 0, right: 0, wrong: [], label: '', answered: false };
+const quiz = { items: [], i: 0, right: 0, wrong: [], label: '', answered: false, seed: '' };
 
 async function openQuiz({ mode = 'day', day = null }) {
   let data;
@@ -327,6 +327,7 @@ async function openQuiz({ mode = 'day', day = null }) {
     return;
   }
   quiz.items = data.questions; quiz.i = 0; quiz.right = 0; quiz.wrong = [];
+  quiz.seed = data.seed || '';
   quiz.label = mode === 'review' ? 'Ôn tập đến hạn'
     : mode === 'weak' ? 'Câu yếu nhất' : `Quiz Ngày ${day}`;
   $('#quiz-title').textContent = quiz.label;
@@ -371,7 +372,7 @@ async function answerMcq(choice) {
   quiz.answered = true;
   const q = quiz.items[quiz.i];
   let res;
-  try { res = await post('/api/quiz/answer', { qid: q.id, choice }); }
+  try { res = await post('/api/quiz/answer', { qid: q.id, choice, seed: quiz.seed }); }
   catch (e) { toast(e.message); return; }
 
   $$('.choice').forEach((b, i) => {
