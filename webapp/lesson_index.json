@@ -1,0 +1,362 @@
+{
+"1": {
+"t": "AI vs ML vs DL vs LLM",
+"q": 6
+},
+"2": {
+"t": "Neural Network",
+"q": 6
+},
+"3": {
+"t": "Transformer",
+"q": 6
+},
+"4": {
+"t": "Tokenization",
+"q": 6
+},
+"5": {
+"t": "Embedding",
+"q": 6
+},
+"6": {
+"t": "Attention",
+"q": 6
+},
+"7": {
+"t": "Ôn tập tuần 1",
+"q": 3
+},
+"8": {
+"t": "Context window",
+"q": 5
+},
+"9": {
+"t": "Temperature & sampling",
+"q": 6
+},
+"10": {
+"t": "Pretraining",
+"q": 5
+},
+"11": {
+"t": "Instruction tuning",
+"q": 5
+},
+"12": {
+"t": "RLHF & preference optimization",
+"q": 5
+},
+"13": {
+"t": "Hallucination",
+"q": 6
+},
+"14": {
+"t": "MINI PROJECT: AI Explanation Engine",
+"q": 3
+},
+"15": {
+"t": "Python, API, JSON",
+"q": 5
+},
+"16": {
+"t": "LLM API request",
+"q": 4
+},
+"17": {
+"t": "system / user / assistant messages",
+"q": 4
+},
+"18": {
+"t": "Conversation & memory",
+"q": 4
+},
+"19": {
+"t": "Streaming",
+"q": 4
+},
+"20": {
+"t": "Error handling & retry",
+"q": 5
+},
+"21": {
+"t": "Mini chatbot (tổng hợp tuần 3)",
+"q": 3
+},
+"22": {
+"t": "Zero-shot prompting",
+"q": 4
+},
+"23": {
+"t": "Few-shot prompting",
+"q": 4
+},
+"24": {
+"t": "Role & context",
+"q": 4
+},
+"25": {
+"t": "Constraints & format control",
+"q": 4
+},
+"26": {
+"t": "Decomposition (chia nhỏ nhiệm vụ)",
+"q": 4
+},
+"27": {
+"t": "Self-verification (critic pass)",
+"q": 4
+},
+"28": {
+"t": "Prompt injection",
+"q": 5
+},
+"29": {
+"t": "JSON output",
+"q": 4
+},
+"30": {
+"t": "Schema validation + PROJECT #1: AI Business Analyst",
+"q": 4
+},
+"31": {
+"t": "Embedding thực chiến",
+"q": 4
+},
+"32": {
+"t": "Cosine similarity & vector math",
+"q": 3
+},
+"33": {
+"t": "Vector database (Qdrant)",
+"q": 3
+},
+"34": {
+"t": "Metadata & filtering",
+"q": 4
+},
+"35": {
+"t": "Semantic search & đo recall",
+"q": 3
+},
+"36": {
+"t": "Hybrid search (BM25 + vector)",
+"q": 3
+},
+"37": {
+"t": "Mini RAG end-to-end",
+"q": 3
+},
+"38": {
+"t": "PDF parsing",
+"q": 4
+},
+"39": {
+"t": "Word parsing",
+"q": 3
+},
+"40": {
+"t": "Excel parsing",
+"q": 3
+},
+"41": {
+"t": "Chunking strategies",
+"q": 4
+},
+"42": {
+"t": "Metadata design (chốt schema)",
+"q": 3
+},
+"43": {
+"t": "Indexing & incremental update",
+"q": 3
+},
+"44": {
+"t": "Ingestion pipeline (1 lệnh)",
+"q": 3
+},
+"45": {
+"t": "Query rewriting",
+"q": 3
+},
+"46": {
+"t": "Top-k & context budget",
+"q": 3
+},
+"47": {
+"t": "Reranking",
+"q": 3
+},
+"48": {
+"t": "Citation (trích dẫn nguồn)",
+"q": 3
+},
+"49": {
+"t": "Hallucination control trong RAG",
+"q": 3
+},
+"50": {
+"t": "PROJECT #2: Company Knowledge AI",
+"q": 3
+},
+"51": {
+"t": "Function calling",
+"q": 3
+},
+"52": {
+"t": "Tool calling nhiều tool",
+"q": 3
+},
+"53": {
+"t": "Tool schema design",
+"q": 3
+},
+"54": {
+"t": "Tool result handling",
+"q": 3
+},
+"55": {
+"t": "Tool error handling",
+"q": 3
+},
+"56": {
+"t": "Retry & backoff cho agent",
+"q": 3
+},
+"57": {
+"t": "Agent loop",
+"q": 3
+},
+"58": {
+"t": "State (trạng thái agent)",
+"q": 3
+},
+"59": {
+"t": "Memory (ngắn hạn & dài hạn)",
+"q": 3
+},
+"60": {
+"t": "Workflow vs Agent",
+"q": 3
+},
+"61": {
+"t": "Human-in-the-loop",
+"q": 3
+},
+"62": {
+"t": "Guardrails cho agent",
+"q": 4
+},
+"63": {
+"t": "Multi-step agent",
+"q": 3
+},
+"64": {
+"t": "Logging & observability",
+"q": 3
+},
+"65": {
+"t": "PROJECT #3: Research Agent",
+"q": 3
+},
+"66": {
+"t": "Evaluation: xây dataset",
+"q": 4
+},
+"67": {
+"t": "Evaluation: scorer & LLM-judge",
+"q": 4
+},
+"68": {
+"t": "Tracing: mô hình span",
+"q": 3
+},
+"69": {
+"t": "Tracing: viewer & debug",
+"q": 3
+},
+"70": {
+"t": "Cost optimization",
+"q": 4
+},
+"71": {
+"t": "Latency",
+"q": 3
+},
+"72": {
+"t": "Security",
+"q": 3
+},
+"73": {
+"t": "Guardrails vào/ra",
+"q": 3
+},
+"74": {
+"t": "Reliability",
+"q": 3
+},
+"75": {
+"t": "Production AI checklist",
+"q": 3
+},
+"76": {
+"t": "Domain & problem framing",
+"q": 3
+},
+"77": {
+"t": "Architecture",
+"q": 2
+},
+"78": {
+"t": "Data model",
+"q": 2
+},
+"79": {
+"t": "Auth",
+"q": 3
+},
+"80": {
+"t": "Multi-tenant isolation",
+"q": 3
+},
+"81": {
+"t": "Tenant-scoped RAG",
+"q": 2
+},
+"82": {
+"t": "Revenue Opportunity engine",
+"q": 3
+},
+"83": {
+"t": "Opportunity scoring",
+"q": 3
+},
+"84": {
+"t": "Explanation layer",
+"q": 3
+},
+"85": {
+"t": "Agent: detect → recommend",
+"q": 3
+},
+"86": {
+"t": "Agent: draft message",
+"q": 3
+},
+"87": {
+"t": "Human approval + send",
+"q": 3
+},
+"88": {
+"t": "Dashboard",
+"q": 2
+},
+"89": {
+"t": "Evaluation 100 scenarios",
+"q": 3
+},
+"90": {
+"t": "DEMO DAY 🚀",
+"q": 3
+}
+}

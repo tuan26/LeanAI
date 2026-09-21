@@ -56,7 +56,8 @@ def phase_of(day: int) -> int:
 
 # ----------------------------------------------------------------- nội dung
 _md = markdown.Markdown(
-    extensions=["tables", "fenced_code", "codehilite", "toc", "attr_list", "sane_lists"],
+    extensions=["tables", "fenced_code", "codehilite", "toc", "attr_list",
+                "sane_lists", "md_in_html"],
     extension_configs={"codehilite": {"css_class": "hl", "guess_lang": False}},
 )
 
@@ -98,26 +99,93 @@ def slug(s: str) -> str:
     return re.sub(r"[\s_]+", "-", s).strip("-")
 
 
-_lessons: dict[int, Lesson] | None = None
+_lessons: dict[int, Lesson] = {}
+_titles: dict[int, str] | None = None
+_quiz_counts: dict[int, int] = {}
+INDEX_FILE = Path(__file__).resolve().parent / "lesson_index.json"
+
+
+def titles() -> dict[int, str]:
+    """Tiêu đề 90 ngày. Đọc từ chỉ mục sẵn có -> cold start không phải mở 90 file."""
+    global _titles
+    if _titles is None:
+        try:
+            raw = json.loads(INDEX_FILE.read_text(encoding="utf-8"))
+            _titles = {int(k): v["t"] for k, v in raw.items()}
+            _quiz_counts.update({int(k): v["q"] for k, v in raw.items()})
+        except (OSError, json.JSONDecodeError):
+            _titles = {}
+            for f in sorted(CURRICULUM.glob("phase*/day*.md")):
+                n = int(f.stem[3:])
+                first = f.read_text(encoding="utf-8", errors="replace").splitlines()[0]
+                m = re.match(r"#\s*NGÀY\s*\d+\s*[—-]\s*(.+)", first.strip())
+                _titles[n] = m.group(1).strip() if m else f.stem
+    return _titles
+
+
+def quiz_count(day: int) -> int:
+    """Số câu quiz của một ngày — lấy từ chỉ mục, không mở file bank."""
+    titles()
+    if day in _quiz_counts:
+        return _quiz_counts[day]
+    return len(bank_of(day).get("questions", []))
+
+
+def bank_of(day: int) -> dict:
+    """Ngân hàng câu hỏi của ĐÚNG MỘT ngày."""
+    if day in _bank_cache_single:
+        return _bank_cache_single[day]
+    f = BANK / f"day{day:02d}.json"
+    d = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {"questions": []}
+    _bank_cache_single[day] = d
+    return d
+
+
+_bank_cache_single: dict[int, dict] = {}
+
+
+def question_by_id(qid: str) -> dict | None:
+    """Tra một câu hỏi mà KHÔNG nạp cả 90 ngân hàng (qid dạng d01q3)."""
+    m = re.match(r"d(\d+)q", qid)
+    if not m:
+        return None
+    day = int(m.group(1))
+    d = bank_of(day)
+    for q in d.get("questions", []):
+        if q["id"] == qid:
+            return {**q, "day": day, "topic": d.get("title", "")}
+    return None
+
+
+def _find_file(day: int) -> Path | None:
+    for f in CURRICULUM.glob(f"phase*/day{day:02d}.md"):
+        return f
+    return None
+
+
+def lesson(day: int) -> Lesson | None:
+    """Nạp ĐÚNG MỘT bài. Đây là hàm nên dùng khi hiển thị một ngày."""
+    if day in _lessons:
+        return _lessons[day]
+    f = _find_file(day)
+    if not f:
+        return None
+    raw = f.read_text(encoding="utf-8", errors="replace")
+    _lessons[day] = Lesson(day, titles().get(day, f.stem), phase_of(day), f, raw)
+    return _lessons[day]
 
 
 def lessons() -> dict[int, Lesson]:
-    global _lessons
-    if _lessons is None:
-        _lessons = {}
-        for f in sorted(CURRICULUM.glob("phase*/day*.md")):
-            n = int(f.stem[3:])
-            raw = f.read_text(encoding="utf-8", errors="replace")
-            first = raw.splitlines()[0].strip()
-            m = re.match(r"#\s*NGÀY\s*\d+\s*[—-]\s*(.+)", first)
-            _lessons[n] = Lesson(n, m.group(1).strip() if m else f.stem,
-                                 phase_of(n), f, raw)
+    """Nạp TẤT CẢ — chỉ dùng cho tìm kiếm. Tránh gọi trong đường đi thường ngày."""
+    for n in titles():
+        lesson(n)
     return _lessons
 
 
 def reload_lessons() -> None:
-    global _lessons
-    _lessons = None
+    _lessons.clear()
+    global _titles
+    _titles = None
 
 
 def search(q: str, limit: int = 40) -> list[dict]:
@@ -125,7 +193,10 @@ def search(q: str, limit: int = 40) -> list[dict]:
     if len(q) < 2:
         return []
     out = []
-    for n, les in sorted(lessons().items()):
+    for n, title in sorted(titles().items()):
+        les = lesson(n)
+        if not les:
+            continue
         low = les.raw.lower()
         if q not in low and q not in les.title.lower():
             continue
@@ -202,7 +273,7 @@ def shuffle_order(qid: str, seed: str, n: int) -> list[int]:
 
 def correct_index(qid: str, seed: str) -> int | None:
     """Vị trí đáp án đúng SAU KHI xáo — tính lại lúc chấm."""
-    q = all_questions().get(qid)
+    q = question_by_id(qid)
     if not q or q.get("type") != "mcq":
         return None
     order = shuffle_order(qid, seed, len(q["choices"]))
@@ -213,11 +284,14 @@ def build_quiz(day: int | None = None, mode: str = "day",
                limit: int = 25, seed: str = "") -> tuple[list[dict], str]:
     """Trả về (câu hỏi đã che đáp án, seed dùng để xáo)."""
     prog = load_quiz_progress()
-    qs = list(all_questions().values())
-
     if mode == "day" and day:
-        qs = [q for q in qs if q["day"] == day]
-    elif mode == "review":
+        d = bank_of(day)
+        qs = [{**q, "day": day, "topic": d.get("title", "")}
+              for q in d.get("questions", [])]
+    else:
+        qs = list(all_questions().values())
+
+    if mode == "review":
         qs = [q for q in qs
               if q["id"] in prog["cards"]
               and prog["cards"][q["id"]]["due"] <= today()
@@ -268,7 +342,8 @@ def record_session(label: str, right: int, total: int) -> None:
 def quiz_stats() -> dict:
     prog = load_quiz_progress()
     cards = prog.get("cards", {})
-    total = len(all_questions())
+    titles()
+    total = sum(_quiz_counts.values()) or len(all_questions())
     by_day: dict[int, dict] = {}
     for qid, c in cards.items():
         m = re.match(r"d(\d+)q", qid)
@@ -323,10 +398,29 @@ def git_commits() -> int:
         return 0
 
 
+def day_state(day: int) -> dict:
+    """Trạng thái của ĐÚNG MỘT ngày — nhẹ hơn overview() rất nhiều."""
+    st = load_status()
+    qz = quiz_stats()
+    v = {int(k): x for k, x in st.get("days", {}).items()}.get(day, {})
+    qd = qz["by_day"].get(day, {})
+    passed = {int(k) for k, x in st.get("days", {}).items() if x.get("status") == "pass"}
+    return {
+        "day": day, "status": v.get("status", ""), "date": v.get("date", ""),
+        "note": v.get("note", ""), "cost": v.get("cost", 0),
+        "minutes": v.get("minutes", 0),
+        "quiz_total": quiz_count(day),
+        "quiz_seen": qd.get("seen", 0), "quiz_mastered": qd.get("mastered", 0),
+        "quiz_due": qd.get("due", 0),
+        "milestone": MILESTONES.get(day, ""),
+        "is_next": day == next((d for d in range(1, 91) if d not in passed), None),
+    }
+
+
 def overview() -> dict:
     st = load_status()
     qz = quiz_stats()
-    les = lessons()
+    tl = titles()
     days_st = {int(k): v for k, v in st.get("days", {}).items()}
     passed = sorted(d for d, v in days_st.items() if v.get("status") == "pass")
     failed = sorted(d for d, v in days_st.items() if v.get("status") == "fail")
@@ -357,12 +451,12 @@ def overview() -> dict:
         v = days_st.get(n, {})
         qd = qz["by_day"].get(n, {})
         day_list.append({
-            "day": n, "title": les[n].title if n in les else f"Ngày {n}",
+            "day": n, "title": tl.get(n, f"Ngày {n}"),
             "phase": phase_of(n),
             "status": v.get("status", ""),
             "date": v.get("date", ""), "note": v.get("note", ""),
             "cost": v.get("cost", 0), "minutes": v.get("minutes", 0),
-            "quiz_total": len(bank().get(n, {}).get("questions", [])),
+            "quiz_total": quiz_count(n),
             "quiz_seen": qd.get("seen", 0), "quiz_mastered": qd.get("mastered", 0),
             "quiz_due": qd.get("due", 0),
             "milestone": MILESTONES.get(n, ""),

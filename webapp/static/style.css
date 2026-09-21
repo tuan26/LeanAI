@@ -271,3 +271,7 @@ input{font:inherit;color:inherit}
   .main{padding:18px 16px 80px}
   .lh-title{font-size:21px}
 }
+
+.err-box{margin:0 20px 14px;padding:10px 13px;border-radius:9px;font-size:13.5px;
+  background:var(--er-bg);border:1px solid var(--er);color:var(--er)}
+.err-box[hidden]{display:none}

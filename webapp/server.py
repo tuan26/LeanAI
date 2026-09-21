@@ -80,10 +80,9 @@ def api_overview(_: str = Depends(require_auth)):
 
 @app.get("/api/day/{day}")
 def api_day(day: int, _: str = Depends(require_auth)):
-    les = core.lessons().get(day)
+    les = core.lesson(day)
     if not les:
         raise HTTPException(404, f"Không có ngày {day}")
-    ov = {d["day"]: d for d in core.overview()["days"]}
     return {
         "day": day, "title": les.title, "phase": les.phase,
         "html": les.html, "sections": les.sections,
@@ -91,7 +90,7 @@ def api_day(day: int, _: str = Depends(require_auth)):
         "file": str(les.path.relative_to(core.ROOT)).replace("\\", "/"),
         "prev": day - 1 if day > 1 else None,
         "next": day + 1 if day < 90 else None,
-        "state": ov.get(day, {}),
+        "state": core.day_state(day),
         "milestone": core.MILESTONES.get(day, ""),
     }
 
@@ -181,7 +180,7 @@ def api_import(payload: dict, _: str = Depends(require_auth)):
 @app.get("/healthz")
 def healthz():
     from .storage import store
-    return {"ok": True, "lessons": len(core.lessons()),
+    return {"ok": True, "lessons": len(core.titles()),
             "questions": len(core.all_questions()),
             "read_only": config.READ_ONLY, "auth": config.AUTH_ENABLED,
             "serverless": config.SERVERLESS, "storage": store.name,

@@ -243,7 +243,7 @@ git add . ; git commit -m "day 01: AI vs ML vs DL vs LLM"
 
 ---
 
-<details>
+<details markdown="1">
 <summary>Đáp án Bài 1 (chỉ mở sau khi tự làm)</summary>
 
 | # | Đáp án | Lý do |

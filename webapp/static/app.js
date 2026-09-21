@@ -1,9 +1,25 @@
 /* LeanAI — web app 90 ngày */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const api = async (url, opts) => {
-  const r = await fetch(url, opts);
-  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).detail || r.statusText);
+const api = async (url, opts = {}) => {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 30000);
+  let r;
+  try {
+    r = await fetch(url, { ...opts, signal: ctrl.signal });
+  } catch (e) {
+    clearTimeout(timer);
+    throw new Error(e.name === 'AbortError'
+      ? 'Máy chủ không trả lời sau 30 giây. Kiểm tra mạng rồi thử lại.'
+      : 'Không kết nối được máy chủ.');
+  }
+  clearTimeout(timer);
+  if (!r.ok) {
+    const detail = (await r.json().catch(() => ({}))).detail;
+    if (r.status === 403) throw new Error(detail || 'Bị chặn: app đang ở CHẾ ĐỘ CHỈ ĐỌC.');
+    if (r.status === 401) throw new Error('Sai tài khoản hoặc mật khẩu.');
+    throw new Error(detail || `Lỗi ${r.status}`);
+  }
   return r.json();
 };
 const post = (url, body) => api(url, {
@@ -40,7 +56,12 @@ function initTheme() {
 
 /* ------------------------------------------------------------ overview */
 async function loadOverview() {
-  state.ov = await api('/api/overview');
+  try {
+    state.ov = await api('/api/overview');
+  } catch (e) {
+    toast('Không tải được tiến trình: ' + e.message);
+    throw e;
+  }
   renderTop();
   renderSidebar();
   return state.ov;
@@ -257,7 +278,14 @@ async function renderLesson(day) {
   $('#main').innerHTML = '<div class="loading">Đang tải bài học…</div>';
   let d;
   try { d = await api('/api/day/' + day); }
-  catch (e) { $('#main').innerHTML = `<div class="loading">Lỗi: ${esc(e.message)}</div>`; return; }
+  catch (e) {
+    $('#main').innerHTML = `<div class="loading">
+      <div style="color:var(--er);font-weight:600;margin-bottom:8px">Không mở được bài học</div>
+      <div>${esc(e.message)}</div>
+      <button class="btn" style="margin-top:14px" onclick="location.reload()">Tải lại</button>
+    </div>`;
+    return;
+  }
 
   const st = d.state || {};
   const statusPill = st.status === 'pass'
@@ -319,7 +347,7 @@ async function openQuiz({ mode = 'day', day = null }) {
   let data;
   try {
     data = await api(`/api/quiz?mode=${mode}${day ? '&day=' + day : ''}`);
-  } catch (e) { toast('Lỗi: ' + e.message); return; }
+  } catch (e) { toast(e.message); return; }
 
   if (!data.count) {
     toast(mode === 'review' ? 'Không có câu nào đến hạn ôn. Nghỉ ngơi.'
@@ -472,16 +500,36 @@ function openDone(d) {
 }
 
 async function mark(status) {
-  await post(`/api/day/${doneDay}/status`, {
-    status,
-    minutes: +$('#f-minutes').value || 0,
-    cost: +$('#f-cost').value || 0,
-    note: $('#f-note').value.trim(),
-  });
-  $('#done-modal').hidden = true;
-  toast(status === 'pass' ? `Ngày ${doneDay}: PASS ✓` : `Ngày ${doneDay}: FAIL`);
-  await loadOverview();
-  renderLesson(doneDay);
+  const btns = [$('#btn-mark-pass'), $('#btn-mark-fail')];
+  btns.forEach(b => b.disabled = true);
+  try {
+    await post(`/api/day/${doneDay}/status`, {
+      status,
+      minutes: +$('#f-minutes').value || 0,
+      cost: +$('#f-cost').value || 0,
+      note: $('#f-note').value.trim(),
+    });
+    $('#done-modal').hidden = true;
+    toast(status === 'pass' ? `Ngày ${doneDay}: PASS ✓` : `Ngày ${doneDay}: FAIL`);
+    await loadOverview();
+    renderLesson(doneDay);
+  } catch (e) {
+    showModalError('#done-modal', e.message);
+  } finally {
+    btns.forEach(b => b.disabled = false);
+  }
+}
+
+function showModalError(sel, msg) {
+  const foot = $(sel + ' .modal-foot');
+  let box = $(sel + ' .err-box');
+  if (!box) {
+    box = document.createElement('div');
+    box.className = 'err-box';
+    foot.parentNode.insertBefore(box, foot);
+  }
+  box.textContent = '⚠ ' + msg;
+  box.hidden = false;
 }
 
 /* ------------------------------------------------------------ search */
