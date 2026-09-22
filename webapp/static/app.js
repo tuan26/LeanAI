@@ -16,7 +16,10 @@ const api = async (url, opts = {}) => {
   clearTimeout(timer);
   if (!r.ok) {
     const detail = (await r.json().catch(() => ({}))).detail;
-    if (r.status === 403) throw new Error(detail || 'Bị chặn: app đang ở CHẾ ĐỘ CHỈ ĐỌC.');
+    if (r.status === 403) {
+      throw new Error((detail || 'Bị chặn: app đang ở CHẾ ĐỘ CHỈ ĐỌC.')
+        + ' — mở /api/diag để xem app đang thiếu biến nào.');
+    }
     if (r.status === 401) throw new Error('Sai tài khoản hoặc mật khẩu.');
     throw new Error(detail || `Lỗi ${r.status}`);
   }

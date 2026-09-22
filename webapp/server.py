@@ -177,6 +177,36 @@ def api_import(payload: dict, _: str = Depends(require_auth)):
     return {"ok": True, "cards": len(qp["cards"]), "days": len(st["days"])}
 
 
+@app.get("/api/diag")
+def api_diag():
+    """Chẩn đoán cấu hình. CHỈ báo tên biến có/không, TUYỆT ĐỐI không lộ giá trị."""
+    import os
+    expected = ["LEANAI_USER", "LEANAI_PASS", "LEANAI_SECRET",
+                "UPSTASH_REDIS_REST_URL", "UPSTASH_REDIS_REST_TOKEN"]
+    seen = {k: bool(os.getenv(k, "").strip()) for k in expected}
+    # Bắt lỗi gõ sai tên: liệt kê MỌI biến bắt đầu bằng LEANAI/UPSTASH
+    similar = sorted(k for k in os.environ
+                     if k.upper().startswith(("LEANAI", "LEAN_AI", "UPSTASH")))
+    missing = [k for k, v in seen.items() if not v]
+    hints = []
+    if missing:
+        hints.append(f"Thiếu: {', '.join(missing)}")
+        typo = [k for k in similar if k not in expected]
+        if typo:
+            hints.append(f"Tên lạ (gõ sai?): {', '.join(typo)}")
+        hints.append("Kiểm tra Vercel → Settings → Environment Variables, "
+                     "nhớ tick ô Production, rồi Redeploy.")
+    return {
+        "env_seen": seen,
+        "env_names_found": similar,
+        "vercel_env": os.getenv("VERCEL_ENV", ""),
+        "auth_enabled": config.AUTH_ENABLED,
+        "read_only": config.READ_ONLY,
+        "storage": __import__("webapp.storage", fromlist=["store"]).store.name,
+        "hints": hints,
+    }
+
+
 @app.get("/healthz")
 def healthz():
     from .storage import store
