@@ -10,7 +10,6 @@ import secrets
 
 from fastapi import Depends, FastAPI, HTTPException, Request, status as http
 from fastapi.responses import FileResponse
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -21,7 +20,31 @@ STATIC = Path(__file__).resolve().parent / "static"
 app = FastAPI(title="LeanAI", docs_url="/api/docs")
 
 # ----------------------------------------------------------------- an ninh
-_basic = HTTPBasic(auto_error=False)
+# KHÔNG dùng HTTPBasic của Starlette: nó giải mã header bằng ASCII, nên mật khẩu
+# có dấu tiếng Việt bị trả 401 trước khi code mình chạy. Tự phân tích để nhận
+# cả UTF-8 (Chrome/Edge) lẫn latin-1 (một số trình duyệt cũ).
+import base64
+
+
+def parse_basic(header: str | None) -> list[tuple[str, str]]:
+    """Trả về các cách hiểu có thể của header — thử hết, khớp cái nào cũng được."""
+    if not header or not header.strip().lower().startswith("basic "):
+        return []
+    try:
+        raw = base64.b64decode(header.strip()[6:].strip(), validate=False)
+    except Exception:
+        return []
+    out = []
+    for enc in ("utf-8", "latin-1"):
+        try:
+            text = raw.decode(enc)
+        except UnicodeDecodeError:
+            continue
+        if ":" in text:
+            u, pw = text.split(":", 1)
+            if (u, pw) not in out:
+                out.append((u, pw))
+    return out
 
 
 def _same(a: str, b: str) -> bool:
@@ -33,19 +56,22 @@ def _same(a: str, b: str) -> bool:
     return secrets.compare_digest(a.encode("utf-8"), b.encode("utf-8"))
 
 
-def require_auth(creds: HTTPBasicCredentials | None = Depends(_basic)) -> str:
+def require_auth(request: Request) -> str:
     """Bật khi có LEANAI_PASS. Tên đăng nhập mặc định 'leanai'."""
     if not config.AUTH_ENABLED:
         return ""
-    ok = creds is not None and (
-        _same(creds.username.strip(), config.USER) & _same(creds.password, config.PASS))
+    ok = False
+    for u, pw in parse_basic(request.headers.get("authorization")):
+        if _same(u.strip(), config.USER) & _same(pw, config.PASS):
+            ok = True
+            break
     if not ok:
         raise HTTPException(
             http.HTTP_401_UNAUTHORIZED,
             f"Sai tài khoản hoặc mật khẩu. Tên đăng nhập của app này là "
             f"'{config.USER}'. Mật khẩu là giá trị bạn đặt ở biến LEANAI_PASS.",
             headers={"WWW-Authenticate": 'Basic realm="LeanAI"'})
-    return creds.username
+    return config.USER
 
 
 @app.middleware("http")
@@ -213,8 +239,15 @@ def api_diag():
             hints.append(f"Tên lạ (gõ sai?): {', '.join(typo)}")
         hints.append("Kiểm tra Vercel → Settings → Environment Variables, "
                      "nhớ tick ô Production, rồi Redeploy.")
+    def shape(v: str) -> dict:
+        return {"do_dai": len(v), "chi_ascii": v.isascii(),
+                "co_khoang_trang_dau_cuoi": v != v.strip(),
+                "bi_boc_nhay": len(v) > 1 and v[0] == v[-1] and v[0] in "\"'"}
+
     return {
         "login_user": config.USER or None,
+        "hinh_dang_mat_khau": shape(config.PASS) if config.PASS else None,
+        "hinh_dang_ten": shape(config.USER) if config.USER else None,
         "env_seen": seen,
         "env_names_found": similar,
         "vercel_env": os.getenv("VERCEL_ENV", ""),
