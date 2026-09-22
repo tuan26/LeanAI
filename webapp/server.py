@@ -24,16 +24,27 @@ app = FastAPI(title="LeanAI", docs_url="/api/docs")
 _basic = HTTPBasic(auto_error=False)
 
 
+def _same(a: str, b: str) -> bool:
+    """So sánh chống tấn công thời gian.
+
+    secrets.compare_digest NÉM TypeError với chuỗi có ký tự ngoài ASCII
+    (mật khẩu tiếng Việt có dấu). Phải mã hoá sang bytes trước.
+    """
+    return secrets.compare_digest(a.encode("utf-8"), b.encode("utf-8"))
+
+
 def require_auth(creds: HTTPBasicCredentials | None = Depends(_basic)) -> str:
-    """Bật khi có LEANAI_USER + LEANAI_PASS. So sánh chống tấn công thời gian."""
+    """Bật khi có LEANAI_PASS. Tên đăng nhập mặc định 'leanai'."""
     if not config.AUTH_ENABLED:
         return ""
     ok = creds is not None and (
-        secrets.compare_digest(creds.username, config.USER)
-        & secrets.compare_digest(creds.password, config.PASS))
+        _same(creds.username.strip(), config.USER) & _same(creds.password, config.PASS))
     if not ok:
-        raise HTTPException(http.HTTP_401_UNAUTHORIZED, "Sai tài khoản hoặc mật khẩu",
-                            headers={"WWW-Authenticate": "Basic"})
+        raise HTTPException(
+            http.HTTP_401_UNAUTHORIZED,
+            f"Sai tài khoản hoặc mật khẩu. Tên đăng nhập của app này là "
+            f"'{config.USER}'. Mật khẩu là giá trị bạn đặt ở biến LEANAI_PASS.",
+            headers={"WWW-Authenticate": 'Basic realm="LeanAI"'})
     return creds.username
 
 
