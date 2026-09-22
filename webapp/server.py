@@ -189,6 +189,12 @@ def api_diag():
                      if k.upper().startswith(("LEANAI", "LEAN_AI", "UPSTASH")))
     missing = [k for k, v in seen.items() if not v]
     hints = []
+    if config.AUTH_ENABLED:
+        hints.append(f"Xác thực ĐANG BẬT. Tên đăng nhập: '{config.USER}'"
+                     + (" (mặc định vì LEANAI_USER để trống)"
+                        if not os.getenv("LEANAI_USER", "").strip() else ""))
+    elif not config.PASS:
+        hints.append("Chưa có LEANAI_PASS -> app chạy CHẾ ĐỘ CHỈ ĐỌC.")
     if missing:
         hints.append(f"Thiếu: {', '.join(missing)}")
         typo = [k for k in similar if k not in expected]
@@ -197,6 +203,7 @@ def api_diag():
         hints.append("Kiểm tra Vercel → Settings → Environment Variables, "
                      "nhớ tick ô Production, rồi Redeploy.")
     return {
+        "login_user": config.USER or None,
         "env_seen": seen,
         "env_names_found": similar,
         "vercel_env": os.getenv("VERCEL_ENV", ""),

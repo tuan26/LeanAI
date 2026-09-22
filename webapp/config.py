@@ -24,9 +24,12 @@ PORT = int(os.getenv("PORT", "8080"))
 SECRET = os.getenv("LEANAI_SECRET", "leanai-local-dev")
 
 # --- xác thực ---
-USER = os.getenv("LEANAI_USER", "")
-PASS = os.getenv("LEANAI_PASS", "")
-AUTH_ENABLED = bool(USER and PASS)
+# Mật khẩu mới là bí mật; tên đăng nhập chỉ là nhãn. Đặt LEANAI_PASS là đủ để
+# bật xác thực — quên điền LEANAI_USER thì dùng "leanai". Trước đây bắt buộc cả
+# hai, nên để trống một ô là app im lặng rơi vào chế độ chỉ đọc.
+PASS = os.getenv("LEANAI_PASS", "").strip()
+USER = os.getenv("LEANAI_USER", "").strip() or ("leanai" if PASS else "")
+AUTH_ENABLED = bool(PASS)
 
 # --- dữ liệu ---
 # Khi deploy, trỏ vào volume để tiến trình không mất khi container khởi động lại.
